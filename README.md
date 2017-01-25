@@ -20,8 +20,8 @@ Rendu du projet
 Aichatou Traore : Traitement du flux avec WebAudio  
 Estelle Rostan : Utilisation de framework pour afficher des partitions  
 Marouane ML. : Traitement du flux avec WebAudio  
-Nourdine Bouchti : Analyse d'une période pour récuperer une note.  
-Tom Phily : Analyse de la fréquance pour récupérer les périodes.  
+Nourdine Bouchti : Analyse d'une harmonie pour récuperer la note.  
+Tom Phily : Analyse de l'onde pour récupérer les harmonies.  
   
 ###Dirigé par :  
 Fabrice Huet  

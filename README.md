@@ -2,7 +2,7 @@
 
 Pour cloner le projet : 
 ```
-git clone https://github.com/PhilyT/SystemDistrib.git
+git clone https://github.com/PhilyT/KaraokeInverse.git  
 ```
 
   

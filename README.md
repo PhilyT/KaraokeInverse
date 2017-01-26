@@ -23,8 +23,8 @@ Marouane ML. : Traitement du flux avec WebAudio
 Nourdine Bouchti : Analyse d'une harmonie pour récuperer la note.  
 Tom Phily : Analyse de l'onde pour récupérer les harmonies.  
   
-Le tableau de pération des tâches se touvent dans l'onglet Projects --> Karaoké Inversé du site :  
-https://github.com/PhilyT/KaraokeInverse  
+Le tableau de pération des tâches se touvent dans le lien suivant :  
+https://github.com/PhilyT/KaraokeInverse/projects/1    
   
 ###Dirigé par :  
 Fabrice Huet  

@@ -16,7 +16,9 @@ La documentation se trouve dans le repertoire doc à  la racine.
 >###### Version 1.0  
 >Prévu pour la fin d'année :
 >* Rendu du projet  
+
 ---
+
 >###### Version 0.1  
 >Prévu pour la semaine du 6 février
 >* Identification des tâches

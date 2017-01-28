@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>abcjs demo page</h1>
+<!--adapted from https://abcjs.net/abcjs-editor.html-->
 
 <p>For more information, see <a href="https://github.com/paulrosen/abcjs" >the project page</a>.</p>
 <textarea name="abc" id="abc" cols="80" rows="15"style="display: none">X: 1
@@ -34,13 +35,15 @@ eB B2 eBgB|eB B2 defg|afe^c dBAF|DEFD E2 </textarea>
 
 <script type="text/javascript">
     window.onload = function() {
+        <!--Affiche une partition de base-->
         abc_editor = new ABCJS.Editor("abc", { paper_id: "paper0", midi_id:"midi", warnings_id:"warnings" });
     }
 
+    <!--puis ajoute la note correspondant à 'A' sous le format ABC toutes les 3 secondes-->
     setInterval(function(){
         var rtTxt = $("#abc");
         rtTxt.val(rtTxt.val() + 'A');
-h
+
     }, 3000);
 </script>
 

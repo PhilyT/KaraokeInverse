@@ -29,7 +29,7 @@ La documentation se trouve dans le repertoire doc à  la racine.
 ### Contributeurs  
 | Tâches | Contributeurs |  
 |:---:|:---:|
-| Documentation WebAudio | Aichatou Traore **&** Marouane ML. |
+| Documentation WebAudio | Aichatou Traore **&** Marouane Lamine |
 | Documentation Son & Solfège | Tom Phily **&** Nourdine Bouchti |
 | Doculentation Framwork Score HTML5 | Estelle Rostan |
   

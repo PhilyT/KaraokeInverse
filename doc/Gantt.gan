@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-01-23" view-index="0" gantt-divider-location="567" resource-divider-location="301" version="2.7.2" locale="fr">
+    <description/>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="79" order="0"/>
+        <field id="tpd4" name="Date de début" width="10" order="1"/>
+        <field id="tpd5" name="Date de fin" width="10" order="2"/>
+        <option id="taskLabelUp" value=""/>
+        <option id="taskLabelLeft" value=""/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="51" order="0"/>
+        <field id="1" name="Rôle par défaut" width="48" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Documentation FrameWork Music Sheet, Score" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="1" name="Documentation Etude Solfège et Son" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="2" name="Documentation WebAudio" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="3" name="Implémentation du framework VexFlow" color="#8cb6ce" meeting="false" start="2017-02-06" duration="7" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="4" name="Implémentation de Webaudio" color="#8cb6ce" meeting="false" start="2017-02-06" duration="7" complete="0" thirdDate="2017-02-15" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="5" name="Découpage du flux audio: Determination de l'Algorithme" color="#8cb6ce" meeting="false" start="2017-02-06" duration="7" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="6" name="Découpage du flux audio : Mise en place de la fonctionnalité" color="#8cb6ce" meeting="false" start="2017-02-15" duration="20" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="7" name="Découpage du flux audio : Test et implementation de la fonctionnalité" color="#8cb6ce" meeting="false" start="2017-03-15" duration="12" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="15" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="8" name="Identification d'une note : Determination de l'algorithme" color="#8cb6ce" meeting="false" start="2017-02-06" duration="7" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="9" name="Identification d'une note : Mise en place de la fonctionnalité" color="#8cb6ce" meeting="false" start="2017-02-15" duration="13" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="10" name="Identification d'une note : test et implémentationfinal" color="#8cb6ce" meeting="false" start="2017-03-06" duration="11" complete="0" thirdDate="2017-03-21" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <depend id="15" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="11" name="Formatage d'une note" color="#8cb6ce" meeting="false" start="2017-03-21" duration="8" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="12" name="Design de la page web" color="#8cb6ce" meeting="false" start="2017-02-15" duration="17" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="13" name="Implementation des fonctionnalités à l'IHM" color="#8cb6ce" meeting="false" start="2017-03-10" duration="9" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true">
+            <depend id="15" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="14" name="Rédaction du rapport" color="#8cb6ce" meeting="false" start="2017-04-03" duration="14" complete="0" expand="true"/>
+        <task id="15" name="Test et implementation total de l'ensemble des fonctionnalités au projet" color="#8cb6ce" meeting="false" start="2017-03-31" duration="19" complete="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="16" name="Sprint 1" color="#990000" meeting="false" start="2017-02-06" duration="1" complete="0" expand="true"/>
+        <task id="17" name="Sprint 2" color="#990000" meeting="false" start="2017-02-27" duration="1" complete="0" expand="true"/>
+        <task id="18" name="Sprint 3" color="#990000" meeting="false" start="2017-03-20" duration="1" complete="0" expand="true"/>
+        <task id="19" name="Sprint 4" color="#990000" meeting="false" start="2017-04-10" duration="1" complete="0" expand="true"/>
+        <task id="20" name="Sprint 5" color="#990000" meeting="false" start="2017-04-24" duration="1" complete="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Tom PHILY" function="Default:1" contacts="" phone=""/>
+        <resource id="1" name="Traore AICHATOU" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="2" name="Marouane LAMINE" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="3" name="Nourdine BOUCHTI" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="4" name="Estelle ROSTAN" function="SoftwareDevelopment:2" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="1" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="15" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="2" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="1" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="15" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="5" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="6" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="7" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="15" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="1" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="5" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="6" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="15" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="4" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="4" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="12" resource-id="4" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="13" resource-id="4" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="15" resource-id="4" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <taskdisplaycolumns>
+        <displaycolumn property-id="tpd2" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd7" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd12" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd3" order="0" width="445" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="58" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="60" visible="true"/>
+        <displaycolumn property-id="tpd6" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd10" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd11" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd13" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
+    </taskdisplaycolumns>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>

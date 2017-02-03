@@ -1,4 +1,4 @@
-var startRecordingButton = document.getElementById("startRecordingButton");
+	var startRecordingButton = document.getElementById("startRecordingButton");
         var stopRecordingButton = document.getElementById("stopRecordingButton");
         var playButton = document.getElementById("playButton");
         var downloadButton = document.getElementById("downloadButton");
@@ -12,6 +12,7 @@ var startRecordingButton = document.getElementById("startRecordingButton");
         var context = null;
         var blob = null;
          function enregistrement() {
+		
          
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
             navigator.getUserMedia(

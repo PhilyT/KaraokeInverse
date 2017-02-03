@@ -1,5 +1,5 @@
 body {
-    background-color: blue;
+  
 }
 p{
 	color:white;
@@ -8,3 +8,9 @@ p{
 div{
 	color:white;
 }
+footer {
+			background-image: url("../image/fond.jpg");
+			background-repeat: repeat-x;
+			
+			 padding-top:50px; 
+			}

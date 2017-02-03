@@ -11,7 +11,7 @@ var startRecordingButton = document.getElementById("startRecordingButton");
         var sampleRate = 44100;
         var context = null;
         var blob = null;
-        startRecordingButton.addEventListener("click", function () {
+         function enregistrement() {
          
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
             navigator.getUserMedia(

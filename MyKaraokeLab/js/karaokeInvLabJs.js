@@ -55,6 +55,7 @@ window.onload = function() {
 
 	});
 };
+
 function getStream(stream){
 	track = stream.getTracks()[0];
 	// Celui est le flux de l'audio obtenu à partir du microphone de l'utilisateur
@@ -73,19 +74,23 @@ function getStream(stream){
 
 	analyser.getByteFrequencyData(frequencyData)
 	
-	update();
+	update(10);
 }
 
-function update() {
-    // Schedule the next update
-    requestAnimationFrame(update);
+function update(fps) {
 
-    // Get the new frequency data
-    analyser.getByteFrequencyData(frequencyData);
+	setTimeout(function(){ // mettre ajour l'affichage tous les 100ms (10fps)
+	    // prochaine update
+	    requestAnimationFrame(function(){
+	    	update(fps)
+	    });
 
-	//console.log(frequencyData)
-    // Update the visualisation
-    for (var i = 0; i < 4; i++) {
-		$("#frequency-visualizer-canvas h2").text(frequencyData[i] + " | " + frequencyData[i+1] + " | " + frequencyData[i+2]  + " | " + frequencyData[i+3]);
-    }
+	    // les nouvelles valeurs de la frequence
+	    analyser.getByteFrequencyData(frequencyData);
+
+	    for (var i = 0; i < 4; i++) {
+			$("#frequency-visualizer-canvas h2").text(frequencyData[i] + " | " + frequencyData[i+1] + " | " + frequencyData[i+2]  + " | " + frequencyData[i+3]);
+	    }    
+    }, 1000/fps)
+    
 };

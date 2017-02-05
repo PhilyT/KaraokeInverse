@@ -7,10 +7,11 @@
 	}
 })();
 // définir les variables qu'on va utiliser
-var isPlaying = false;
+var isPlaying = true;
 var audioContext = null;
 var analyser = null;
 var frequencyData = null;
+var track = null;
 var mediaStreamSource = null;
 var bufferSize = 4096;
 var audioOpts = {
@@ -43,16 +44,17 @@ window.onload = function() {
  	// Controler le start/pause
  	$("#toggle-visualizer").click(function() {
 		if (isPlaying) {
-			analyser.pause();
-			isPlaying = true;
-		} else {
-			analyser.start();
+			track.stop();
 			isPlaying = false;
+		} else {
+			track.start();
+			isPlaying = true;
 		} 
 
 	})
 };
 function getStream(stream){
+	track = stream.getTracks()[0];
 	// Celui est le flux de l'audio obtenu à partir du microphone de l'utilisateur
 	// On va traiter ce flux en temps réel
 

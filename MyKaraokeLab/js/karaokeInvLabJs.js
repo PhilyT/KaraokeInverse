@@ -6,8 +6,8 @@
 		});
 	}
 })();
-// definier les variables qu'on va utiliser
-
+// définir les variables qu'on va utiliser
+var isPlaying = false;
 var audioContext = null;
 var analyser = null;
 var frequencyData = null;
@@ -39,11 +39,18 @@ window.onload = function() {
 			console.log(e);
 		}
 	);
-
-
-	// Kick it off...
 	
+ 	// Controler le start/pause
+ 	$("#toggle-visualizer").click(function() {
+		if (isPlaying) {
+			analyser.pause();
+			isPlaying = true;
+		} else {
+			analyser.start();
+			isPlaying = false;
+		} 
 
+	})
 };
 function getStream(stream){
 	// Celui est le flux de l'audio obtenu à partir du microphone de l'utilisateur
@@ -71,10 +78,10 @@ function update() {
 
     // Get the new frequency data
     analyser.getByteFrequencyData(frequencyData);
+
 	//console.log(frequencyData)
     // Update the visualisation
-	$("#frequency-visualizer-canvas h2").text(frequencyData);
-    
-        
-
+    for (var i = 0; i < 4; i++) {
+		$("#frequency-visualizer-canvas h2").text(frequencyData[i] + " | " + frequencyData[i+1] + " | " + frequencyData[i+2]  + " | " + frequencyData[i+3]);
+    }
 };

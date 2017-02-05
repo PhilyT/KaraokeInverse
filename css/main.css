@@ -96,7 +96,7 @@ textarea {
    ========================================================================== */
 
 body {
-    background-image: url("../image/fond.jpg");
+    background-image: url("../img/fond.jpg");
     background-repeat: repeat-x;
     padding-top:50px;
 }
@@ -108,12 +108,17 @@ div{
     color:white;
 }
 footer {
-    background-image: url("../image/fond.jpg");
+    background-image: url("../img/fond.jpg");
     background-repeat: repeat-x;
 
     padding-top:50px;
 }
 
+/* centered columns styles */
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 
 
 

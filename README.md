@@ -32,7 +32,13 @@ La documentation se trouve dans le repertoire doc à  la racine.
 | Documentation WebAudio | Aichatou Traore **&** Marouane Lamine |
 | Documentation Son & Solfège | Tom Phily **&** Nourdine Bouchti |
 | Doculentation Framwork Score HTML5 | Estelle Rostan |
-  
+| Implémentation de WebAudio | Aichatou Traore |
+| Découpage du flux audio | Marouane Lamine **&** Nourdine Bouchti |
+| Identification d'une Note | Tom Phily **&** Aichatou Traore |
+| Implémentation du framwork VexFlow | Estelle Rostan |
+| Design de la page | Estelle Rostan |  
+
+<img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">
   
 Le tableau de l'avancement des tâches se touvent dans le lien suivant :  
 https://github.com/PhilyT/KaraokeInverse/projects/1    

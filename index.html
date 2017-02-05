@@ -19,29 +19,24 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
     </head>
-    <body ng-controller="MainController"  >
+    <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				
-			</div>
-			<div class="col-sm-8 text-left">
-				<div>
-					<h1>Audio</h1>
+        <div class="container">
 
-					<button id="startRecordingButton" onclick="enregistrement();">Start recording</button>
-				</div>
+            <div class="row">
+                <div class="col-sm-12 col-centered">
+                    <h1>Audio</h1>
+                    <button class="btn btn-default" id="startRecordingButton" onclick="enregistrement();">Start recording</button>
 
-				<p>Une portée, une clef de sol et une mesure à 4/4... qui attendent l'arrivée des notes :</p>
-				<div id="boo"></div>
-			
-			</div>
-			<div class="col-sm-2 sidenav">
-			</div>
-		</div>
-		<footer class="container-fluid text-center">
+                    <p>Une portée, une clef de sol et une mesure à 4/4... qui attendent l'arrivée des notes :</p>
+                    <div id="boo"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="container-fluid text-center">
 			<p>Projet fin d'année MIAGE Nice</p>
 		</footer>
 

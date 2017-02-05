@@ -44,14 +44,16 @@ window.onload = function() {
  	// Controler le start/pause
  	$("#toggle-visualizer").click(function() {
 		if (isPlaying) {
-			track.stop();
+			track.enabled = false;
 			isPlaying = false;
+			$(this).text("Démarrer");
 		} else {
-			track.start();
+			track.enabled = true;
 			isPlaying = true;
+			$(this).text("Stop");
 		} 
 
-	})
+	});
 };
 function getStream(stream){
 	track = stream.getTracks()[0];

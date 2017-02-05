@@ -95,7 +95,24 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background-image: url("../image/fond.jpg");
+    background-repeat: repeat-x;
+    padding-top:50px;
+}
+p{
+    color:white;
 
+}
+div{
+    color:white;
+}
+footer {
+    background-image: url("../image/fond.jpg");
+    background-repeat: repeat-x;
+
+    padding-top:50px;
+}
 
 
 

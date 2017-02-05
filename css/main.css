@@ -98,7 +98,10 @@ textarea {
 body {
     background-image: url("../img/fond.jpg");
     background-repeat: repeat-x;
-    padding-top:50px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 p{
     color:white;
@@ -106,12 +109,6 @@ p{
 }
 div{
     color:white;
-}
-footer {
-    background-image: url("../img/fond.jpg");
-    background-repeat: repeat-x;
-
-    padding-top:50px;
 }
 
 /* centered columns styles */

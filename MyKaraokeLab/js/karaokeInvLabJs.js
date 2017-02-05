@@ -15,11 +15,10 @@ var mediaStreamSource = null;
 var bufferSize = 4096;
 var audioOpts = {
     mandatory: {
-        googEchoCancellation: false,
-        googAutoGainControl: true,
-        googNoiseSuppression: true,
-        googHighpassFilter: true,
-        googTypingNoiseDetection: true
+        "googEchoCancellation": "false",
+        "googAutoGainControl": "false",
+        "googNoiseSuppression": "false",
+        "googHighpassFilter": "false"
     },
     optional: []
 };
@@ -31,47 +30,51 @@ window.onload = function() {
 		// Les détails à-propos du UserMedia auxquelles on veut y accéder
 		{audio: audioOpts},
 
-		// Obtenir le media de l'utilisateur sous forme d'un flux
-		stream => {
-			// Celui est le flux de l'audio obtenu à partir du microphone de l'utilisateur
-			// On va traiter ce flux en temps réel
-
-			mediaStreamSource = audioContext.createMediaStreamSource(stream);
-
-			analyser = audioContext.createAnalyser();
-		    analyser.fftSize = bufferSize;
-			mediaStreamSource.connect(analyser);
-			
-			//analyser.connect(audioContext.destination);
-			
-			frequencyData = new Uint8Array(analyser.frequencyBinCount);
-			console.log(frequencyData)
-			analyser.getByteFrequencyData(frequencyData)
-
-		    
-			
-		},
+		// Obtenir le media de l'utilisateur sous forme d'un flux audio
+		getStream,
 
 		// Manipuler une erreur
-		err => console.log(err)
+		function(e){
+			alert("Erreur : problème dans la capture du son");
+			console.log(e);
+		}
 	);
-	function update() {
-	    // Schedule the next update
-	    requestAnimationFrame(update);
 
-	    // Get the new frequency data
-	    analyser.getByteFrequencyData(frequencyData);
-
-	    // Update the visualisation
-	    for (var i = 0; i < frequencyData.length; i++) {
-	    	$("#frequency-visualizer-canvas").text(frequencyData[i]);
-	    }
-	        
-
-	};
 
 	// Kick it off...
-	update();
+	
 
 };
+function getStream(stream){
+	// Celui est le flux de l'audio obtenu à partir du microphone de l'utilisateur
+	// On va traiter ce flux en temps réel
 
+	//créer un nœud audio à partir du flux
+	mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
+	analyser = audioContext.createAnalyser();
+    analyser.fftSize = bufferSize;
+	mediaStreamSource.connect(analyser);
+	
+	//analyser.connect(audioContext.destination);
+
+	frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+	analyser.getByteFrequencyData(frequencyData)
+	
+	update();
+}
+
+function update() {
+    // Schedule the next update
+    requestAnimationFrame(update);
+
+    // Get the new frequency data
+    analyser.getByteFrequencyData(frequencyData);
+	//console.log(frequencyData)
+    // Update the visualisation
+	$("#frequency-visualizer-canvas h2").text(frequencyData);
+    
+        
+
+};

@@ -10,9 +10,12 @@ function enregistrement() {
     var sampleRate = 44100;
     var context = null;
     var blob = null;
+    
 
     // Initialize recorder
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    var gainNode = audioCtx.createGain();
+    var biquadFilter = audioCtx.createBiquadFilter();
     navigator.getUserMedia(
         {
             audio: true
@@ -21,9 +24,37 @@ function enregistrement() {
             console.log("user consent");
             // creates the audio context
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
-            context = new AudioContext();
-            // creates an audio node from the microphone incoming stream
+            // Ajout filtre 
+            
+            var analyser = window.AudioContext.createAnalyser();
+            var distortion = window.AudioContext.createWaveShaper();
+            var gainNode = window.AudioContext.createGain();
+            var biquadFilter = window.AudioContext.createBiquadFilter();
+            var convolver = window.AudioContext.createConvolver();
+            
+            
+             // creates an audio node from the microphone incoming stream
             mediaStream = context.createMediaStreamSource(e);
+
+           // connection  togther 
+
+            
+            mediaStream.connect(analyser);
+            analyser.connect(distortion);
+            distortion.connect(biquadFilter);
+            biquadFilter.connect(convolver);
+            convolver.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            // manipulation de biquadFilter
+            
+
+            biquadFilter.type = "lowshelf";
+            biquadFilter.frequency.value = 1000;
+            biquadFilter.gain.value = 25;
+            
+            //creation de l'audio context
+            context = new AudioContext();
+           
 
             // bufferSize: the onaudioprocess event is called when the buffer is full
             var bufferSize = 2048;

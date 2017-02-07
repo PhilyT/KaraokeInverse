@@ -45,6 +45,12 @@ function enregistrement() {
             biquadFilter.connect(convolver);
             convolver.connect(gainNode);
             gainNode.connect(audioCtx.destination);
+            // manipulation de biquadFilter
+            
+
+            biquadFilter.type = "lowshelf";
+            biquadFilter.frequency.value = 1000;
+            biquadFilter.gain.value = 25;
             
             //creation de l'audio context
             context = new AudioContext();

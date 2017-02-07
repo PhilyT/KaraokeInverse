@@ -47,10 +47,7 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 | Implémentation du framwork VexFlow | Estelle Rostan |
 | Design de la page | Estelle Rostan |  
 
-<img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">
-  
-Le tableau de l'avancement des tâches se touvent dans le lien suivant :  
-https://github.com/PhilyT/KaraokeInverse/projects/1    
+<img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">    
   
 ### Dirigé par :  
 Fabrice Huet  

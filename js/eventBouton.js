@@ -31,11 +31,24 @@ function enregistrement() {
             var gainNode = window.AudioContext.createGain();
             var biquadFilter = window.AudioContext.createBiquadFilter();
             var convolver = window.AudioContext.createConvolver();
-
-           
-            context = new AudioContext();
-            // creates an audio node from the microphone incoming stream
+            
+            
+             // creates an audio node from the microphone incoming stream
             mediaStream = context.createMediaStreamSource(e);
+
+           // connection  togther 
+
+            
+            mediaStream.connect(analyser);
+            analyser.connect(distortion);
+            distortion.connect(biquadFilter);
+            biquadFilter.connect(convolver);
+            convolver.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            //creation de l'audio context
+            context = new AudioContext();
+           
 
             // bufferSize: the onaudioprocess event is called when the buffer is full
             var bufferSize = 2048;

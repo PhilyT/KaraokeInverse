@@ -10,9 +10,12 @@ function enregistrement() {
     var sampleRate = 44100;
     var context = null;
     var blob = null;
+    
 
     // Initialize recorder
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    var gainNode = audioCtx.createGain();
+    var biquadFilter = audioCtx.createBiquadFilter();
     navigator.getUserMedia(
         {
             audio: true
@@ -21,6 +24,8 @@ function enregistrement() {
             console.log("user consent");
             // creates the audio context
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            var gainNode =  window.AudioContext.createGain();
+            var biquadFilter =  window.AudioContext.createBiquadFilter();
             context = new AudioContext();
             // creates an audio node from the microphone incoming stream
             mediaStream = context.createMediaStreamSource(e);

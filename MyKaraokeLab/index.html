@@ -56,6 +56,32 @@
 		<div id="frequency-visualizer-canvas">
 			<h2 style="display: inline-block;"></h2>&nbsp;Hz
 		</div>
+<div class="wrapper">
+    
+    <header>
+      <h1>Voix</h1>
+    </header>
+    <canvas class="visualizer" width="640" height="100"></canvas> 
+
+    <form class="controls">
+      <div>
+        <label for="visual">Réglage du visualiseur</label>
+        <select id="visual" name="visual">
+          <option value="sinewave">fréquences</option>
+          <option value="frequencybars" selected>Barres de fréquences</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+      <div>
+        <a class="mute">Muet</a>
+      </div>
+    </form>
+</div>
+
+
+
+
+
 		<br><hr><br>
 		<h2 class="ki-lab-title">Fréquences à échelle égale Égocentrique</h2>
 		<p>The basic formula for the frequencies of the notes of the equal tempered scale is given by <code>fn = f0 * (a)n</code> </p>
@@ -1747,5 +1773,6 @@
 	<script src="assets/tether.min.js"></script>
 	<script src="assets/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
 	<script src="js/karaokeInvLabJs.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>

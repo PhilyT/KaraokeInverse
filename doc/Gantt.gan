@@ -35,7 +35,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Analyse FrameWork Music Sheet, Score" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="100" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
+        <task id="0" name="Analyse FrameWork Music Sheet, Score" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="50" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         <task id="1" name="Analyse Etude Solfège et Son" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="50" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         <task id="2" name="Analyse WebAudio" color="#8cb6ce" meeting="false" start="2017-01-23" duration="11" complete="50" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
         <task id="3" name="Implémentation du framework VexFlow" color="#8cb6ce" meeting="false" start="2017-02-06" duration="7" complete="50" expand="true" cost-manual-value="0.0" cost-calculated="true"/>

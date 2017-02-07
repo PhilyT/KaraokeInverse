@@ -14,8 +14,17 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 ### Release  
   
 >###### Version 1.0  
->Prévu pour la fin d'année :
+>Prévue pour la fin d'année :
 >* Rendu du projet  
+
+---
+
+>###### Version 0.2  
+>Prévue pour la semaine du 27/02/2017
+>* Lecture de son par webaudio
+>* Mise à jour de partition à partir d'un son simple, composé d'une seule harmonic, enregistré sur fichier audio type wav.
+>* Determination d'un algorithme pour découper le flux audio en harmonics. 
+>* Determination d'un algorithme pour identifier une note de music.
 
 ---
 
@@ -38,10 +47,7 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 | Implémentation du framwork VexFlow | Estelle Rostan |
 | Design de la page | Estelle Rostan |  
 
-<img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">
-  
-Le tableau de l'avancement des tâches se touvent dans le lien suivant :  
-https://github.com/PhilyT/KaraokeInverse/projects/1    
+<img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">    
   
 ### Dirigé par :  
 Fabrice Huet  

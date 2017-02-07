@@ -24,8 +24,15 @@ function enregistrement() {
             console.log("user consent");
             // creates the audio context
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
-            var gainNode =  window.AudioContext.createGain();
-            var biquadFilter =  window.AudioContext.createBiquadFilter();
+            // Ajout filtre 
+            
+            var analyser = window.AudioContext.createAnalyser();
+            var distortion = window.AudioContext.createWaveShaper();
+            var gainNode = window.AudioContext.createGain();
+            var biquadFilter = window.AudioContext.createBiquadFilter();
+            var convolver = window.AudioContext.createConvolver();
+
+           
             context = new AudioContext();
             // creates an audio node from the microphone incoming stream
             mediaStream = context.createMediaStreamSource(e);

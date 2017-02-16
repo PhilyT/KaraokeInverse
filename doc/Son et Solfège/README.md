@@ -65,12 +65,27 @@ Il a exactement une entrée et une sortie. Le noeud fonctionne même si la sorti
 | Nombre de canaux | 1 |
 | Interprétation du canal | "speakers" |
 
-### Sources
+## Tableau des notes et de leurs frequences basé sur LA3 440 Hz
+| Notes | (Hz) Oct.-1|  (Hz) Oct.0| (Hz) Oct.1| (Hz) Oct.2| (Hz) Oct.3| (Hz) Oct.4| (Hz) Oct.5| (Hz) Oct.6| (Hz) Oct.7| (Hz) Oct.8| (Hz) Oct.9|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Do| 16.3 |	32.7 | 	65 |	131 | 	262 | 	523 | 	1046.5 | 	2093 | 	4186 |	8372 | 	16744 |
+|Do#| 17.3 | 	34.6 | 	69 | 	139| 	277 | 	554 | 	1109 | 	2217 | 	4435| 	8870 | 	17740|
+|RE| 18.3 |36.7 | 	74| 	147 | 	294 | 	587 | 	1175 | 	2349 | 	4698 | 	9396 | 	18792|
+|Re#| 19.4 | 	38.9 | 	78 | 	156 | 	311 | 	622 | 	1244.5 |	2489 | 	4978 |	9 956 | 	19912|
+|Mi| 20.5 | 	41.2 | 	83 |	165 |	330 | 	659 | 	1318.5 | 	2637 | 	5274 | 	10548 | 	21098|
+|Fa| 21.8 |43.6 | 	87 |	175 | 	349 | 	698.5 | 	1397 |	2794 | 	5588 | 	11176 |  |
+|Fa#| 23.1 |46.2 | 	92.5 |	185 | 370 | 	740 | 	1480 | 	2960 |	5920 | 	11840 |  |
+|Sol| 24.5 |  	49.0 | 	98 | 	196 | 	392 | 	784 | 	1568 | 	3136 | 	6272 | 	12544 |  |
+|Sol#| 26.0 |51.9 | 	104 | 	208 | 	415 | 	831 | 	1661 | 	3322 | 	6645 | 	13290  |
+|La| 27.5 | 55.0 | 	110 | 	220 | 	440 | 	880 | 	1760 | 	3520 | 	7040 | 	14080 |  |
+|La#| 29.1 | 58.0 | 	117 | 	233 | 	466 | 	932 | 	1865 | 	3729 | 	7458 | 	14918 |  |
+|Si| 30.8 | 62.0 | 	123 | 	247 | 	494 | 	988 | 	1975 | 	3951 | 	7902 | 	15804 |  |
 
+### Sources
+* http://culturesciencesphysique.ens-lyon.fr/ressource/Formaterre2012-spectre-signal-Vidal.xml
 * http://www.telecom.ulg.ac.be/teaching/notes/total0/elen036/node15_ct.html
 * https://developer.mozilla.org/fr/docs/Web/API/AnalyserNode
-
-### Sources
 * http://www.cochlea.org/entendre
 * https://fr.wikipedia.org/wiki/Harmonique_(musique)
+* http://jeanjacques.dialo.free.fr/frequenc.htm
 * Dictionnaire Hachette edition 2004

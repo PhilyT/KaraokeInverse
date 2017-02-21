@@ -79,8 +79,8 @@ function enregistrement() {
         });
 }
 function stop(){
-alert("stoper");
-var stopRecordingButton = document.getElementById("stopRecordingButton");
+			alert("stoper");
+			var stopRecordingButton = document.getElementById("stopRecordingButton");
   // stop recording
             recorder.disconnect(context.destination);
             mediaStream.disconnect(recorder);

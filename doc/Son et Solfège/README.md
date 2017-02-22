@@ -81,6 +81,9 @@ Il a exactement une entrée et une sortie. Le noeud fonctionne même si la sorti
 |La#| 29.1 | 58.0 | 	117 | 	233 | 	466 | 	932 | 	1865 | 	3729 | 	7458 | 	14918 |  |
 |Si| 30.8 | 62.0 | 	123 | 	247 | 	494 | 	988 | 	1975 | 	3951 | 	7902 | 	15804 |  |
 
+## Recherche des algorithmes
+Elaboration de l'algorithmes de recherche de notes sur la base du projet PitchDetect avec MIT licence.
+
 ### Sources
 * http://culturesciencesphysique.ens-lyon.fr/ressource/Formaterre2012-spectre-signal-Vidal.xml
 * http://www.telecom.ulg.ac.be/teaching/notes/total0/elen036/node15_ct.html
@@ -89,3 +92,4 @@ Il a exactement une entrée et une sortie. Le noeud fonctionne même si la sorti
 * https://fr.wikipedia.org/wiki/Harmonique_(musique)
 * http://jeanjacques.dialo.free.fr/frequenc.htm
 * Dictionnaire Hachette edition 2004
+* https://github.com/cwilso/PitchDetect

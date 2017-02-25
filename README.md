@@ -9,7 +9,7 @@ git clone https://github.com/PhilyT/KaraokeInverse.git
   
 ### Documents  
   
-La documentation se trouve dans le repertoire doc à  la racine.  
+Le travail de recherche se trouve dans le repertoire doc à  la racine.  
   
 ### Release  
   
@@ -20,19 +20,19 @@ La documentation se trouve dans le repertoire doc à  la racine.
 ---
 
 >###### Version 0.1  
->Prévu pour la semaine du 6 février
+>Réalisée le 07/02/17
 >* Identification des tâches
 >* Répartition des tâches
 >* Réalisation d'un diagramme de gantt
->* Documentation des techonologies utilisées
+>* Analyse des techonologies utilisées
   
 ### Contributeurs  
 | Tâches | Contributeurs |  
 |:---:|:---:|
-| Documentation WebAudio | Aichatou Traore **&** Marouane Lamine |
-| Documentation Son & Solfège | Tom Phily **&** Nourdine Bouchti |
-| Doculentation Framwork Score HTML5 | Estelle Rostan |
-| Implémentation de WebAudio | Aichatou Traore |
+| Analyse WebAudio | Aichatou Traore **&** Marouane Lamine |
+| Analyse Son & Solfège | Tom Phily **&** Nourdine Bouchti |
+| Analyse Framwork Score HTML5 | Estelle Rostan |
+| Paramétrage de WebAudio | Aichatou Traore |
 | Découpage du flux audio | Marouane Lamine **&** Nourdine Bouchti |
 | Identification d'une Note | Tom Phily **&** Aichatou Traore |
 | Implémentation du framwork VexFlow | Estelle Rostan |

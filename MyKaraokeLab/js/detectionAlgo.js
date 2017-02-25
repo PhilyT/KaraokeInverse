@@ -68,7 +68,7 @@ var findFundamentalFreq = function(buffer, sampleRate) {
 			bestK = k;
 		}
 
-		if(r > 0.1) {
+		if(r > 0.9) {
 			
 			// Supposons que c'est assez bon et arret
 			break;
@@ -76,7 +76,7 @@ var findFundamentalFreq = function(buffer, sampleRate) {
 		}
 	}
 
-	if(bestR > 0.5) {console.log(buffer)
+	if(bestR > 0.0025) {console.log(buffer)
 		// La période (en trames) de la fréquence fondamentale est 'bestK'. Obtenir la fréquence à partir de là est trivial.
 		
 

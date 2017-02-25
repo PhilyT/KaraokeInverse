@@ -35,7 +35,7 @@ var detectPitch = function () {
     		//$(this).text(currentFreq)
     	}); 
 	}
-	if else {
+	else {
 		updateNote('undefined');
 		updateCents(-50);
 	}
@@ -112,7 +112,8 @@ function getStream(stream){
 
 	analyser.getByteFrequencyData(frequencyData)
 	
-	update(10);
+	detectPitch();
+	//update(10);
 }
 
 function update(fps) {

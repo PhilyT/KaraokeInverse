@@ -60,5 +60,18 @@ var findFundamentalFreq = function(buffer, sampleRate) {
 			sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
 		}
 		
+		var r = sum / (n + k);
+		if(r > bestR){
+
+			bestR = r;
+			bestK = k;
+		}
+
+		if(r > 0.9) {
+			
+			// Supposons que c'est assez bon et arret
+			break;
+
+		}
 	}
 };

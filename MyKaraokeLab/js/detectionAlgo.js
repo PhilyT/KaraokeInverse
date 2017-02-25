@@ -51,6 +51,14 @@ var updateCents = function (cents) {
 var findFundamentalFreq = function(buffer, sampleRate) {
 	// TODO
 	// Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
-	
 
+	var n = 1024, bestR = 0, bestK = -1;
+	for(var k = 8; k <= 1000; k++){
+		var sum = 0;
+		
+		for(var i = 0; i < n; i++){
+			sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
+		}
+		
+	}
 };

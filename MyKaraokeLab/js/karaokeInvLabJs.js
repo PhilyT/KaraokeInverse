@@ -6,6 +6,19 @@
 		});
 	}
 })();
+	//dev
+	var hgSpans = $("#histogramme span");
+	//
+// la fonction detect pitch pour obtenir la frequence fendamentale
+// en plus de la precision de la note jouee
+var detectPitch = function () {
+	var buffer = new Uint8Array(analyser.fftSize);
+	analyser.getByteTimeDomainData(buffer); 
+	var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
+	// TODO
+
+};
+
 // définir les variables qu'on va utiliser
 var isPlaying = true;
 var audioContext = null;

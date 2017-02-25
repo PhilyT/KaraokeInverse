@@ -39,8 +39,11 @@ var findClosestNote = function(freq, notes) {
   return notes[low];
 };
 
-//=====================================================================================
-
 var updateNote = function (note) {
 	$('#note').text(note);
+};
+
+var updateCents = function (cents) {
+	// la veleur de la cent peut etre négative ..
+	$('#cents').text(cents);
 };

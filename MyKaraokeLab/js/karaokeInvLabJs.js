@@ -16,6 +16,14 @@ var detectPitch = function () {
 	analyser.getByteTimeDomainData(buffer); 
 	var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
 	// TODO
+	// decider quoi faire si on obtient une freq != de -1
+	// decider si c'est la bonne ou pas  
+	if (fundalmentalFreq == -1) {
+		updateNote('undefined');
+		updateCents(-50);
+	}
+
+	frameId = window.requestAnimationFrame(detectPitch);
 
 };
 

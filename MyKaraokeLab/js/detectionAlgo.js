@@ -38,3 +38,9 @@ var findClosestNote = function(freq, notes) {
   }
   return notes[low];
 };
+
+//=====================================================================================
+
+var updateNote = function (note) {
+	$('#note').text(note);
+};

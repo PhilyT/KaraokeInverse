@@ -32,5 +32,9 @@ var findClosestNote = function(freq, notes) {
           high = pivot;
       }
   }
+   if(Math.abs(notes[high].frequency - freq) <= Math.abs(notes[low].frequency - freq)) {
+      // Notes [high] est plus proche de la fréquence que nous avons trouvée
+      return notes[high];
+  }
   return notes[low];
 };

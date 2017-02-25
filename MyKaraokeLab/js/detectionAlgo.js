@@ -47,3 +47,10 @@ var updateCents = function (cents) {
 	// la veleur de la cent peut etre négative ..
 	$('#cents').text(cents);
 };
+
+var findFundamentalFreq = function(buffer, sampleRate) {
+	// TODO
+	// Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
+	
+
+};

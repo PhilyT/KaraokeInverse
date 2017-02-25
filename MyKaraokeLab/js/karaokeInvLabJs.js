@@ -17,8 +17,25 @@ var detectPitch = function () {
 	var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
 	// TODO
 	// decider quoi faire si on obtient une freq != de -1
-	// decider si c'est la bonne ou pas  
-	if (fundalmentalFreq == -1) {
+	// decider si c'est la bonne ou pas 
+	if (fundalmentalFreq !== -1) {
+		var note = findClosestNote(fundalmentalFreq, notesArray);
+		var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
+		updateNote(note.note);
+		updateCents(cents);
+		
+		hgSpans.each(function(index){
+    		currentFreq = buffer[index++];
+    		if (currentFreq == 0) {
+    			$(this).css("height", 1);
+    		}else{
+    			$(this).css("height", currentFreq);
+    		}
+    		
+    		//$(this).text(currentFreq)
+    	}); 
+	}
+	if else {
 		updateNote('undefined');
 		updateCents(-50);
 	}

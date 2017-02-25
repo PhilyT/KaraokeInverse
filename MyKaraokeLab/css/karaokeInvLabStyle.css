@@ -43,3 +43,26 @@ body.unsupported {
 .list-group {
     max-width: 400px;
 }
+
+/**
+ *
+ * Css of histogramme
+ *
+ */
+#frequency-visualizer-canvas{
+    width: 1200px;
+}
+#histogramme{
+    height: 200px;
+    position: relative;
+}
+#histogramme>span{
+    /*position: absolute;*/
+    display: inline-block;
+    float: left;
+    margin-right: 2px;
+    bottom: 0;
+    width: 4.5px;
+    height: 2px;
+    background: #ddd;
+}

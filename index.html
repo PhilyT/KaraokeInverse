@@ -14,6 +14,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/event.js"> </script>
 		
     </head>
     <body>
@@ -25,10 +26,12 @@
             <div class="row">
                 <div class="col-sm-12 col-centered">
                     <h1>Audio</h1>
-					<audio controls="controls">
-					  <source src="musique.wav" type="audio/wav" />
-					  Votre navigateur n'est pas compatible
+					<audio id="audioPlayer">
+						<source src="musique.wav">
+					
 					</audio>
+					<button class="control" onclick="play('audioPlayer', this)">PlayAudio</button>
+					<button class="control" onclick="resume('audioPlayer')">StopAUDIO</button>
 										<button class="btn btn-default" id="startRecordingButton" onclick="enregistrement();">Start recording</button>
 					<button class="btn btn-default"id="stopRecordingButton" onclick="stop();">Stop recording</button>
 

@@ -19,8 +19,19 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 
 ---
 
+>###### Version 0.3  
+>Prévue pour le 20/03/2017
+
+---
+
+>###### Version 0.2.1  
+>Réalisée le 27/02/2017
+>* Correction du design de la page index.html suite à un mauvais merge et mise à jour des version dans le readme
+
+---
+
 >###### Version 0.2  
->Prévue pour la semaine du 27/02/2017
+>Réalisée le 27/02/2017
 >* Lecture de son par webaudio
 >* Mise à jour de partition à partir d'un son simple, composé d'une seule harmonic, enregistré sur fichier audio type wav.
 >* Determination d'un algorithme pour découper le flux audio en harmonics. 

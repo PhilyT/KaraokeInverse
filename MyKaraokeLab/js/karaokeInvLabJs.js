@@ -6,6 +6,44 @@
 		});
 	}
 })();
+	//dev
+	var hgSpans = $("#histogramme span");
+	//
+// la fonction detect pitch pour obtenir la frequence fendamentale
+// en plus de la precision de la note jouee
+var detectPitch = function () {
+	var buffer = new Uint8Array(analyser.fftSize);
+	analyser.getByteTimeDomainData(buffer); 
+	var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
+	// TODO
+	// decider quoi faire si on obtient une freq != de -1
+	// decider si c'est la bonne ou pas 
+	if (fundalmentalFreq !== -1) {
+		var note = findClosestNote(fundalmentalFreq, notesArray);
+		var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
+		updateNote(note.note);
+		updateCents(cents);
+		
+		hgSpans.each(function(index){
+    		currentFreq = buffer[index++];
+    		if (currentFreq == 0) {
+    			$(this).css("height", 1);
+    		}else{
+    			$(this).css("height", currentFreq);
+    		}
+    		
+    		//$(this).text(currentFreq)
+    	}); 
+	}
+	else {
+		updateNote('undefined');
+		updateCents(-50);
+	}
+
+	frameId = window.requestAnimationFrame(detectPitch);
+
+};
+
 // définir les variables qu'on va utiliser
 var isPlaying = true;
 var audioContext = null;
@@ -74,7 +112,8 @@ function getStream(stream){
 
 	analyser.getByteFrequencyData(frequencyData)
 	
-	update(10);
+	detectPitch();
+	//update(10);
 }
 
 function update(fps) {

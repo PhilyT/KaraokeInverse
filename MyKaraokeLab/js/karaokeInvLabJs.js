@@ -116,20 +116,3 @@ function getStream(stream){
 	//update(10);
 }
 
-function update(fps) {
-
-	setTimeout(function(){ // mettre ajour l'affichage tous les 100ms (10fps)
-	    // prochaine update
-	    requestAnimationFrame(function(){
-	    	update(fps)
-	    });
-
-	    // les nouvelles valeurs de la frequence
-	    analyser.getByteFrequencyData(frequencyData);
-
-	    for (var i = 0; i < 4; i++) {
-			$("#frequency-visualizer-canvas h2").text(frequencyData[i] + " | " + frequencyData[i+1] + " | " + frequencyData[i+2]  + " | " + frequencyData[i+3]);
-	    }    
-    }, 1000/fps)
-    
-};

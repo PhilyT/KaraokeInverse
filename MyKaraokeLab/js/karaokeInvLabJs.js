@@ -24,7 +24,8 @@ var detectPitch = function () {
 		updateNote(note.note);
 		updateCents(cents);
 		
-		hgSpans.each(function(index){
+		// L'histogramme ..
+		/*hgSpans.each(function(index){
     		currentFreq = buffer[index++];
     		if (currentFreq == 0) {
     			$(this).css("height", 1);
@@ -32,8 +33,7 @@ var detectPitch = function () {
     			$(this).css("height", currentFreq);
     		}
     		
-    		//$(this).text(currentFreq)
-    	}); 
+    	}); */
 	}
 	else {
 		updateNote('undefined');
@@ -113,6 +113,5 @@ function getStream(stream){
 	analyser.getByteFrequencyData(frequencyData)
 	
 	detectPitch();
-	//update(10);
 }
 

@@ -53,20 +53,28 @@
 		<br>
 		<button type="button" id="toggle-visualizer" class="btn btn-primary">Stop</button>
 		<br><hr><br>
-		<p>Note : </p><div id="note"></div>
-		<p>Cent : </p><div id="cents"></div>
+		<div class="row">
+			<div class="col-md-3 offset-md-3">
+				<p>Note : </p>
+			</div>
+			<div class="col-md-3">
+				<h2 id="note"></h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 offset-md-3">
+				<p>Cent : </p>
+			</div>
+			<div class="col-md-3">
+				<h2 id="cents"></h2>
+			</div>
+		</div>
+		
 		<br><hr><br>
-		<h2 class="ki-lab-title">Fréquences à échelle égale Égocentrique</h2>
-		<p>The basic formula for the frequencies of the notes of the equal tempered scale is given by <code>fn = f0 * (a)n</code> </p>
-		<ul>
-			<li><code>f0 =</code> the frequency of one fixed note which must be defined. A common choice is setting the A above middle C (A4) at f0 = 440 Hz.</li>
-			<li><code>n =</code> the number of half steps away from the fixed note you are. If you are at a higher note, n is positive. If you are on a lower note, n is negative.</li>
-			<li><code>fn =</code> the frequency of the note n half steps away.</li>
-			<li><code>a = (2)1/12</code> = the twelth root of 2 = the number which when multiplied by itself 12 times equals 2 = 1.059463094359... </li>
-		</ul>
-		<p>The wavelength of the sound for the notes is found from <code>Wn = c/fn</code> </p>
-		<p>where W is the wavelength and c is the speed of sound. The speed of sound depends on temperature, but is approximately 345 m/s at "room temperature." </p>
-
+		<h2 class="ki-lab-title">Fundamental frequency estimation</h2>
+		<p>Les techniques d'estimation par la fréquence fondamentale peuvent être séparées en deux catégories : des estimateurs basés sur le domaine de temps dont on observe la forme du flux de son entrant, et des estimateurs basés sur le domaine de fréquence dont on observe le Spectrum de la fréquence. On trouve aussi des méthodes qui combinent les deux techniques.</p>
+		<p>Pour plus d'informations sur les techniques de détection de la fréquence fondamentale, vous pouvez visiter le lien suivant : <a href="">http://obogason.com/fundamental-frequency-estimation-and-machine-learning/</a></p>
+		<br><hr><br>
 		<h2>Tableau des notes</h2>
 		<p>("Middle C" is C<sub>4</sub> )</p>
 		<!-- Nav tabs -->

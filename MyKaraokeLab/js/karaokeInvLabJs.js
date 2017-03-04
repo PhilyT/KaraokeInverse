@@ -35,7 +35,7 @@ var analyser = null;
 var frequencyData = null;
 var track = null;
 var mediaStreamSource = null;
-var bufferSize = 4096;
+var bufferSize = 2048;
 var audioOpts = {
     mandatory: {
         "googEchoCancellation": "false",
@@ -97,3 +97,29 @@ function getStream(stream){
 	detectPitch();
 }
 
+// dev 04/03/2017
+function obtainMp3BytesInArrayBufferUsingFileAPI(selectedFile, callback) {
+
+	var reader = new FileReader(); 
+	reader.onload = function (ev) {
+		var mp3BytesAsArrayBuffer = reader.result; 
+		callback(mp3BytesAsArrayBuffer); 
+	}
+	reader.readAsArrayBuffer(selectedFile);
+
+}
+
+
+function decodeMp3BytesFromArrayBufferAndPlay(mp3BytesAsArrayBuffer) {
+	audioContext.decodeAudioData(mp3BytesAsArrayBuffer, function (decodedSamplesAsAudioBuffer) {
+		if (source != null) {
+			source.disconnect(audioContext.destination);
+			source = null;
+		}
+		source = audioContext.createBufferSource();
+		source.buffer = decodedSamplesAsAudioBuffer;
+		source.connect(audioContext.destination);
+		source.start(0);
+	}); 
+
+}

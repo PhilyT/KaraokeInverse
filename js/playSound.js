@@ -30,7 +30,7 @@ function playSound()
                     source.buffer = buffer1;
                     var bufferSize = buffer1.length;
                     analyser = audioCtx.createAnalyser();
-                    // Size max is 32768
+                    // Size max is 32768 byte
                     analyser.fftSize = bufferSize;
                     // connect the AudioBufferSourceNode to the
                     // destination so we can hear the sound

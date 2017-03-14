@@ -25,26 +25,26 @@ function playSound()
         audioCtx.decodeAudioData(text, function(buffer) {
                 try{
                     var buffer1;
-                    if(buffer.length <= 16384)
+                    if(buffer.length <= 32768)
                     {
                         buffer1= buffer;
                     }
                     else
                     {
-                        var arrayLeft = buffer.getChannelData(0).slice(0,16384);
-                        var arrayRigth = buffer.getChannelData(1).slice(0,16384);
-                        buffer1 = new AudioBuffer(audioCtx, {length:16384, numberOfChannels:2, sampleRate:audioCtx.sampleRate});
+                        var arrayLeft = buffer.getChannelData(0).slice(0,32768);
+                        var arrayRigth = buffer.getChannelData(1).slice(0,32768);
+                        buffer1 = new AudioBuffer(audioCtx, {length:32768, numberOfChannels:2, sampleRate:audioCtx.sampleRate});
                         buffer1.copyToChannel(arrayLeft, 0, 0);
                         buffer1.copyToChannel(arrayRigth, 1, 0);
                     }
 
                     // set the buffer in the AudioBufferSourceNode
-                    source.buffer = buffer1;
+                    source.buffer = buffer;
                     var bufferSize = buffer1.length;
                     analyser = audioCtx.createAnalyser();
                     // Size max is 16384 byte in ScripteeProcessor
                     analyser.fftSize = bufferSize;
-                    var ScriptProcessorNode = audioCtx.createScriptProcessor(bufferSize);
+                    var ScriptProcessorNode = audioCtx.createScriptProcessor(16384);
                     ScriptProcessorNode.buffer = buffer1;
                     ScriptProcessorNode.connect(audioCtx.destination);
 
@@ -57,6 +57,9 @@ function playSound()
                         {
                             console.log("Note trouvé : " + toNote(fundalmentalFreq));
                         }
+                        source.stop(buffer.duration);
+                        ScriptProcessorNode.disconnect(audioCtx.destination);
+                        source.disconnect(audioCtx.destination);
                     };
 
                     // connect the AudioBufferSourceNode to the

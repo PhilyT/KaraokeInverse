@@ -1,12 +1,4 @@
-var audioOpts = {
-    mandatory: {
-        "googEchoCancellation": "false",
-        "googAutoGainControl": "false",
-        "googNoiseSuppression": "false",
-        "googHighpassFilter": "false"
-    },
-    optional: []
-};
+
 
 var AudioContext = (window.AudioContext || window.webkitAudioContext);
 var audioCtx = new AudioContext();

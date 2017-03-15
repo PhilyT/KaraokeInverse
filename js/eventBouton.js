@@ -1,3 +1,13 @@
+var audioOpts = {
+    mandatory: {
+        "googEchoCancellation": "false",
+        "googAutoGainControl": "false",
+        "googNoiseSuppression": "false",
+        "googHighpassFilter": "false"
+    },
+    optional: []
+};
+
 function enregistrement() {
     var startRecordingButton = document.getElementById("startRecordingButton");
 	
@@ -17,13 +27,11 @@ function enregistrement() {
     /*var gainNode = audioCtx.createGain();
     var biquadFilter = audioCtx.createBiquadFilter();*/
     navigator.getUserMedia(
-        {
-            audio: true
-        },
+        {audio: audioOpts},
         function (e) {
             console.log("user consent");
             // creates the audio context
-            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            context = new (window.AudioContext || window.webkitAudioContext)();
             // Ajout filtre 
             
             /*var analyser = window.AudioContext.createAnalyser();
@@ -53,8 +61,12 @@ function enregistrement() {
             biquadFilter.gain.value = 25;*/
             
             //creation de l'audio context
-            context = new AudioContext();
-           
+            //context = new AudioContext();
+
+            analyser = context.createAnalyser();
+            // Size max is 16384 byte in ScripteeProcessor
+            analyser.fftSize = 2048;
+
 
             // bufferSize: the onaudioprocess event is called when the buffer is full
             var bufferSize = 2048;
@@ -65,14 +77,24 @@ function enregistrement() {
             } else {
                 recorder = context.createJavaScriptNode(bufferSize, numberOfInputChannels, numberOfOutputChannels);
             }
-            recorder.onaudioprocess = function (e) {
-                leftchannel.push(new Float32Array(e.inputBuffer.getChannelData(0)));
-                rightchannel.push(new Float32Array(e.inputBuffer.getChannelData(1)));
-                recordingLength += bufferSize;
-            };
-
-            mediaStream.connect(recorder);
             recorder.connect(context.destination);
+            recorder.onaudioprocess = function (e) {
+                var buffer2 = new Uint8Array(analyser.fftSize);
+                analyser.getByteTimeDomainData(buffer2);
+                var fundalmentalFreq = findFundamentalFreq(buffer2, context.sampleRate);
+                if (fundalmentalFreq != -1)
+                {
+                    console.log("freq trouve : " + fundalmentalFreq);
+                    var note = toNote(fundalmentalFreq);
+                    if(note)
+                    {
+                        console.log("Note trouvé : " + note);
+                    }
+                }
+            };
+            mediaStream.connect(analyser);
+            analyser.connect(recorder);
+            mediaStream.connect(context.destination);
         },
         function (e) {
             console.error(e);

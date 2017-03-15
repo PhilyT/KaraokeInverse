@@ -1,3 +1,4 @@
+//Return freq's note in string format
 function toNote(freq)
 {
 
@@ -6,19 +7,19 @@ function toNote(freq)
 	{
 		switch (freq)
 		{
-			case 16.3*Math.exp(2,db+1):
+			case 16.3*Math.exp(2,octave+1):
 				return "do" + octave;
-			case 18.3*Math.exp(2,db+1):
+			case 18.3*Math.exp(2,octave+1):
 				return "re" + octave;
-			case 20.5*Math.exp(2,db+1):
+			case 20.5*Math.exp(2,octave+1):
 				return "mi" + octave;
-			case 21.8*Math.exp(2,db+1):
+			case 21.8*Math.exp(2,octave+1):
 				return "fa" + octave;
-			case 24.5*Math.exp(2,db+1):
+			case 24.5*Math.exp(2,octave+1):
 				return "sol" + octave;
-			case 27.5*Math.exp(2,db+1):
+			case 27.5*Math.exp(2,octave+1):
 				return "la" + octave;
-			case 30.8*Math.exp(2,db+1):
+			case 30.8*Math.exp(2,octave+1):
 				return "si" + octave;
 			default:
 				return;
@@ -30,6 +31,7 @@ function toNote(freq)
 	}
 }
 
+// return freq's octave, int[-1,9]
 function findOctave(freq)
 {
 	if(freq <= 30.8 && freq >= 16.3)

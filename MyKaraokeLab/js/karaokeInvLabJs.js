@@ -6,34 +6,18 @@
 		});
 	}
 })();
-	//dev
-	var hgSpans = $("#histogramme span");
-	//
-// la fonction detect pitch pour obtenir la frequence fendamentale
+
+// La fonction detect pitch pour obtenir la frequence fendamentale
 // en plus de la precision de la note jouee
 var detectPitch = function () {
 	var buffer = new Uint8Array(analyser.fftSize);
 	analyser.getByteTimeDomainData(buffer); 
 	var fundalmentalFreq = findFundamentalFreq(buffer, audioContext.sampleRate);
-	// TODO
-	// decider quoi faire si on obtient une freq != de -1
-	// decider si c'est la bonne ou pas 
 	if (fundalmentalFreq !== -1) {
 		var note = findClosestNote(fundalmentalFreq, notesArray);
 		var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
 		updateNote(note.note);
 		updateCents(cents);
-		
-		hgSpans.each(function(index){
-    		currentFreq = buffer[index++];
-    		if (currentFreq == 0) {
-    			$(this).css("height", 1);
-    		}else{
-    			$(this).css("height", currentFreq);
-    		}
-    		
-    		//$(this).text(currentFreq)
-    	}); 
 	}
 	else {
 		updateNote('undefined');
@@ -51,7 +35,7 @@ var analyser = null;
 var frequencyData = null;
 var track = null;
 var mediaStreamSource = null;
-var bufferSize = 4096;
+var bufferSize = 2048;
 var audioOpts = {
     mandatory: {
         "googEchoCancellation": "false",
@@ -105,31 +89,37 @@ function getStream(stream){
 	analyser = audioContext.createAnalyser();
     analyser.fftSize = bufferSize;
 	mediaStreamSource.connect(analyser);
-	
-	//analyser.connect(audioContext.destination);
 
 	frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 	analyser.getByteFrequencyData(frequencyData)
 	
 	detectPitch();
-	//update(10);
 }
 
-function update(fps) {
+// dev 04/03/2017
+function obtainMp3BytesInArrayBufferUsingFileAPI(selectedFile, callback) {
 
-	setTimeout(function(){ // mettre ajour l'affichage tous les 100ms (10fps)
-	    // prochaine update
-	    requestAnimationFrame(function(){
-	    	update(fps)
-	    });
+	var reader = new FileReader(); 
+	reader.onload = function (ev) {
+		var mp3BytesAsArrayBuffer = reader.result; 
+		callback(mp3BytesAsArrayBuffer); 
+	}
+	reader.readAsArrayBuffer(selectedFile);
 
-	    // les nouvelles valeurs de la frequence
-	    analyser.getByteFrequencyData(frequencyData);
+}
 
-	    for (var i = 0; i < 4; i++) {
-			$("#frequency-visualizer-canvas h2").text(frequencyData[i] + " | " + frequencyData[i+1] + " | " + frequencyData[i+2]  + " | " + frequencyData[i+3]);
-	    }    
-    }, 1000/fps)
-    
-};
+
+function decodeMp3BytesFromArrayBufferAndPlay(mp3BytesAsArrayBuffer) {
+	audioContext.decodeAudioData(mp3BytesAsArrayBuffer, function (decodedSamplesAsAudioBuffer) {
+		if (source != null) {
+			source.disconnect(audioContext.destination);
+			source = null;
+		}
+		source = audioContext.createBufferSource();
+		source.buffer = decodedSamplesAsAudioBuffer;
+		source.connect(audioContext.destination);
+		source.start(0);
+	}); 
+
+}

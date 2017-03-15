@@ -1,7 +1,10 @@
+
+
+var AudioContext = (window.AudioContext || window.webkitAudioContext);
+var audioCtx = new AudioContext();
+
 function playSound()
 {
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
     // Get an AudioBufferSourceNode.
     // This is the AudioNode to use when we want to play an AudioBuffer
     var source = audioCtx.createBufferSource();
@@ -26,36 +29,39 @@ function playSound()
                         buffer1.copyToChannel(arrayLeft, 0, 0);
                         buffer1.copyToChannel(arrayRigth, 1, 0);
                     }
+
                     // set the buffer in the AudioBufferSourceNode
-                    source.buffer = buffer1;
+                    source.buffer = buffer;
                     var bufferSize = buffer1.length;
                     analyser = audioCtx.createAnalyser();
-                    // Size max is 32768
+                    // Size max is 16384 byte in ScripteeProcessor
                     analyser.fftSize = bufferSize;
+                    var ScriptProcessorNode = audioCtx.createScriptProcessor(16384);
+                    ScriptProcessorNode.buffer = buffer1;
+                    ScriptProcessorNode.connect(audioCtx.destination);
+
+                    ScriptProcessorNode.onaudioprocess = function(e) {
+                        var buffer2 = new Uint8Array(analyser.fftSize);
+                        analyser.getByteTimeDomainData(buffer2);
+                        console.log(buffer2);
+                        var fundalmentalFreq = findFundamentalFreq(buffer2, audioCtx.sampleRate);
+                        if (fundalmentalFreq != -1)
+                        {
+                            console.log("Note trouvé : " + toNote(fundalmentalFreq));
+                        }
+                        source.stop(buffer.duration);
+                        ScriptProcessorNode.disconnect(audioCtx.destination);
+                        source.disconnect(audioCtx.destination);
+                    };
+
                     // connect the AudioBufferSourceNode to the
                     // destination so we can hear the sound
-                    source.connect(audioCtx.destination);
                     source.connect(analyser);
+                    analyser.connect(ScriptProcessorNode);
+                    source.connect(audioCtx.destination);
 
                     // start the source playing
                     source.start();
-
-                    var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-
-                    analyser.getByteFrequencyData(frequencyData);
-                    console.log(frequencyData);
-
-                    var buffer2 = new Uint8Array(analyser.fftSize);
-                    analyser.getByteTimeDomainData(buffer2);
-                    console.log(buffer2);
-                    var fundalmentalFreq = findFundamentalFreq(buffer2, audioCtx.sampleRate);
-                    if (fundalmentalFreq != -1)
-                    {
-                        console.log("Note trouvé : " + toNote(fundalmentalFreq));
-                    }
-                    //source.stop(audioCtx.currentTime + buffer1.duration);
-
-
 
                 }catch (e){
                     console.error(e);
@@ -65,3 +71,4 @@ function playSound()
     };
     reader.readAsArrayBuffer(file);
 }
+

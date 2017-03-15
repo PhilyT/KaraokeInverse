@@ -5,22 +5,23 @@ function toNote(freq)
 	var octave = findOctave(freq);
 	if (octave != null)
 	{
+        // retoure des notes en ABCD ...
 		switch (freq)
 		{
 			case 16.3*Math.exp(2,octave+1):
-				return "do" + octave;
+				return "C/" + (octave+1);
 			case 18.3*Math.exp(2,octave+1):
-				return "re" + octave;
+				return "D/" + (octave+1);
 			case 20.5*Math.exp(2,octave+1):
-				return "mi" + octave;
+				return "E/" + (octave+1);
 			case 21.8*Math.exp(2,octave+1):
-				return "fa" + octave;
+				return "F/" + (octave+1);
 			case 24.5*Math.exp(2,octave+1):
-				return "sol" + octave;
+				return "G/" + (octave+1);
 			case 27.5*Math.exp(2,octave+1):
-				return "la" + octave;
+				return "A/" + (octave+1);
 			case 30.8*Math.exp(2,octave+1):
-				return "si" + octave;
+				return "B/" + (octave+1);
 			default:
 				return;
 		}

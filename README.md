@@ -19,8 +19,20 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 
 ---
 
+>###### Version 0.4  
+>Prévue pour la semaine du 10/04/2017
+>* Totalité des fonctionnalités implémentées.
+>* Début de rédaction de la documentation.
+>* Test de l'application web dans le but de trouver d'éventuel beug.
+
+---
+
 >###### Version 0.3  
->Prévue pour le 20/03/2017
+>Réalisée le 21/03/2017
+>* Implémentation des algorithme de détection de fréquence et de détection de note dans l'ihm.
+>* Identification des fréquences par le micro et par fichier audio.
+>* Retour des notes sous le standard abc américain.
+
 
 ---
 

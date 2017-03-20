@@ -1,7 +1,7 @@
 window.onload = function() {
     
     /*
-    * Verifier la prise en charge de l'API par le navigateur 
+    * Vérifier la prise en charge de l'API par le navigateur 
     */
     (function(){
     	if (window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext, navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia, "undefined" == typeof window.AudioContext || "undefined" == typeof navigator.getUserMedia) {
@@ -12,7 +12,7 @@ window.onload = function() {
     })();	
 
     /*
-    * les variables essentielles
+    * Les variables essentielles
     */
     var isPlaying = true;
     var audioContext = null;
@@ -69,28 +69,72 @@ window.onload = function() {
         detectPitch();
     }
 
-};
+    /*
+    * Connecter le flux à l'analyser
+    */
+    function connectStream(){
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = bufferSize;
+        mediaStreamSource.connect(analyser);
+    }
 
-   /*
-    * Methode qui detecte les notes, 
-    * elle utilise les differents methodes tell que 
+    /*
+    * Méthode qui détecte les notes, 
+    * elle utilise les différents méthodes telles que 
     * findFundamentalFreq, findCentsOffPitch, findClosestNote
     */
-
-
-	var detectPitch = function () {
+    var detectPitch = function () {
        var freqByteData = new Uint8Array(2048);
-		analyser.getByteTimeDomainData(freqByteData);
-		var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
-		if (fundalmentalFreq !== -1) {
-			var note = findClosestNote(fundalmentalFreq, notesArray);
-			var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
-			updateNote(note.note);
-			updateCents(cents);
-		}
-		else {
-			updateNote('undefined');
-			updateCents(-50);
-		}
-		frameId = window.requestAnimationFrame(detectPitch);
-	}
+        analyser.getByteTimeDomainData(freqByteData);
+        var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
+        if (fundalmentalFreq !== -1) {
+            var note = findClosestNote(fundalmentalFreq, notesArray);
+            var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
+            updateNote(note.note);
+            updateCents(cents);
+        } else {
+            updateNote('undefined');
+            updateCents(-50);
+        }
+        frameId = window.requestAnimationFrame(detectPitch);
+    }
+
+    /*
+    * Connecter le fichier audio à l'analyser
+    */
+    function connectAudio() {
+        if (didConnect) {
+          return false;
+        }
+        audioSource = audioContext.createMediaElementSource(audio);
+        analyser = audioContext.createAnalyser();
+        audioSource.connect(analyser);
+        analyser.connect(audioContext.destination);
+        detectPitch();
+        didConnect = true;
+    }
+    
+    /*
+    * Préparer la lecture de fichier audio
+    */
+
+    (function setup() {
+		var demo = document.getElementById('demo');
+		audio.volume = 1;
+		audio.controls = true;
+		audio.src = audio.canPlayType('audio/mpeg') ? mp3 : ogg;
+		audio.addEventListener('play', function() {
+			window.setTimeout(function() {
+				connect();
+			}, 20);
+		}, false);
+		audio.addEventListener('pause', function() {
+			connectStream();
+			
+		});
+		demo.appendChild(audio);
+	})();
+
+
+};
+

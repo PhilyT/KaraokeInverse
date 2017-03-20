@@ -71,3 +71,13 @@ window.onload = function() {
 
 };
 
+   /*
+    * Methode qui detecte les notes, 
+    * elle utilise les differents methodes tell que 
+    * findFundamentalFreq, findCentsOffPitch, findClosestNote
+    */
+
+
+	var detectPitch = function () {
+
+	}

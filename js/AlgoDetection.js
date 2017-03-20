@@ -115,9 +115,8 @@ window.onload = function() {
     }
     
     /*
-    * Préparer la lecture de fichier audio
+    * Préparer la lecteur de fichier audio
     */
-
     (function setup() {
 		var demo = document.getElementById('demo');
 		audio.volume = 1;
@@ -135,6 +134,21 @@ window.onload = function() {
 		demo.appendChild(audio);
 	})();
 
+    /*
+    * Controler le start/pause du flux audio
+    */
+    $("#toggle-stream").click(function() {
+        if (isPlaying) {
+            track.enabled = false;
+            isPlaying = false;
+            $(this).text("Démarrer");
+        } else {
+            track.enabled = true;
+            isPlaying = true;
+            $(this).text("Stop");
+        } 
+
+    });
 
 };
 

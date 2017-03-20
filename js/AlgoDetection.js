@@ -9,8 +9,23 @@ window.onload = function() {
 		});
 	}
 })();	
-/*
-* les variables essentielles
-*/
+// définir les variables qu'on va utiliser
+var isPlaying = true;
+var audioContext = null;
+var analyser = null;
+var frequencyData = null;
+var track = null;
+var mediaStreamSource = null;
+var bufferSize = 4096;
+var audioOpts = {
+    mandatory: {
+        "googEchoCancellation": "false",
+        "googAutoGainControl": "false",
+        "googNoiseSuppression": "false",
+        "googHighpassFilter": "false"
+    },
+    optional: []
+};
+var thebuffer = null;
 
 };

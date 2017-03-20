@@ -136,43 +136,31 @@ window.onload = function() {
 
     /*
     * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
+    * 
     */
-     var findFundamentalFreq = function(buffer, sampleRate) {
-	var n = 1024, bestR = 0, bestK = -1;
-	
-	for(var k = 8; k <= 1000; k++){
-		var sum = 0;
-		
-		for(var i = 0; i < n; i++){
-			sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
-		}
-		
-		var r = sum / (n + k);
-		if(r > bestR){
-
-			bestR = r;
-			bestK = k;
-		}
-
-		if(r > 0.9) {
-			
-			// Supposons que c'est assez bon et arret
-			break;
-
-		}
-	}
-
-	if(bestR > 0.0025) {
-		// La période (en trames) de la fréquence fondamentale est 'bestK'. 
-		// Obtenir la fréquence à partir de là est trivial.
-		var fundamentalFreq = sampleRate / bestK;
-		return fundamentalFreq;
-	}
-	else {
-		// Nous n'avons pas trouvé de bonne corrélation
-		return -1;
-	}
-
+    var findFundamentalFreq = function(buffer, sampleRate) {
+        var n = 1024, bestR = 0, bestK = -1;
+        for(var k = 8; k <= 1000; k++){
+            var sum = 0;
+            for(var i = 0; i < n; i++){
+                sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
+            }
+            var r = sum / (n + k);
+            if(r > bestR){
+                bestR = r;
+                bestK = k;
+            }
+            if(r > 0.9) {
+                break;
+            }
+        }
+        if(bestR > 0.0025) {
+            var fundamentalFreq = sampleRate / bestK;
+            return fundamentalFreq;
+        } else {
+            return -1;
+        }
+    };
 
 
     /*

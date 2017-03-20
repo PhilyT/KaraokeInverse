@@ -79,5 +79,18 @@ window.onload = function() {
 
 
 	var detectPitch = function () {
-
+       var freqByteData = new Uint8Array(2048);
+		analyser.getByteTimeDomainData(freqByteData);
+		var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
+		if (fundalmentalFreq !== -1) {
+			var note = findClosestNote(fundalmentalFreq, notesArray);
+			var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
+			updateNote(note.note);
+			updateCents(cents);
+		}
+		else {
+			updateNote('undefined');
+			updateCents(-50);
+		}
+		frameId = window.requestAnimationFrame(detectPitch);
 	}

@@ -1,4 +1,5 @@
 window.onload = function() {
+    
     /*
     * Verifier la prise en charge de l'API par le navigateur 
     */
@@ -9,6 +10,7 @@ window.onload = function() {
     		});
     	}
     })();	
+
     /*
     * les variables essentielles
     */
@@ -31,6 +33,7 @@ window.onload = function() {
     var thebuffer = null;
     var audioSource = null; 
     var didConnect = null;
+
     /*
     * Initialisation ..
     */
@@ -38,6 +41,7 @@ window.onload = function() {
     var ogg = '../sound/test.ogg';
     var audio = new Audio();
     audioContext = new AudioContext();
+
     /*
     * Préparer le UserMedia en déterminant les périphériques auxquels on veut y accéder,
     * ici on est besoin d'accéder au microphone de l'utilisateur,
@@ -52,6 +56,18 @@ window.onload = function() {
             console.log(e);
         }
     );
+    
+    /*
+    * Obtenir le flux d'audio à partir du microphone de l'utilisateur, 
+    * traiter ce flux en temps réel,
+    * créer un nœud audio à partir du flux et tenter de détecter la note
+    */
+    function getStream(stream){
+        track = stream.getTracks()[0];
+        mediaStreamSource = audioContext.createMediaStreamSource(stream);
+        connectStream();    
+        detectPitch();
+    }
 
 };
 

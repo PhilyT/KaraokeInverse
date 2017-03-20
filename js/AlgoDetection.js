@@ -9,7 +9,9 @@ window.onload = function() {
 		});
 	}
 })();	
-// définir les variables qu'on va utiliser
+/*
+* les variables essentielles
+*/
 var isPlaying = true;
 var audioContext = null;
 var analyser = null;
@@ -29,3 +31,10 @@ var audioOpts = {
 var thebuffer = null;
 
 };
+
+
+var audioSource = null; 
+var didConnect = null;
+	    mp3 = '../sound/test.wav',
+	    ogg = '../sound/test.ogg',
+	    audio = new Audio();

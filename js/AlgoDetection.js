@@ -37,8 +37,8 @@ window.onload = function() {
     /*
     * Initialisation ..
     */
-    var mp3 = '../sound/test.wav';
-    var ogg = '../sound/test.ogg';
+    var mp3 = 'Sound/test.wav';
+    var ogg = 'Sound/test.ogg';
     var audio = new Audio();
     audioContext = new AudioContext();
 
@@ -115,9 +115,8 @@ window.onload = function() {
     }
     
     /*
-    * Préparer la lecture de fichier audio
+    * Préparer la lecteur de fichier audio
     */
-
     (function setup() {
 		var demo = document.getElementById('demo');
 		audio.volume = 1;
@@ -125,7 +124,7 @@ window.onload = function() {
 		audio.src = audio.canPlayType('audio/mpeg') ? mp3 : ogg;
 		audio.addEventListener('play', function() {
 			window.setTimeout(function() {
-				connect();
+				connectAudio();
 			}, 20);
 		}, false);
 		audio.addEventListener('pause', function() {
@@ -135,6 +134,50 @@ window.onload = function() {
 		demo.appendChild(audio);
 	})();
 
+    /*
+    * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
+    * 
+    */
+    var findFundamentalFreq = function(buffer, sampleRate) {
+        var n = 1024, bestR = 0, bestK = -1;
+        for(var k = 8; k <= 1000; k++){
+            var sum = 0;
+            for(var i = 0; i < n; i++){
+                sum += ((buffer[i] - 128) / 128) * ((buffer[i + k] - 128) / 128);
+            }
+            var r = sum / (n + k);
+            if(r > bestR){
+                bestR = r;
+                bestK = k;
+            }
+            if(r > 0.9) {
+                break;
+            }
+        }
+        if(bestR > 0.0025) {
+            var fundamentalFreq = sampleRate / bestK;
+            return fundamentalFreq;
+        } else {
+            return -1;
+        }
+    };
+
+
+    /*
+    * Controler le start/pause du flux audio
+    */
+    $("#toggle-stream").click(function() {
+        if (isPlaying) {
+            track.enabled = false;
+            isPlaying = false;
+            $(this).text("Démarrer");
+        } else {
+            track.enabled = true;
+            isPlaying = true;
+            $(this).text("Stop");
+        } 
+
+    });
 
 };
 

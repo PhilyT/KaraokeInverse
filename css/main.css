@@ -103,6 +103,27 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+.unsupported:before {
+    content: "Web Audio non supportée :(";
+    color: #fafafa;
+    font-size: 3rem;
+    font-weight: 100;
+    line-height: 1.5;
+    padding: 20px;
+    text-align: left;
+    display: block;
+    background-color: rgba(2, 2, 2, 0.79);
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    z-index: 100000;
+}
+
+body.unsupported {
+    position: relative;
+    overflow: hidden;
+}
 p{
     color:white;
 

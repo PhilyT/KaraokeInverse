@@ -41,6 +41,11 @@ navigator.getUserMedia({video: true, audio: true}, …);
 
 `getUserMedia()` supporte aussi la selection de la source audio en utilisant l’API `MediaStreamTrack.getSources()`
 
+## Fundamental frequency estimation
+Les techniques d'estimation par la fréquence fondamentale peuvent être séparées en deux catégories : des estimateurs basés sur le domaine de temps dont on observe la forme du flux de son entrant, et des estimateurs basés sur le domaine de fréquence dont on observe le Spectrum de la fréquence. On trouve aussi des méthodes qui combinent les deux techniques.
+
+Pour plus d'informations sur les techniques de détection de la fréquence fondamentale, vous pouvez visiter le lien suivant : [fundamental-frequency-estimation](http://obogason.com/fundamental-frequency-estimation-and-machine-learning/)
+
 ## Utiliser getUserMedia avec l’API Web Audio
 Le navigateur Google Chrome supporte l’entrée de micro en direct de getUserMedia () à l'API Web audio en temps réel. 
 ### Demo:

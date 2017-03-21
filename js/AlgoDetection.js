@@ -88,13 +88,10 @@ window.onload = function() {
         analyser.getByteTimeDomainData(freqByteData);
         var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
         if (fundalmentalFreq !== -1) {
-            var note = findClosestNote(fundalmentalFreq, notesArray);
-            var cents = findCentsOffPitch(fundalmentalFreq, note.frequency);
-            updateNote(note.note);
-            updateCents(cents);
+            var note = toNote(fundalmentalFreq);
+            updateNote(note);
         } else {
             updateNote('undefined');
-            updateCents(-50);
         }
         frameId = window.requestAnimationFrame(detectPitch);
     }

@@ -5,31 +5,50 @@ function toNote(freq)
 	var octave = findOctave(freq);
 	if (octave != null)
 	{
-        // retoure des notes en ABCD ...
-		switch (freq)
+        // retoure des notes au format américain
+		if(estimation(freq, 16.3, octave))
 		{
-			case 16.3*Math.exp(2,octave+1):
-				return "C/" + (octave+1);
-			case 18.3*Math.exp(2,octave+1):
-				return "D/" + (octave+1);
-			case 20.5*Math.exp(2,octave+1):
-				return "E/" + (octave+1);
-			case 21.8*Math.exp(2,octave+1):
-				return "F/" + (octave+1);
-			case 24.5*Math.exp(2,octave+1):
-				return "G/" + (octave+1);
-			case 27.5*Math.exp(2,octave+1):
-				return "A/" + (octave+1);
-			case 30.8*Math.exp(2,octave+1):
-				return "B/" + (octave+1);
-			default:
-				return;
+			return "C/" + (octave+1);
+		}
+		else if(estimation(freq, 18.3, octave))
+		{
+			return "D/" + (octave+1);
+		}
+		else if(estimation(freq, 20.5, octave))
+		{
+			return "E/" + (octave+1);
+		}
+		else if(estimation(freq, 21.8, octave))
+		{
+			return "F/" + (octave+1);
+		}
+		else if(estimation(freq, 24.5, octave))
+		{
+			return "G/" + (octave+1);
+		}
+		else if(estimation(freq, 27.5, octave))
+		{
+			return "A/" + (octave+1);
+		}
+		else if(estimation(freq, 30.8, octave))
+		{
+			return "B/" + (octave+1);
+		}
+		else
+		{
+			return;
 		}
 	}
 	else
 	{
 		return;
 	}
+}
+
+function estimation(freqFundamantal, freqBaseNote, octave)
+{
+	var freqNote = freqBaseNote*Math.exp(2, octave+1);
+	return freqFundamantal < (freqNote+ Math.exp(2, octave+1)) && freqFundamantal > (freqNote- Math.exp(2, octave+1));
 }
 
 // return freq's octave, int[-1,9]

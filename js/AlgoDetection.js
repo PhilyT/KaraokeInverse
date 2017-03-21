@@ -1,7 +1,7 @@
 window.onload = function() {
-    
+
     /*
-    * Vérifier la prise en charge de l'API par le navigateur 
+    * Vérifier la prise en charge de l'API par le navigateur
     */
     (function(){
     	if (window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext, navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia, "undefined" == typeof window.AudioContext || "undefined" == typeof navigator.getUserMedia) {
@@ -9,7 +9,7 @@ window.onload = function() {
     	    	document.body.classList.add("unsupported")
     		});
     	}
-    })();	
+    })();
 
     /*
     * Les variables essentielles
@@ -31,7 +31,7 @@ window.onload = function() {
         optional: []
     };
     var thebuffer = null;
-    var audioSource = null; 
+    var audioSource = null;
     var didConnect = null;
 
     /*
@@ -56,16 +56,16 @@ window.onload = function() {
             console.log(e);
         }
     );
-    
+
     /*
-    * Obtenir le flux d'audio à partir du microphone de l'utilisateur, 
+    * Obtenir le flux d'audio à partir du microphone de l'utilisateur,
     * traiter ce flux en temps réel,
     * créer un nœud audio à partir du flux et tenter de détecter la note
     */
     function getStream(stream){
         track = stream.getTracks()[0];
         mediaStreamSource = audioContext.createMediaStreamSource(stream);
-        connectStream();    
+        connectStream();
         detectPitch();
     }
 
@@ -79,8 +79,8 @@ window.onload = function() {
     }
 
     /*
-    * Méthode qui détecte les notes, 
-    * elle utilise les différents méthodes telles que 
+    * Méthode qui détecte les notes,
+    * elle utilise les différents méthodes telles que
     * findFundamentalFreq, findCentsOffPitch, findClosestNote
     */
     var detectPitch = function () {
@@ -91,7 +91,7 @@ window.onload = function() {
             var note = toNote(fundalmentalFreq);
             updateNote(note);
         } else {
-            updateNote('undefined');
+            updateNote(undefined);
         }
         frameId = window.requestAnimationFrame(detectPitch);
     }
@@ -110,7 +110,7 @@ window.onload = function() {
         detectPitch();
         didConnect = true;
     }
-    
+
     /*
     * Préparer la lecteur de fichier audio
     */
@@ -126,14 +126,14 @@ window.onload = function() {
 		}, false);
 		audio.addEventListener('pause', function() {
 			connectStream();
-			
+
 		});
 		demo.appendChild(audio);
 	})();
 
     /*
     * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
-    * 
+    *
     */
     var findFundamentalFreq = function(buffer, sampleRate) {
         var n = 1024, bestR = 0, bestK = -1;
@@ -172,7 +172,7 @@ window.onload = function() {
             track.enabled = true;
             isPlaying = true;
             $(this).text("Stop");
-        } 
+        }
 
     });
 

@@ -10,7 +10,7 @@ var audioOpts = {
 
 function enregistrement() {
     var startRecordingButton = document.getElementById("startRecordingButton");
-	
+
     var leftchannel = [];
     var rightchannel = [];
     var recorder = null;
@@ -20,7 +20,7 @@ function enregistrement() {
     var sampleRate = 44100;
     var context = null;
     var blob = null;
-    
+
 
     // Initialize recorder
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -32,21 +32,21 @@ function enregistrement() {
             console.log("user consent");
             // creates the audio context
             context = new (window.AudioContext || window.webkitAudioContext)();
-            // Ajout filtre 
-            
+            // Ajout filtre
+
             /*var analyser = window.AudioContext.createAnalyser();
             var distortion = window.AudioContext.createWaveShaper();
             var gainNode = window.AudioContext.createGain();
             var biquadFilter = window.AudioContext.createBiquadFilter();
             var convolver = window.AudioContext.createConvolver();*/
-            
-            
+
+
              // creates an audio node from the microphone incoming stream
             mediaStream = context.createMediaStreamSource(e);
 
-           // connection  togther 
+           // connection  togther
 
-            
+
            /* mediaStream.connect(analyser);
             analyser.connect(distortion);
             distortion.connect(biquadFilter);
@@ -54,12 +54,12 @@ function enregistrement() {
             convolver.connect(gainNode);
             gainNode.connect(audioCtx.destination);
             // manipulation de biquadFilter
-            
+
 
             biquadFilter.type = "lowshelf";
             biquadFilter.frequency.value = 1000;
             biquadFilter.gain.value = 25;*/
-            
+
             //creation de l'audio context
             //context = new AudioContext();
 
@@ -79,6 +79,7 @@ function enregistrement() {
             }
             recorder.connect(context.destination);
             recorder.onaudioprocess = function (e) {
+                //console.log("on audio process");
                 var buffer2 = new Uint8Array(analyser.fftSize);
                 analyser.getByteTimeDomainData(buffer2);
                 var fundalmentalFreq = findFundamentalFreq(buffer2, context.sampleRate);

@@ -37,7 +37,7 @@ window.onload = function() {
     /*
     * Initialisation ..
     */
-    var mp3 = 'Sound/test.wav';
+    var mp3 = 'Sound/piano1.wav';
     var ogg = 'Sound/test.ogg';
     var audio = new Audio();
     audioContext = new AudioContext();
@@ -91,7 +91,7 @@ window.onload = function() {
             var note = toNote(fundalmentalFreq);
             updateNote(note);
         } else {
-            updateNote(undefined);
+            updateNote('undefined');
         }
         frameId = window.requestAnimationFrame(detectPitch);
     }

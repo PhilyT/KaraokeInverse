@@ -37,8 +37,8 @@ window.onload = function() {
     /*
     * Initialisation ..
     */
-    var mp3 = '../sound/test.wav';
-    var ogg = '../sound/test.ogg';
+    var mp3 = 'Sound/test.wav';
+    var ogg = 'Sound/test.ogg';
     var audio = new Audio();
     audioContext = new AudioContext();
 
@@ -124,7 +124,7 @@ window.onload = function() {
 		audio.src = audio.canPlayType('audio/mpeg') ? mp3 : ogg;
 		audio.addEventListener('play', function() {
 			window.setTimeout(function() {
-				connect();
+				connectAudio();
 			}, 20);
 		}, false);
 		audio.addEventListener('pause', function() {

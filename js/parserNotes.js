@@ -5,7 +5,7 @@ function toNote(freq)
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{
-		console.log(freq);
+		//console.log(freq);
         // retoure des notes au format américain
 		if(estimation(freq, 16.3, octave))
 		{
@@ -69,7 +69,7 @@ function toNote(freq)
 function estimation(freqFundamantal, freqBaseNote, octave)
 {
 	var freqNote = freqBaseNote*Math.pow(2, octave+1);
-	console.log("octave : " + octave + " freq : " +freqNote);
+	//console.log("octave : " + octave + " freq : " +freqNote);
 	return freqFundamantal < (freqNote+ Math.exp(2, octave)) && freqFundamantal > (freqNote- Math.exp(2, octave));
 }
 

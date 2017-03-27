@@ -24,9 +24,6 @@ var didConnect = null;
 /*
  * Initialisation ..
  */
-var mp3 = 'Sound/test.wav';
-var ogg = 'Sound/test.ogg';
-var audio = new Audio();
 audioContext = new AudioContext();
 
 window.onload = function() {
@@ -80,26 +77,6 @@ window.onload = function() {
         mediaStreamSource.connect(analyser);
     }
 
-    /*
-    * Préparer la lecteur de fichier audio
-    */
-    (function setup() {
-		var demo = document.getElementById('demo');
-        audio.crossOrigin = "anonymous";
-		audio.volume = 1;
-		audio.controls = true;
-		audio.src = audio.canPlayType('audio/mpeg') ? mp3 : ogg;
-		audio.addEventListener('play', function() {
-			window.setTimeout(function() {
-				connectAudio(audio);
-			}, 20);
-		}, false);
-		audio.addEventListener('pause', function() {
-			connectStream();
-
-		});
-		demo.appendChild(audio);
-	})();
 
     /*
     * Controler le start/pause du flux audio

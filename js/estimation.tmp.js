@@ -1,8 +1,12 @@
 var updateNote = function (note) {
-	if(typeof note !== 'undefined')
+	if(note.success)
 	{
-		console.log("cent : " + note.cent);
+		$('#note').text(note.note);
+		$('#cents').text(note.cent);
 	}
-
-	$('#note').text(note);
+	else
+	{
+		$('#note').text("waiting");
+		$('#cents').text("waiting");
+	}
 };

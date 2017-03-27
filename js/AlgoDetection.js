@@ -85,6 +85,7 @@ window.onload = function() {
     */
     (function setup() {
 		var demo = document.getElementById('demo');
+        audio.crossOrigin = "anonymous";
 		audio.volume = 1;
 		audio.controls = true;
 		audio.src = audio.canPlayType('audio/mpeg') ? mp3 : ogg;
@@ -153,12 +154,12 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    audioSource = audioContext.createMediaElementSource(aud);
+    //audioSource = audioContext.createMediaElementSource(aud);
     if(!analyser)
     {
         analyser = audioContext.createAnalyser();
     }
-    audioSource.connect(analyser);
+    aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
     didConnect = true;

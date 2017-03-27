@@ -1,7 +1,7 @@
 //Return freq's note in string format
 function toNote(freq)
 {
-
+	var res = new Object();
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{
@@ -9,7 +9,9 @@ function toNote(freq)
         // retoure des notes au format américain
 		if(estimation(freq, 16.3, octave))
 		{
-			return "C/" + (octave+1);
+			res.note = "C/" + (octave+1);
+			res.cent = Math.floor(1200 *Math.log2(freq/(16.3*Math.pow(2, octave+1))));
+			return res;
 		}
 		else if(estimation(freq, 17.3, octave))
 		{

@@ -7,18 +7,18 @@ function playSound()
     // Get an AudioBufferSourceNode.
     // This is the AudioNode to use when we want to play an AudioBuffer
     var source = audioContext.createBufferSource();
-
-    var src = document.getElementById("fileSound").value.toString().split('\\');
+    var file = document.getElementById("fileSound").files[0];
+    /*var src = document.getElementById("fileSound").value.toString().split('\\');
     console.log(src);
     taillesrc = src.length;
-    var file = "./Sound/"+ src[taillesrc-1];
+    var file = "./Sound/"+ src[taillesrc-1];*/
 
-    /*var reader = new FileReader();
+    var reader = new FileReader();
     reader.onload = function(){
         var text = reader.result;
         audioContext.decodeAudioData(text, function(buffer) {
                 try{
-                    var buffer1;
+                    /*var buffer1;
                     if(buffer.length <= 32768)
                     {
                         buffer1= buffer;
@@ -30,11 +30,11 @@ function playSound()
                         buffer1 = new AudioBuffer(audioContext, {length:32768, numberOfChannels:2, sampleRate:audioContext.sampleRate});
                         buffer1.copyToChannel(arrayLeft, 0, 0);
                         buffer1.copyToChannel(arrayRigth, 1, 0);
-                    }
+                    }*/
 
                     // set the buffer in the AudioBufferSourceNode
                     source.buffer = buffer;
-                    var bufferSize2 = buffer1.length;
+                    /*var bufferSize2 = buffer1.length;
                     var analyser2 = audioContext.createAnalyser();
                     // Size max is 16384 byte in ScripteeProcessor
                     analyser2.fftSize = bufferSize2;
@@ -60,11 +60,11 @@ function playSound()
                     // destination so we can hear the sound
                     source.connect(analyser2);
                     analyser.connect(ScriptProcessorNode);
-                    source.connect(audioContext.destination);
+                    source.connect(audioContext.destination);*/
 
                     // start the source playing
+                    connectAudio(source);
                     source.start();
-                    source.buffer = buffer;
 
 
 
@@ -74,8 +74,8 @@ function playSound()
         },
             function(e){ console.log("Error with decoding audio data:\n" + e.err); });
     };
-    reader.readAsArrayBuffer(file);*/
-    audio.src = file;
-    connectAudio(audio);
+    reader.readAsArrayBuffer(file);
+    //audio.src = file;
+    //connectAudio(audio);
 }
 

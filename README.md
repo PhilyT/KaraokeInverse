@@ -14,15 +14,15 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 ### Release  
   
 >###### Version 1.0  
->Prévue pour la fin d'année :
+>Prévue pour fin mai :
 >* Rendu du projet  
 
 ---
 
 >###### Version 0.4  
 >Prévue pour la semaine du 10/04/2017
->* Totalité des fonctionnalités implémentées.
->* Début de rédaction de la documentation.
+>* Affichage des notes sur partition.
+>* Recherche sur comment implémenter le rythme et les intervalles.
 >* Test de l'application web dans le but de trouver d'éventuel beug.
 
 ---

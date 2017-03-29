@@ -28,7 +28,7 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 ---
 
 >###### Version 0.3  
->Réalisée le 21/03/2017
+>Réalisée le 29/03/2017
 >* Implémentation des algorithme de détection de fréquence et de détection de note dans l'ihm.
 >* Identification des fréquences par le micro et par fichier audio.
 >* Retour des notes sous le standard abc américain.

@@ -56,27 +56,6 @@ window.onload = function() {
         }
     );
 
-    /*
-    * Obtenir le flux d'audio à partir du microphone de l'utilisateur,
-    * traiter ce flux en temps réel,
-    * créer un nœud audio à partir du flux et tenter de détecter la note
-    */
-    function getStream(stream){
-        track = stream.getTracks()[0];
-        mediaStreamSource = audioContext.createMediaStreamSource(stream);
-        connectStream();
-        detectPitch();
-    }
-
-    /*
-    * Connecter le flux à l'analyser
-    */
-    function connectStream(){
-        analyser = audioContext.createAnalyser();
-        analyser.fftSize = bufferSize;
-        mediaStreamSource.connect(analyser);
-    }
-
 
     /*
     * Controler le start/pause du flux audio
@@ -131,7 +110,6 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    //audioSource = audioContext.createMediaElementSource(aud);
     if(!analyser)
     {
         analyser = audioContext.createAnalyser();
@@ -159,3 +137,24 @@ var detectPitch = function () {
     }
     frameId = window.requestAnimationFrame(detectPitch);
 };
+
+/*
+ * Obtenir le flux d'audio à partir du microphone de l'utilisateur,
+ * traiter ce flux en temps réel,
+ * créer un nœud audio à partir du flux et tenter de détecter la note
+ */
+function getStream(stream){
+    track = stream.getTracks()[0];
+    mediaStreamSource = audioContext.createMediaStreamSource(stream);
+    connectStream();
+    detectPitch();
+}
+
+/*
+ * Connecter le flux à l'analyser
+ */
+function connectStream(){
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = bufferSize;
+    mediaStreamSource.connect(analyser);
+}

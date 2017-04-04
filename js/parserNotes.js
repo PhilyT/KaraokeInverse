@@ -36,49 +36,49 @@ function toNote(freq)
 		{
 			res.note = "E/" + (octave+1);
 			res.cent = calculCent(freq, 20.5, octave);
-			res.fr="re#";
+			res.fr="me";
 		}
 		else if(estimation(freq, 21.8, octave))
 		{
 			res.note = "F/" + (octave+1);
 			res.cent = calculCent(freq, 21.8, octave);
-			res.fr="me";
+			res.fr="fa";
 		}
 		else if(estimation(freq, 23.1, octave))
 		{
 			res.note = "F#/" + (octave+1);
 			res.cent = calculCent(freq, 23.1, octave);
-			res.fr="me#";
+			res.fr="fa#";
 		}
 		else if(estimation(freq, 24.5, octave))
 		{
 			res.note = "G/" + (octave+1);
 			res.cent = calculCent(freq, 24.5, octave);
-			res.fr="fa";
+			res.fr="sol";
 		}
 		else if(estimation(freq, 26.0, octave))
 		{
 			res.note = "G#/" + (octave+1);
 			res.cent = calculCent(freq, 26.0, octave);
-			res.fr="fa#";
+			res.fr="sol#";
 		}
 		else if(estimation(freq, 27.5, octave))
 		{
 			res.note = "A/" + (octave+1);
 			res.cent = calculCent(freq,27.5, octave);
-			res.fr="sol";
+			res.fr="la";
 		}
 		else if(estimation(freq, 29.1, octave))
 		{
 			res.note = "A#/" + (octave+1);
 			res.cent = calculCent(freq, 29.1, octave);
-			res.fr="sol#";
+			res.fr="la#";
 		}
 		else if(estimation(freq, 30.8, octave))
 		{
 			res.note = "B/" + (octave+1);
 			res.cent = calculCent(freq, 30.8, octave);
-			res.fr="la";
+			res.fr="si";
 		}
 		else
 		{

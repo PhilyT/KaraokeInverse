@@ -1,7 +1,3 @@
-
-
-var AudioContext = (window.AudioContext || window.webkitAudioContext);
-
 function playSound()
 {
     // Get an AudioBufferSourceNode.

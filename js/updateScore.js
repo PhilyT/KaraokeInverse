@@ -3,6 +3,8 @@ var updateNote = function (note) {
 	{
 		$('#note').text(note.note);
 		$('#cents').text(note.cent);
+
+		render(note.note);
 	}
 	else
 	{

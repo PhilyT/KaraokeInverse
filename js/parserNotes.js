@@ -36,7 +36,7 @@ function toNote(freq)
 		{
 			res.note = "E/" + (octave+1);
 			res.cent = calculCent(freq, 20.5, octave);
-			res.fr="me";
+			res.fr="mi";
 		}
 		else if(estimation(freq, 21.8, octave))
 		{

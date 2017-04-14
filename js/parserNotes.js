@@ -82,12 +82,15 @@ function toNote(freq)
 		}
 		else
 		{
-			res.success = false;
+			res.note = "Z3";
+			res.fr="pause";
 		}
 	}
 	else
 	{
-		res.success = false;
+		//res.success = false
+		res.note = "Z3";
+		res.fr="pause";
 	}
 	return res;
 }

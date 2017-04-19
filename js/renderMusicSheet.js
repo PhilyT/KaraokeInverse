@@ -36,7 +36,11 @@ function renderScore() {
 function render(note) {
     div.innerHTML = '';
     renderScore();
-    dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note], duration: "h"}));
+    if(note != "##")
+    {
+        dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note], duration: "h"}));
+    }
+
 
 // Helper function to justify and draw a 4/4 voice
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);

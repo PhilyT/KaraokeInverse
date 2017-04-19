@@ -15,13 +15,16 @@ function playSound()
 
                     // set the buffer in the AudioBufferSourceNode
                     source.buffer = buffer;
-
-
+                    
                     // start the source playing
                     connectAudio(source);
                     source.start();
-
-
+                    console.log( buffer.duration);
+                    var millisecondsToWait = buffer.duration*1000;
+                    setTimeout(function() {
+                        console.log("disconnect source");
+                        disconnectAudio(source);
+                    }, millisecondsToWait);
 
                 }catch (e){
                     console.error(e);

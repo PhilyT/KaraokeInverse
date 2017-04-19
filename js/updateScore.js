@@ -1,7 +1,7 @@
 var updateNote = function (note) {
 	if(note.success)
 	{
-		$('#note').text(note.note);
+		$('#note').text(note.fr);
 		$('#cents').text(note.cent);
 
 		render(note.note);

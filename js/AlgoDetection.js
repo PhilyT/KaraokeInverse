@@ -20,6 +20,8 @@ var audioOpts = {
 var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
+var actualNote = {success:false, note:"##", fr:"pause"};
+var streamer;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -102,7 +104,7 @@ var findFundamentalFreq = function(buffer, sampleRate) {
 };
 
 /*
- * Connecter le fichier audio à l'analyser
+ * Connecter le fichier audio a analyser
  */
 function connectAudio(aud) {
     if (didConnect) {
@@ -118,6 +120,21 @@ function connectAudio(aud) {
     didConnect = true;
 }
 
+/**
+ * Deconnecter le fichier audio a analyser
+ * @param aud
+ */
+function disconnectAudio(aud) {
+    if(didConnect)
+    {
+        aud.disconnect(analyser);
+        analyser.disconnect(audioContext.destination);
+        mediaStreamSource.connect(analyser);
+        getStream(streamer);
+        didConnect = false;
+    }
+}
+
 /*
  * Méthode qui détecte les notes,
  * elle utilise les différents méthodes telles que
@@ -127,11 +144,31 @@ var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
     var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
+    var note = {success:false, note:"##"};
     if (fundalmentalFreq !== -1) {
-        var note = toNote(fundalmentalFreq);
-        updateNote(note);
+        note = toNote(fundalmentalFreq);
+        if(note.note != actualNote.note)
+        {
+            updateNote(note);
+            actualNote = note;
+        }
+        else
+        {
+            note.success = false;
+            updateNote(note);
+        }
+
     } else {
-        updateNote('undefined');
+        if(note.note == actualNote.note)
+        {
+            note.success = true;
+            updateNote(note);
+        }
+        else
+        {
+            updateNote(note);
+            actualNote = note;
+        }
     }
     frameId = window.requestAnimationFrame(detectPitch);
 };
@@ -142,6 +179,7 @@ var detectPitch = function () {
  * créer un nœud audio à partir du flux et tenter de détecter la note
  */
 function getStream(stream){
+    streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
     connectStream();
@@ -156,3 +194,4 @@ function connectStream(){
     analyser.fftSize = bufferSize;
     mediaStreamSource.connect(analyser);
 }
+

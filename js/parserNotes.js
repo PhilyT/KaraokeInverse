@@ -1,4 +1,4 @@
-//Return freq's note in string format
+//Return freq's note in obect format
 function toNote(freq)
 {
 	var res = new Object();
@@ -12,70 +12,85 @@ function toNote(freq)
 		{
 			res.note = "C/" + (octave+1);
 			res.cent = calculCent(freq, 16.3, octave);
+			res.fr="DO" + (octave+1);
 		}
 		else if(estimation(freq, 17.3, octave))
 		{
 			res.note = "C#/" + (octave+1);
 			res.cent = calculCent(freq, 17.3, octave);
+			res.fr="DO#" + (octave+1);
 		}
 		else if(estimation(freq, 18.3, octave))
 		{
 			res.note = "D/" + (octave+1);
 			res.cent = calculCent(freq, 18.3, octave);
+			res.fr="re" + (octave+1);
 		}
 		else if(estimation(freq, 19.4, octave))
 		{
 			res.note = "D#/" + (octave+1);
 			res.cent = calculCent(freq, 19.4, octave);
+			res.fr="re#" + (octave+1);
 		}
 		else if(estimation(freq, 20.5, octave))
 		{
 			res.note = "E/" + (octave+1);
 			res.cent = calculCent(freq, 20.5, octave);
+			res.fr="mi" + (octave+1);
 		}
 		else if(estimation(freq, 21.8, octave))
 		{
 			res.note = "F/" + (octave+1);
 			res.cent = calculCent(freq, 21.8, octave);
+			res.fr="fa" + (octave+1);
 		}
 		else if(estimation(freq, 23.1, octave))
 		{
 			res.note = "F#/" + (octave+1);
 			res.cent = calculCent(freq, 23.1, octave);
+			res.fr="fa#" + (octave+1);
 		}
 		else if(estimation(freq, 24.5, octave))
 		{
 			res.note = "G/" + (octave+1);
 			res.cent = calculCent(freq, 24.5, octave);
+			res.fr="sol" + (octave+1);
 		}
 		else if(estimation(freq, 26.0, octave))
 		{
 			res.note = "G#/" + (octave+1);
 			res.cent = calculCent(freq, 26.0, octave);
+			res.fr="sol#" + (octave+1);
 		}
 		else if(estimation(freq, 27.5, octave))
 		{
 			res.note = "A/" + (octave+1);
 			res.cent = calculCent(freq,27.5, octave);
+			res.fr="la" + (octave+1);
 		}
 		else if(estimation(freq, 29.1, octave))
 		{
 			res.note = "A#/" + (octave+1);
 			res.cent = calculCent(freq, 29.1, octave);
+			res.fr="la#" + (octave+1);
 		}
 		else if(estimation(freq, 30.8, octave))
 		{
 			res.note = "B/" + (octave+1);
 			res.cent = calculCent(freq, 30.8, octave);
+			res.fr="si" + (octave+1);
 		}
 		else
 		{
-			res.success = false;
+			res.note = "##";
+			res.fr="pause";
 		}
 	}
 	else
 	{
-		res.success = false;
+		//res.success = false
+		res.note = "##";
+		res.fr="pause";
 	}
 	return res;
 }
@@ -92,7 +107,12 @@ function calculCent(freqTrouve, freqBase, octave)
 	return Math.floor(1200 *Math.log2(freqTrouve/(freqBase*Math.pow(2, octave+1))));
 }
 
-// return freq's octave, int[-1,9]
+
+/**
+ * return freq's octave, int[-1,9]
+ * @param freq
+ * @returns {number}
+ */
 function findOctave(freq)
 {
 	if(freq < 31.3 && freq > 15.8)

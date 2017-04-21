@@ -1,7 +1,3 @@
-
-
-var AudioContext = (window.AudioContext || window.webkitAudioContext);
-
 function playSound()
 {
     // Get an AudioBufferSourceNode.
@@ -19,13 +15,14 @@ function playSound()
 
                     // set the buffer in the AudioBufferSourceNode
                     source.buffer = buffer;
-
-
+                    
                     // start the source playing
                     connectAudio(source);
                     source.start();
-
-
+                    var millisecondsToWait = buffer.duration*1000;
+                    setTimeout(function() {
+                        disconnectAudio(source);
+                    }, millisecondsToWait);
 
                 }catch (e){
                     console.error(e);

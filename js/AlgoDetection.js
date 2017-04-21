@@ -20,6 +20,19 @@ var audioOpts = {
 var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
+var actualNote = {success:false, note:"##", fr:"pause"};
+var streamer;
+
+/*
+ * Vérifier la prise en charge de l'API par le navigateur
+ */
+(function(){
+    if (window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext, navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia, "undefined" == typeof window.AudioContext || "undefined" == typeof navigator.getUserMedia) {
+        return void requestAnimationFrame(function() {
+            document.body.classList.add("unsupported")
+        });
+    }
+})();
 
 /*
  * Initialisation ..
@@ -27,19 +40,6 @@ var didConnect = null;
 audioContext = new AudioContext();
 
 window.onload = function() {
-
-    /*
-    * Vérifier la prise en charge de l'API par le navigateur
-    */
-    (function(){
-    	if (window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext, navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia, "undefined" == typeof window.AudioContext || "undefined" == typeof navigator.getUserMedia) {
-    		return void requestAnimationFrame(function() {
-    	    	document.body.classList.add("unsupported")
-    		});
-    	}
-    })();
-
-
 
     /*
     * Préparer le UserMedia en déterminant les périphériques auxquels on veut y accéder,
@@ -55,27 +55,6 @@ window.onload = function() {
             console.log(e);
         }
     );
-
-    /*
-    * Obtenir le flux d'audio à partir du microphone de l'utilisateur,
-    * traiter ce flux en temps réel,
-    * créer un nœud audio à partir du flux et tenter de détecter la note
-    */
-    function getStream(stream){
-        track = stream.getTracks()[0];
-        mediaStreamSource = audioContext.createMediaStreamSource(stream);
-        connectStream();
-        detectPitch();
-    }
-
-    /*
-    * Connecter le flux à l'analyser
-    */
-    function connectStream(){
-        analyser = audioContext.createAnalyser();
-        analyser.fftSize = bufferSize;
-        mediaStreamSource.connect(analyser);
-    }
 
 
     /*
@@ -125,13 +104,12 @@ var findFundamentalFreq = function(buffer, sampleRate) {
 };
 
 /*
- * Connecter le fichier audio à l'analyser
+ * Connecter le fichier audio a analyser
  */
 function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    //audioSource = audioContext.createMediaElementSource(aud);
     if(!analyser)
     {
         analyser = audioContext.createAnalyser();
@@ -140,6 +118,21 @@ function connectAudio(aud) {
     analyser.connect(audioContext.destination);
     detectPitch();
     didConnect = true;
+}
+
+/**
+ * Deconnecter le fichier audio a analyser
+ * @param aud
+ */
+function disconnectAudio(aud) {
+    if(didConnect)
+    {
+        aud.disconnect(analyser);
+        analyser.disconnect(audioContext.destination);
+        mediaStreamSource.connect(analyser);
+        getStream(streamer);
+        didConnect = false;
+    }
 }
 
 /*
@@ -151,11 +144,54 @@ var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
     var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
+    var note = {success:false, note:"##"};
     if (fundalmentalFreq !== -1) {
-        var note = toNote(fundalmentalFreq);
-        updateNote(note);
+        note = toNote(fundalmentalFreq);
+        if(note.note != actualNote.note)
+        {
+            updateNote(note);
+            actualNote = note;
+        }
+        else
+        {
+            note.success = false;
+            updateNote(note);
+        }
+
     } else {
-        updateNote('undefined');
+        if(note.note == actualNote.note)
+        {
+            note.success = true;
+            updateNote(note);
+        }
+        else
+        {
+            updateNote(note);
+            actualNote = note;
+        }
     }
     frameId = window.requestAnimationFrame(detectPitch);
 };
+
+/*
+ * Obtenir le flux d'audio à partir du microphone de l'utilisateur,
+ * traiter ce flux en temps réel,
+ * créer un nœud audio à partir du flux et tenter de détecter la note
+ */
+function getStream(stream){
+    streamer = stream;
+    track = stream.getTracks()[0];
+    mediaStreamSource = audioContext.createMediaStreamSource(stream);
+    connectStream();
+    detectPitch();
+}
+
+/*
+ * Connecter le flux à l'analyser
+ */
+function connectStream(){
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = bufferSize;
+    mediaStreamSource.connect(analyser);
+}
+

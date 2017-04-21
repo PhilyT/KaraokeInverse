@@ -19,10 +19,8 @@ function playSound()
                     // start the source playing
                     connectAudio(source);
                     source.start();
-                    console.log( buffer.duration);
                     var millisecondsToWait = buffer.duration*1000;
                     setTimeout(function() {
-                        console.log("disconnect source");
                         disconnectAudio(source);
                     }, millisecondsToWait);
 

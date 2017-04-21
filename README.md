@@ -19,8 +19,24 @@ Le travail de recherche se trouve dans le repertoire doc à  la racine.
 
 ---
 
+>###### Version 0.6  
+>Prévue pour le 15/05/2017
+>* Implémentation du rythme
+>* Rédaction du raport à 50%
+>* Début de présentation oral
+
+---
+
+>###### Version 0.5  
+>Prévue pour le 24/04/2017
+>* Ajout d'information sur les notes
+>* Recherche sur le rythme
+>* Redistribution des tâches au sein de l'équipe
+
+---
+
 >###### Version 0.4  
->Prévue pour le 07/04/2017
+>Réalisée le 21/04/2017
 >* Affichage des notes sur partition.
 >* Recherche sur comment implémenter le rythme et les intervalles.
 >* Test de l'application web dans le but de trouver d'éventuel beug.

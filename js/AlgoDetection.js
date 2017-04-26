@@ -20,7 +20,7 @@ var audioOpts = {
 var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
-var actualNote = {success:false, note:"##", fr:"pause"};
+var actualNote = {success:false, note:"b/4", fr:"pause", duration:"qr"};
 var streamer;
 
 /*
@@ -144,7 +144,7 @@ var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
     var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
-    var note = {success:false, note:"##"};
+    var note =  {success:false, note:"b/4", fr:"pause", duration:"qr"};
     if (fundalmentalFreq !== -1) {
         note = toNote(fundalmentalFreq);
         if(note.note != actualNote.note)
@@ -159,7 +159,7 @@ var detectPitch = function () {
         }
 
     } else {
-        if(note.note == actualNote.note)
+        if(note.note == actualNote.note && note.duration == "qr")
         {
             note.success = true;
             updateNote(note);

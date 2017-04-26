@@ -3,6 +3,7 @@ function toNote(freq)
 {
 	var res = new Object();
 	res.success = true;
+	res.duration = "h";
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{
@@ -82,14 +83,16 @@ function toNote(freq)
 		}
 		else
 		{
-			res.note = "##";
+			res.duration = "qr";
+			res.note = "b/4";
 			res.fr="pause";
 		}
 	}
 	else
 	{
 		//res.success = false
-		res.note = "##";
+		res.duration = "qr";
+		res.note = "b/4";
 		res.fr="pause";
 	}
 	return res;

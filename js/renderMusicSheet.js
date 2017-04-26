@@ -36,6 +36,8 @@ function renderScore() {
 function render(note) {
     div.innerHTML = '';
     renderScore();
+    //  ## = pause
+    //dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note], duration: "h"}));
     if(note != "##")
     {
         dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note], duration: "h"}));

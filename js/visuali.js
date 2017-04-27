@@ -133,7 +133,12 @@ function visualize() {
   }
 
 }
+// Les auditeurs d'événements modifient les paramètres de visualisation et de voix
 
+visualSelect.onchange = function() {
+  window.cancelAnimationFrame(drawVisual);
+  visualize();
+}
 
 
 

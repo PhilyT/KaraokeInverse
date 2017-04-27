@@ -17,6 +17,35 @@ canvas.setAttribute('width',intendedWidth);
 var visualSelect = document.getElementById("visual");
 var drawVisual;
 
+if (navigator.getUserMedia) {
+   console.log('getUserMedia supported.');
+   navigator.getUserMedia (
+      // Contraintes - seul l'audio requis pour cette application
+      {
+         audio: audioOpts
+      },
+
+      // Success callback
+      function(stream) {
+         source = audioContext.createMediaStreamSource(stream);
+         source.connect(analyser);
+         analyser.connect(distortion);
+         distortion.connect(biquadFilter);
+         biquadFilter.connect(convolver);
+         convolver.connect(gainNode);
+         gainNode.connect(audioContext.destination);
+         visualize();
+      },
+
+      // Error callback
+      function(err) {
+         console.log('The following gUM error occured: ' + err);
+      }
+   );
+} else {
+   console.log('getUserMedia not supported on your browser!');
+}
+
 
 
 

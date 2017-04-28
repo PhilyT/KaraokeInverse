@@ -2,8 +2,8 @@
 function toNote(freq)
 {
 	var res = new Object();
-	res.success = true;
 	res.duration = "h";
+	res.cpt = 0;
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{
@@ -83,19 +83,19 @@ function toNote(freq)
 		}
 		else
 		{
-			res.duration = "qr";
-			res.note = "b/4";
-			res.fr="pause";
+			res=pause();
 		}
 	}
 	else
 	{
-		//res.success = false
-		res.duration = "qr";
-		res.note = "b/4";
-		res.fr="pause";
+		res= pause();
 	}
 	return res;
+}
+
+function pause()
+{
+	return {duration:"qr", note:"b/4", fr:"pause", cpt:0};
 }
 
 function estimation(freqFundamantal, freqBaseNote, octave)

@@ -10,7 +10,7 @@ var updateNote = function (actualNote, oldNote) {
 	}
 	else
 	{
-		if(actualNote.cpt==oldNote.cpt)
+		if(actualNote.cpt==(oldNote.cpt+1))
 		{
 			$('#note').text(actualNote.fr);
 

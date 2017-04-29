@@ -6,13 +6,27 @@ var stave;
 var stave2;
 var dummNotes;
 
+var clearVexCavnasBtn;
+
 $(document).ready(function () {
+    clearVexCavnasBtn = document.getElementById("clear-vex-cavnas");
+
+    clearVexCavnasBtn.addEventListener("click", function(){
+        clearVexCavnas();
+    });
+    
     renderScore();
     dummNotes = [];
 
 // Helper function to justify and draw a 4/4 voice
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);
 });
+
+function clearVexCavnas() {
+    dummNotes = [];
+    div.innerHTML = "";
+    renderScore();
+}
 
 function renderScore() {
     VF = Vex.Flow;

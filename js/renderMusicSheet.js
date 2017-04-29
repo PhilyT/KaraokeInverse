@@ -17,8 +17,8 @@ $(document).ready(function () {
 function renderScore() {
     VF = Vex.Flow;
 
-// Create an SVG renderer and attach it to the DIV element named "boo".
-    div = document.getElementById("boo");
+// Create an SVG renderer and attach it to the DIV element named "vex-canvas".
+    div = document.getElementById("vex-canvas");
     renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 // Configure the rendering context.

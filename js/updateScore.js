@@ -21,6 +21,5 @@ var updateNote = function (actualNote, oldNote) {
 			$('#note').text("waiting");
 			$('#cents').text("waiting");
 		}
-
 	}
 };

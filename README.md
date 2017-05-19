@@ -65,10 +65,9 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
 ---
 
 >###### Version 0.6  
->Prévue pour le 15/05/2017
->* Implémentation du rythme
->* Rédaction du raport à 50%
->* Début de présentation oral
+>Réalisée le  19/05/2017
+>* Nouvelle interface graphique
+>* Correction de bug
 
 ---
 

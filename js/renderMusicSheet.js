@@ -6,7 +6,15 @@ var stave;
 var stave2;
 var dummNotes;
 
+var clearVexCavnasBtn;
+
 $(document).ready(function () {
+    clearVexCavnasBtn = document.getElementById("clear-vex-cavnas");
+
+    clearVexCavnasBtn.addEventListener("click", function(){
+        clearVexCavnas();
+    });
+    
     renderScore();
     dummNotes = [];
 
@@ -14,11 +22,17 @@ $(document).ready(function () {
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);
 });
 
+function clearVexCavnas() {
+    dummNotes = [];
+    div.innerHTML = "";
+    renderScore();
+}
+
 function renderScore() {
     VF = Vex.Flow;
 
-// Create an SVG renderer and attach it to the DIV element named "boo".
-    div = document.getElementById("boo");
+// Create an SVG renderer and attach it to the DIV element named "vex-canvas".
+    div = document.getElementById("vex-canvas");
     renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 // Configure the rendering context.
@@ -36,11 +50,8 @@ function renderScore() {
 function render(note) {
     div.innerHTML = '';
     renderScore();
-    if(note != "##")
-    {
-        dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note], duration: "h"}));
-    }
 
+    dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));
 
 // Helper function to justify and draw a 4/4 voice
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);

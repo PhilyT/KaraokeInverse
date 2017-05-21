@@ -12,7 +12,7 @@ var audioOpts = {
     mandatory: {
         "googEchoCancellation": "false",
         "googAutoGainControl": "false",
-        "googNoiseSuppression": "false",
+        "googNoiseSuppression": "true",
         "googHighpassFilter": "false"
     },
     optional: []
@@ -78,7 +78,8 @@ window.onload = function() {
 
 /*
  * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
- *
+ * inspiré de pitchdetect.js
+ * voir: https://webaudiodemos.appspot.com/pitchdetect/js/pitchdetect.js
  */
 var findFundamentalFreq = function(buffer, sampleRate) {
     var n = 1024, bestR = 0, bestK = -1;

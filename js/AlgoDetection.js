@@ -195,6 +195,7 @@ function getStream(stream){
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
     connectStream();
     detectPitch();
+    visualize();
 }
 
 /*

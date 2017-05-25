@@ -111,7 +111,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-centered">
-                                <input type="file" id="fileSound" />
+                                <label for="fileSound">
+                                    Veuillez choisir un fichier audio :
+                                    <input type="file" accept="audio/*" id="fileSound" >
+                                 </label>
                                 <button class="btn btn-default" id="clear-vex-cavnas">Clear</button>
                                 <p>Une portée, une clef de sol et une mesure à 4/4... qui attendent l'arrivée des notes :</p>
                                 <div id="vex-canvas"></div>

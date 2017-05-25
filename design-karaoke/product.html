@@ -35,7 +35,6 @@
         <script src="../js/parserNotes.js"></script>
         <script src="../js/updateScore.js"></script>
         <script src="../js/AlgoDetection.js"></script>
-        <script src="../js/visuali.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="../js/main.js"></script>
@@ -154,7 +153,9 @@
          
          
   
-	  <header>
+	  <div class="wrapper">
+    
+    <header>
       <h1>Voix</h1>
     </header>
     <canvas class="visualizer" width="640" height="100"></canvas> 
@@ -163,17 +164,14 @@
       <div>
         <label for="visual">Réglage du visualiseur</label>
         <select id="visual" name="visual">
-          <option value="sinewave" class="opt">fréquences</option>
-          <option value="frequencybars" selected class="opt">Barres de fréquences</option>
-          <option value="off" class="opt">Off</option>
+          <option value="sinewave">fréquences</option>
+          <option value="frequencybars" selected>Barres de fréquences</option>
+          <option value="off">Off</option>
         </select>
       </div>
       <div>
         <a class="mute">Muet</a>
       </div>
-    </form>
-    </div>
-    <script src="js/visuali.js"></script>
       <!-- FOOTER -->   
       <footer>
          <div class="line">
@@ -183,6 +181,6 @@
             </div>
             
       </footer>
-      
+      <script src="js/visuali.js"></script>
    </body>
 </html>

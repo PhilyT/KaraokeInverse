@@ -6,11 +6,13 @@ var updateNote = function (actualNote, oldNote) {
 			render(actualNote);
 			$('#note').text(actualNote.fr);
 			$('#cents').text(actualNote.cent);
+			console.log("actualNote cpt : " + actualNote.cpt);
+            console.log("oldNote cpt : " + oldNote.cpt);
 		}
 	}
 	else
 	{
-		if(actualNote.cpt==(oldNote.cpt+1))
+		if(actualNote.cpt==oldNote.cpt)
 		{
 			$('#note').text(actualNote.fr);
 

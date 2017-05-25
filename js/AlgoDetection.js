@@ -149,8 +149,10 @@ var detectPitch = function () {
     var noteTrouve =  pause();
     if (fundalmentalFreq !== -1) {
         noteTrouve = toNote(fundalmentalFreq);
+        console.log("note trouve : " + noteTrouve.note + " duration : "+ noteTrouve.duration +" frequence trouve : " + fundalmentalFreq);
         if(noteTrouve.note != actualNote.note)
         {
+
             if(actualNote.duration != "qr")
             {
                 oldNote = actualNote;
@@ -159,7 +161,7 @@ var detectPitch = function () {
         }
         else
         {
-            if(actualNote.duration == "qr")
+            if(actualNote.duration == "qr" &&  noteTrouve.duration != "qr")
             {
                 actualNote = noteTrouve;
             }
@@ -171,6 +173,7 @@ var detectPitch = function () {
         }
 
     } else {
+        console.log("pas de frequence trouve");
         if(actualNote.duration == "qr")
         {
             actualNote.cpt++;

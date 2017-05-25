@@ -23,10 +23,10 @@ function playSound()
                             // start the source playing
                             connectAudio(source);
                             source.start();
-                            /*var millisecondsToWait = buffer.duration*1000;
+                            var millisecondsToWait = buffer.duration*1000;
                             setTimeout(function() {
                                 disconnectAudio(source);
-                            }, millisecondsToWait);*/
+                            }, millisecondsToWait);
 
                         }catch (e){
                             console.error(e);

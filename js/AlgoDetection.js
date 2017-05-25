@@ -159,7 +159,15 @@ var detectPitch = function () {
         }
         else
         {
-            actualNote.cpt++;
+            if(actualNote.duration == "qr")
+            {
+                actualNote = noteTrouve;
+            }
+            else
+            {
+                actualNote.cpt++;
+            }
+
         }
 
     } else {

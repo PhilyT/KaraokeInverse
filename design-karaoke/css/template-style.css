@@ -77,7 +77,9 @@ nav ul li ul li {
 }
 footer {
 	background: none repeat scroll 0 0 #2fcbe0;
-	padding: 1.5em 0;
+	padding: 2em 0;
+	margin-top : 4px ;
+	
 }
 footer p, footer a:link, footer a:visited, footer a:hover {
 	color: #fff;
@@ -160,6 +162,7 @@ a.button {
 	padding: 5rem 0;
 	text-align: center;
 	border-bottom: 1px solid #f0f0f0;
+	
 }
 #content h2 {
 	font-size: 1.5rem;
@@ -167,6 +170,12 @@ a.button {
 	margin: 1rem 0 0.3rem;
 	text-transform: none;
 }
+.container{
+	margin-left : 4px;
+	margin-right: 4px;
+
+}
+
 .content-block {
 	background: none repeat scroll 0 0 rgb(0, 30, 34);
 	padding: 2.5rem;

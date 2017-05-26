@@ -429,6 +429,10 @@ label[for="toggle"] {
     margin: 0;
 }
 
+#vex-attr {
+    margin-top: 50px;
+}
+
 /* Footer styles
 -------------------------------------------------- */
 html {

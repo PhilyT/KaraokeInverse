@@ -162,6 +162,12 @@ a.button {
 	border-bottom: 1px solid #f0f0f0;
 }
 #content h2 {
+	font-size: 2rem;
+	font-weight: 400;
+	margin: 1rem 0 0.3rem;
+	text-transform: none;
+}
+#content h3 {
 	font-size: 1.5rem;
 	font-weight: 400;
 	margin: 1rem 0 0.3rem;

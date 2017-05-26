@@ -22,6 +22,7 @@ var audioSource = null;
 var didConnect = null;
 var actualNote = pause();
 var oldNote = {cpt:0};
+var derniernoteaffiche = {cpt:0};
 var streamer;
 
 /*
@@ -149,7 +150,6 @@ var detectPitch = function () {
     var noteTrouve =  pause();
     if (fundalmentalFreq !== -1) {
         noteTrouve = toNote(fundalmentalFreq);
-        console.log("note trouve : " + noteTrouve.note + " duration : "+ noteTrouve.duration +" frequence trouve : " + fundalmentalFreq);
         if(noteTrouve.note != actualNote.note)
         {
 
@@ -173,7 +173,6 @@ var detectPitch = function () {
         }
 
     } else {
-        console.log("pas de frequence trouve");
         if(actualNote.duration == "qr")
         {
             actualNote.cpt++;
@@ -183,7 +182,15 @@ var detectPitch = function () {
             actualNote = noteTrouve;
         }
     }
-    updateNote(actualNote, oldNote);
+    var testafficheNote = updateNote(actualNote, oldNote);
+    if(testafficheNote)
+    {
+        derniernoteaffiche = oldNote;
+    }
+    else if (derniernoteaffiche.note)
+    {
+        oldNote = derniernoteaffiche;
+    }
     frameId = window.requestAnimationFrame(detectPitch);
 };
 

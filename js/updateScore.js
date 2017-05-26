@@ -5,10 +5,9 @@ var updateNote = function (actualNote, oldNote) {
 		{
 			render(actualNote);
 			$('#note').text(actualNote.fr);
-			$('#cents').text(actualNote.cent);
-			console.log("actualNote cpt : " + actualNote.cpt);
-            console.log("oldNote cpt : " + oldNote.cpt);
+			return true;
 		}
+        $('#cents').text(actualNote.cent);
 	}
 	else
 	{
@@ -24,4 +23,5 @@ var updateNote = function (actualNote, oldNote) {
 			$('#cents').text("waiting");
 		}
 	}
+	return false;
 };

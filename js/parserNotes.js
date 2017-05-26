@@ -72,13 +72,13 @@ function toNote(freq)
 		else if(estimation(freq, 29.1, octave))
 		{
 			res.note = "A#/" + (octave+1);
-			res.cent = calculCent(freq, 29.0, octave);
+			res.cent = calculCent(freq, 29.1, octave);
 			res.fr="la#" + (octave+1);
 		}
 		else if(estimation(freq, 30.8, octave))
 		{
 			res.note = "B/" + (octave+1);
-			res.cent = calculCent(freq, 30.7, octave);
+			res.cent = calculCent(freq, 30.8, octave);
 			res.fr="si" + (octave+1);
 		}
 		else

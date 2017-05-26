@@ -124,13 +124,6 @@ body.unsupported {
     position: relative;
     overflow: hidden;
 }
-p{
-    color:white;
-
-}
-div{
-    color:white;
-}
 
 /* centered columns styles */
 .col-centered{
@@ -345,7 +338,7 @@ body.unsupported {
 }
 .ki-lab-pageheader p{
     font-size: 1.5rem;
-    
+
 }
 .ki-lab-title+p, p{
     font-size: 1.20rem;
@@ -382,31 +375,20 @@ body.unsupported {
   width: 80%;
   font-size: 2rem;
 }
-h1, h2, label {
-  font-size: 3rem;
-  font-family: 'Nova Square', cursive;
-  text-align: center;
-  color: black;
-  text-shadow: -1px -1px 1px #aaa,
-               0px 1px 1px rgba(255,255,255,0.5),
-               1px 1px 2px rgba(255,255,255,0.7),
-               0px 0px 2px rgba(255,255,255,0.4);
-  margin: 0;
-}
 
- form a {    
+ form a {
     background-color: #0088cc;
-    background-image: linear-gradient(to bottom,  #0088cc 0%,#0055cc 100%); 
-    text-shadow: 1px 1px 1px black;  
+    background-image: linear-gradient(to bottom,  #0088cc 0%,#0055cc 100%);
+    text-shadow: 1px 1px 1px black;
     text-align: center;
     color: white;
     border: none;
     width: 90%;
     margin: 1rem auto 0.5rem;
     max-width: 80%;
-    font-size: 1.6rem; 
+    font-size: 1.6rem;
     line-height: 3rem;
-    padding: .5rem; 
+    padding: .5rem;
     display: block;
 }
 
@@ -433,4 +415,35 @@ label[for="toggle"] {
     right: 5px;
     z-index: 5;
     cursor: pointer;
+}
+
+#reglage-visualisateur {
+    font-size: 3rem;
+    font-family: 'Nova Square', cursive;
+    text-align: center;
+    color: black;
+    text-shadow: -1px -1px 1px #aaa,
+    0px 1px 1px rgba(255,255,255,0.5),
+    1px 1px 2px rgba(255,255,255,0.7),
+    0px 0px 2px rgba(255,255,255,0.4);
+    margin: 0;
+}
+
+/* Footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
 }

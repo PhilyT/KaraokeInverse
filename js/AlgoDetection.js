@@ -24,6 +24,7 @@ var actualNote = pause();
 var oldNote = {cpt:0};
 var derniernoteaffiche = {cpt:0};
 var streamer;
+var cptaffichagedenote = 0;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -117,6 +118,7 @@ function connectAudio(aud) {
     {
         analyser = audioContext.createAnalyser();
     }
+    cptaffichagedenote =0 ;
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
@@ -135,6 +137,7 @@ function disconnectAudio(aud) {
         mediaStreamSource.connect(analyser);
         getStream(streamer);
         didConnect = false;
+        console.log("nombre de note affiche : " + cptaffichagedenote);
     }
 }
 
@@ -186,6 +189,7 @@ var detectPitch = function () {
     if(testafficheNote)
     {
         derniernoteaffiche = oldNote;
+        cptaffichagedenote++;
     }
     else if (derniernoteaffiche.note)
     {

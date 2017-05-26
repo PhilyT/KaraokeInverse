@@ -14,6 +14,7 @@ function playSound()
             var reader = new FileReader();
             reader.onload = function(){
                 var text = reader.result;
+
                 audioContext.decodeAudioData(text, function(buffer) {
                         try{
                             // set the buffer in the AudioBufferSourceNode

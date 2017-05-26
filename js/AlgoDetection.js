@@ -12,7 +12,7 @@ var audioOpts = {
     mandatory: {
         "googEchoCancellation": "false",
         "googAutoGainControl": "false",
-        "googNoiseSuppression": "false",
+        "googNoiseSuppression": "true",
         "googHighpassFilter": "false"
     },
     optional: []
@@ -78,7 +78,8 @@ window.onload = function() {
 
 /*
  * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
- *
+ * inspiré de pitchdetect.js
+ * voir: https://webaudiodemos.appspot.com/pitchdetect/js/pitchdetect.js
  */
 var findFundamentalFreq = function(buffer, sampleRate) {
     var n = 1024, bestR = 0, bestK = -1;
@@ -148,8 +149,10 @@ var detectPitch = function () {
     var noteTrouve =  pause();
     if (fundalmentalFreq !== -1) {
         noteTrouve = toNote(fundalmentalFreq);
+        console.log("note trouve : " + noteTrouve.note + " duration : "+ noteTrouve.duration +" frequence trouve : " + fundalmentalFreq);
         if(noteTrouve.note != actualNote.note)
         {
+
             if(actualNote.duration != "qr")
             {
                 oldNote = actualNote;
@@ -158,10 +161,19 @@ var detectPitch = function () {
         }
         else
         {
-            actualNote.cpt++;
+            if(actualNote.duration == "qr" &&  noteTrouve.duration != "qr")
+            {
+                actualNote = noteTrouve;
+            }
+            else
+            {
+                actualNote.cpt++;
+            }
+
         }
 
     } else {
+        console.log("pas de frequence trouve");
         if(actualNote.duration == "qr")
         {
             actualNote.cpt++;

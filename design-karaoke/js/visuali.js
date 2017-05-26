@@ -13,7 +13,6 @@ var canvasCtx = canvas.getContext("2d");
 var intendedWidth = document.querySelector('.wrapper').clientWidth;
 canvas.setAttribute('width',intendedWidth);
 var visualSelect = document.getElementById("visual");
-
 //Bloc principal pour effectuer l'enregistrement audio
 
 
@@ -66,14 +65,14 @@ function visualize() {
       analyser.getByteFrequencyData(dataArray);
       canvasCtx.fillStyle = 'rgb(0, 0, 0)';
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-      var barWidth = (WIDTH / bufferLength) * 0.1;
+      var barWidth = (WIDTH / bufferLength) * 0.5;
       var barHeight;
       var x = 0;
       for(var i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
-        canvasCtx.fillStyle = 'rgb('+ (barHeight+100) + ',50,50)';
-        canvasCtx.fillRect(x,HEIGHT-barHeight,barWidth,barHeight);
-        x += barWidth * 2;
+        canvasCtx.fillStyle = 'rgb(' + (barHeight+100) + ',50,50)';
+        canvasCtx.fillRect(x,HEIGHT-barHeight/2,barWidth,barHeight/2);
+        x += barWidth + 1;
       }
     };
 
@@ -87,12 +86,9 @@ function visualize() {
 
 }
 
-// Les auditeurs d'événements modifient les paramètres de visualisation et de voix
-
 visualSelect.onchange = function() {
   window.cancelAnimationFrame(drawVisual);
   visualize();
 }
-
 
 

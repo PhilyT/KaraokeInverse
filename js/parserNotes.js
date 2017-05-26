@@ -72,13 +72,13 @@ function toNote(freq)
 		else if(estimation(freq, 29.1, octave))
 		{
 			res.note = "A#/" + (octave+1);
-			res.cent = calculCent(freq, 29.1, octave);
+			res.cent = calculCent(freq, 29.0, octave);
 			res.fr="la#" + (octave+1);
 		}
 		else if(estimation(freq, 30.8, octave))
 		{
 			res.note = "B/" + (octave+1);
-			res.cent = calculCent(freq, 30.8, octave);
+			res.cent = calculCent(freq, 30.7, octave);
 			res.fr="si" + (octave+1);
 		}
 		else
@@ -100,9 +100,9 @@ function pause()
 
 function estimation(freqFundamantal, freqBaseNote, octave)
 {
-	var freqNote = freqBaseNote*Math.pow(2, octave+1);
-	//console.log("octave : " + octave + " freq : " +freqNote);
-	return freqFundamantal < (freqNote+ Math.exp(2, octave)) && freqFundamantal > (freqNote- Math.exp(2, octave));
+	var freqNotemin = (freqBaseNote-0.1)*Math.pow(2, octave+1);
+    var freqNotemax = (freqBaseNote+0.1)*Math.pow(2, octave+1);
+	return freqFundamantal >= freqNotemin && freqFundamantal <= freqNotemax;
 }
 
 function calculCent(freqTrouve, freqBase, octave)

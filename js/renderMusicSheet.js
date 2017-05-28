@@ -3,7 +3,6 @@ var div;
 var renderer;
 var context;
 var stave;
-var stave2;
 var dummNotes;
 
 var clearVexCavnasBtn;

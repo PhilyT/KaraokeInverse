@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="css/bouton.css">
     <!-- CUSTOM STYLE -->
     <link rel="stylesheet" href="css/template-style.css">
-    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <!-- karaoke-->
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="En partant d'une note jouée ou chantée, le logiciel devra analyser sa fréquence et afficher la note correspondante sur une partition à l'écran.">
@@ -33,9 +32,6 @@
     <script src="../js/updateScore.js"></script>
     <script src="../js/AlgoDetection.js"></script>
     <script src="../js/visuali.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <script src="../js/main.js"></script>
 </head>
 <body class="size-1140">
     <!-- TOP NAV WITH LOGO -->
@@ -68,47 +64,47 @@
                 <h1>Karaoké Inversé</h1>
             </div>
             <div id="content">
-                    <div class="container">
-                        <h2 >Affichage de notes de musique avec WebAudio,  VexFlow, JavaScript et HTML5.</h2>
-                        <h3>Lecture à partir du flux et d'un fichier audio</h3>
-                        <br>
-                        <!-- just used for debugging
-                                        <div class="row notesInf">
-                                            <div class="col-md-3">
-                                                <h2>Note : </h2>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h2 id="note"></h2>
-                                            </div>
+                <div class="container">
+                    <h2 >Affichage de notes de musique avec WebAudio,  VexFlow, JavaScript et HTML5.</h2>
+                    <h3>Lecture à partir du flux et d'un fichier audio</h3>
+                    <br>
+                    <!-- just used for debugging
+                                    <div class="row notesInf">
+                                        <div class="col-md-3">
+                                            <h2>Note : </h2>
                                         </div>
-                                        <div class="row notesInf">
-                                            <div class="col-md-3">
-                                                <h2>Cent : </h2>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h2 id="cents"></h2>
-                                            </div>
+                                        <div class="col-md-3">
+                                            <h2 id="note"></h2>
                                         </div>
-                                        -->
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button id="playSoundButton" onclick="playSound()" class="bouton" data-toggle="tooltip" data-placement="top" title="Jouer le fichier audio sélectionné"><i class="fa fa-play" aria-hidden="true"></i></button>
-                                <label for="fileSound">
-                                    Veuillez sélectionner un fichier audio :
-                                    <input type="file" accept="audio/*" id="fileSound" >
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="vex-attr" class="col-sm-1">
-                                <button  id="toggle-stream" class="bouton" data-toggle="tooltip" data-placement="top" title="Mettre en pause l'écoute des notes">Pause</button>
-                                <button class="btn btn-default" id="clear-vex-cavnas" data-toggle="tooltip" data-placement="top" title="Remise à zéo des notes de la partition"><i class="fa fa-trash-o" aria-hidden="true"></i> Effacer</button>
-                            </div>
-                            <div class="col-sm-11 col-centered">
-                                <div id="vex-canvas"></div>
-                            </div>
+                                    </div>
+                                    <div class="row notesInf">
+                                        <div class="col-md-3">
+                                            <h2>Cent : </h2>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h2 id="cents"></h2>
+                                        </div>
+                                    </div>
+                                    -->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button id="playSoundButton" onclick="playSound()" class="bouton" data-toggle="tooltip" data-placement="top" title="Jouer le fichier audio sélectionné"><i class="fa fa-play" aria-hidden="true"></i></button>
+                            <label for="fileSound">
+                                Veuillez sélectionner un fichier audio :
+                                <input type="file" accept="audio/*" id="fileSound" >
+                            </label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div id="vex-attr" class="col-sm-1">
+                            <button  id="toggle-stream" class="bouton" data-toggle="tooltip" data-placement="top" title="Mettre en pause l'écoute des notes">Pause</button>
+                            <button class="btn btn-default" id="clear-vex-cavnas" data-toggle="tooltip" data-placement="top" title="Remise à zéo des notes de la partition"><i class="fa fa-trash-o" aria-hidden="true"></i> Effacer</button>
+                        </div>
+                        <div class="col-sm-11 col-centered">
+                            <div id="vex-canvas"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -137,11 +133,11 @@
             </div>
         </div>
     </section>
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container">
-                    <p class="text-muted text-center">Copyright 2017, Projet fin d'année Master1 MIAGE</p>
-            </div>
-        </footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">Copyright 2017, Projet fin d'année Master1 MIAGE</p>
+        </div>
+    </footer>
 </body>
 </html>

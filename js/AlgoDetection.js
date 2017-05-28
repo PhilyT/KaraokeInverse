@@ -52,7 +52,16 @@ window.onload = function() {
         {audio: audioOpts},
         getStream,
         function(e){
-            alert("Erreur : problème dans la capture du son");
+            var microphoneSettings = $('#microphone-settings');
+            var availableInputs =  $("#available-inputs");
+
+            microphoneSettings.modal("show");
+
+            microphoneSettings.on('hidden.bs.modal', function (e) {
+                availableInputs.css("font-weight","Bold");
+                availableInputs.css("font-size","25px");
+                availableInputs.text("Attention : Lecture à partir d'un fichier audio uniquement.");
+            });
             console.log(e);
         }
     );
@@ -69,9 +78,8 @@ window.onload = function() {
         } else {
             track.enabled = true;
             isPlaying = true;
-            $(this).text("Stop");
+            $(this).text("Pause");
         }
-
     });
 
 };
@@ -185,6 +193,7 @@ function getStream(stream){
     streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
     connectStream();
     detectPitch();
     visualize();

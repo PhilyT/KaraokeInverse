@@ -21,6 +21,12 @@ $(document).ready(function () {
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);
 });
 
+function newPatition(stave){
+    var cavnas = document.getElementById("cavtest");
+    var partition = document.createElement("div");
+    cavnas.appendChild( partition);
+}
+
 function clearVexCavnas() {
     dummNotes = [];
     div.innerHTML = "";

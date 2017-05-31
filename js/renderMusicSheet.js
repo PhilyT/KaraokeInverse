@@ -6,13 +6,13 @@ var stave;
 var dummNotes;
 var cptnotedanspartition = 0;
 var nombredepartition = 1;
-var clearVexCavnasBtn;
+var clearVexCanvasBtn;
 
 $(document).ready(function () {
-    clearVexCavnasBtn = document.getElementById("clear-vex-cavnas");
+    clearVexCanvasBtn = document.getElementById("clear-vex-canvas");
 
-    clearVexCavnasBtn.addEventListener("click", function(){
-        clearVexCavnas();
+    clearVexCanvasBtn.addEventListener("click", function(){
+        clearVexCanvas();
     });
     
     renderScore();
@@ -28,7 +28,7 @@ function newPatition(stave){
     cavnas.appendChild( partition);
 }
 
-function clearVexCavnas() {
+function clearVexCanvas() {
     dummNotes = [];
     dummNotes.push([]);
     cptnotedanspartition =0;

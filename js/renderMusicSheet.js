@@ -60,7 +60,7 @@ function renderScore() {
         }
         else
         {
-            stave.push(new VF.Stave(10, ((i+1)*120), 1000));
+            stave.push(new VF.Stave(10, (40*(1+3*i)), 1000));
         }
         // Connect it to the rendering context and draw!
         stave[i].setContext(context).draw();
@@ -70,10 +70,10 @@ function renderScore() {
 }
 
 function render(note) {
-    cptnotedanspartition++;
+    cptnotedanspartition = (cptnotedanspartition+1)%13;
     div.innerHTML = '';
 
-    if(cptnotedanspartition%12 == 0){
+    if(cptnotedanspartition == 0){
         nombredepartition++;
         dummNotes.push([]);
         dummNotes[nombredepartition-1].push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));

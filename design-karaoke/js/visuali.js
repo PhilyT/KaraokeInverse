@@ -1,13 +1,21 @@
-function visualize() {
-    var voiceSelect = document.getElementById("voice");
-    var source;
-    var stream;
+var voiceSelect = document.getElementById("voice");
 
 //les différents nœuds audio que nous utiliserons pour l'application
-    var distortion = audioContext.createWaveShaper();
-    var gainNode = audioContext.createGain();
-    var biquadFilter = audioContext.createBiquadFilter();
-    var convolver = audioContext.createConvolver();
+analyser = audioContext.createAnalyser();
+var distortion = audioContext.createWaveShaper();
+var gainNode = audioContext.createGain();
+var biquadFilter = audioContext.createBiquadFilter();
+var convolver = audioContext.createConvolver();
+// Configurer le contexte de la toile pour le visualiseur
+/*var canvas = document.querySelector('.visualizer');
+var canvasCtx = canvas.getContext("2d");
+var intendedWidth = document.querySelector('.wrapper').clientWidth;
+canvas.setAttribute('width',intendedWidth);
+var visualSelect = document.getElementById("visual");*/
+//Bloc principal pour effectuer l'enregistrement audio
+
+function visualize() {
+
 
 
 // Configurer le contexte de la toile pour le visualiseur

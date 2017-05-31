@@ -3,7 +3,6 @@ var div;
 var renderer;
 var context;
 var stave;
-var stave2;
 var dummNotes;
 
 var clearVexCavnasBtn;
@@ -22,6 +21,12 @@ $(document).ready(function () {
     VF.Formatter.FormatAndDraw(context, stave, dummNotes);
 });
 
+function newPatition(stave){
+    var cavnas = document.getElementById("cavtest");
+    var partition = document.createElement("div");
+    cavnas.appendChild( partition);
+}
+
 function clearVexCavnas() {
     dummNotes = [];
     div.innerHTML = "";
@@ -36,7 +41,7 @@ function renderScore() {
     renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 // Configure the rendering context.
-    renderer.resize(1000, 500);
+    renderer.resize(1000, 230);
     context = renderer.getContext();
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 

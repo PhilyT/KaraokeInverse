@@ -21,8 +21,9 @@ var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
 var actualNote = pause();
-var oldNote = {cpt:0};
+var tempo = 500;
 var streamer;
+var timer;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -41,6 +42,7 @@ var streamer;
 audioContext = new AudioContext();
 
 window.onload = function() {
+
 
     /*
     * Préparer le UserMedia en déterminant les périphériques auxquels on veut y accéder,
@@ -75,12 +77,16 @@ window.onload = function() {
             track.enabled = false;
             isPlaying = false;
             $(this).text("Démarrer");
+            clearInterval(timer);
         } else {
             track.enabled = true;
             isPlaying = true;
             $(this).text("Pause");
+          timer = setInterval(updateNote, tempo);
         }
     });
+
+    timer = setInterval(updateNote, tempo);
 
 };
 
@@ -124,6 +130,8 @@ function connectAudio(aud) {
     {
         analyser = audioContext.createAnalyser();
     }
+    clearInterval(timer);
+    timer = setInterval(updateNote, tempo);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
@@ -142,6 +150,10 @@ function disconnectAudio(aud) {
         mediaStreamSource.connect(analyser);
         getStream(streamer);
         didConnect = false;
+        clearInterval(timer);
+        if(isPlaying){
+            timer = setInterval(updateNote, tempo);
+        }
     }
 }
 
@@ -159,15 +171,25 @@ var detectPitch = function () {
         noteTrouve = toNote(fundalmentalFreq);
         if(noteTrouve.note != actualNote.note)
         {
+
             if(actualNote.duration != "qr")
             {
                 oldNote = actualNote;
+                oldNote.affiche = false;
             }
             actualNote = noteTrouve;
         }
         else
         {
-            actualNote.cpt++;
+            if(actualNote.duration == "qr" &&  noteTrouve.duration != "qr")
+            {
+                actualNote = noteTrouve;
+            }
+            else
+            {
+                actualNote.cpt++;
+            }
+
         }
 
     } else {
@@ -180,7 +202,6 @@ var detectPitch = function () {
             actualNote = noteTrouve;
         }
     }
-    updateNote(actualNote, oldNote);
     frameId = window.requestAnimationFrame(detectPitch);
 };
 
@@ -194,9 +215,17 @@ function getStream(stream){
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
 
+    source = audioContext.createMediaStreamSource(stream);
+    source.connect(analyser);
+    analyser.connect(distortion);
+    distortion.connect(biquadFilter);
+    biquadFilter.connect(convolver);
+    convolver.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    visualize();
+
     connectStream();
     detectPitch();
-    visualize();
 }
 
 /*

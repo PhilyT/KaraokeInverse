@@ -52,12 +52,12 @@
                         <li><a href="index.html">Accueil</a></li>
                         <li class="active"><a href="product.html">Lecture Audio</a></li>
                         <li><a href="apropos.html">À propos</a></li>
-                        </li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
-        </nav>
-    </header>
+	      </nav>
+     </header>
+
     <section>
             <div id="content">
                 <div class="container">
@@ -65,19 +65,17 @@
                     <h3 id="available-inputs">Lecture à partir du flux et d'un fichier audio</h3>
                     <br>
                     <!-- just used for debugging
-                                    <div class="row notesInf">
-                                        <div class="col-md-3">
-                                            <h2>Note : </h2>
+                                    <div class="row">
+                                        <div class="col-md-2 offset-md-2">
+                                            <p>Note : </p>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <h2 id="note"></h2>
                                         </div>
-                                    </div>
-                                    <div class="row notesInf">
                                         <div class="col-md-3">
-                                            <h2>Cent : </h2>
+                                            <p>Cent : </p>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <h2 id="cents"></h2>
                                         </div>
                                     </div>
@@ -94,10 +92,12 @@
                     <div class="row">
                         <div id="vex-attr" class="col-sm-1">
                             <button  id="toggle-stream" class="bouton" data-toggle="tooltip" data-placement="top" title="Mettre en pause l'écoute des notes">Pause</button>
-                            <button class="btn btn-default" id="clear-vex-cavnas" data-toggle="tooltip" data-placement="top" title="Remise à zéo des notes de la partition"><i class="fa fa-trash-o" aria-hidden="true"></i> Effacer</button>
+                            <button class="btn btn-default" id="clear-
+                                                                vnas" data-toggle="tooltip" data-placement="top" title="Remise à zéo des notes de la partition"><i class="fa fa-trash-o" aria-hidden="true"></i> Effacer</button>
                         </div>
                         <div class="col-sm-11 col-centered">
                             <div id="vex-canvas"></div>
+                          <div  id="cavtest"></div>
                         </div>
                     </div>
                 </div>
@@ -115,9 +115,9 @@
                         <div>
                             <label for="visual" id="reglage-visualisateur">Réglage du visualiseur</label>
                             <select id="visual" name="visual">
-                                <option value="sinewave" class="opt">fréquences</option>
-                                <option value="frequencybars" selected class="opt">Barres de fréquences</option>
-                                <option value="off" class="opt">Off</option>
+                                <option value="sinewave">fréquences</option>
+                                <option value="frequencybars">Barres de fréquences</option>
+                                <option value="off">Off</option>
                             </select>
                         </div>
                         <div>

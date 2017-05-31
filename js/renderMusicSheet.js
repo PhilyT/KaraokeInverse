@@ -34,6 +34,7 @@ function clearVexCanvas() {
     dummNotes.push([]);
     cptnotedanspartition =0;
     nombredepartition=1;
+    sizediv = 200;
     div.innerHTML = "";
     renderScore();
 }
@@ -75,6 +76,7 @@ function render(note) {
     div.innerHTML = '';
 
     if(cptnotedanspartition == 0){
+        cptnotedanspartition++;
         nombredepartition++;
         sizediv = sizediv+200;
         dummNotes.push([]);

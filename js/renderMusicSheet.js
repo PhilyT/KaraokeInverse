@@ -7,6 +7,7 @@ var dummNotes;
 var cptnotedanspartition = 0;
 var nombredepartition = 1;
 var clearVexCanvasBtn;
+var sizediv = 200;
 
 $(document).ready(function () {
     clearVexCanvasBtn = document.getElementById("clear-vex-canvas");
@@ -47,7 +48,7 @@ function renderScore() {
     renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
     // Configure the rendering context.
-    renderer.resize(1000, 230);
+    renderer.resize(1000, sizediv);
     context = renderer.getContext();
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
@@ -60,7 +61,7 @@ function renderScore() {
         }
         else
         {
-            stave.push(new VF.Stave(10, (40*(1+3*i)), 1000));
+            stave.push(new VF.Stave(10, (200*i), 1000));
         }
         // Connect it to the rendering context and draw!
         stave[i].setContext(context).draw();
@@ -75,6 +76,7 @@ function render(note) {
 
     if(cptnotedanspartition == 0){
         nombredepartition++;
+        sizediv = sizediv+200;
         dummNotes.push([]);
         dummNotes[nombredepartition-1].push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));
     }else{

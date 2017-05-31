@@ -54,7 +54,16 @@ window.onload = function() {
         {audio: audioOpts},
         getStream,
         function(e){
-            alert("Erreur : problème dans la capture du son");
+            var microphoneSettings = $('#microphone-settings');
+            var availableInputs =  $("#available-inputs");
+
+            microphoneSettings.modal("show");
+
+            microphoneSettings.on('hidden.bs.modal', function (e) {
+                availableInputs.css("font-weight","Bold");
+                availableInputs.css("font-size","25px");
+                availableInputs.text("Attention : Lecture à partir d'un fichier audio uniquement.");
+            });
             console.log(e);
         }
     );
@@ -72,10 +81,9 @@ window.onload = function() {
         } else {
             track.enabled = true;
             isPlaying = true;
-            $(this).text("Stop");
-            timer = setInterval(updateNote, tempo);
+            $(this).text("Pause");
+          timer = setInterval(updateNote, tempo);
         }
-
     });
 
     timer = setInterval(updateNote, tempo);
@@ -206,6 +214,7 @@ function getStream(stream){
     streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
     source = audioContext.createMediaStreamSource(stream);
     source.connect(analyser);
     analyser.connect(distortion);
@@ -214,6 +223,7 @@ function getStream(stream){
     convolver.connect(gainNode);
     gainNode.connect(audioContext.destination);
     visualize();
+
     connectStream();
     detectPitch();
 }

@@ -21,10 +21,9 @@ var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
 var actualNote = pause();
-var oldNote = {cpt:0};
-var derniernoteaffiche = {cpt:0};
+var tempo = 500;
 var streamer;
-var cptaffichagedenote = 0;
+var timer;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -43,6 +42,7 @@ var cptaffichagedenote = 0;
 audioContext = new AudioContext();
 
 window.onload = function() {
+
 
     /*
     * Préparer le UserMedia en déterminant les périphériques auxquels on veut y accéder,
@@ -68,13 +68,17 @@ window.onload = function() {
             track.enabled = false;
             isPlaying = false;
             $(this).text("Démarrer");
+            clearInterval(timer);
         } else {
             track.enabled = true;
             isPlaying = true;
             $(this).text("Stop");
+            timer = setInterval(updateNote, tempo);
         }
 
     });
+
+    timer = setInterval(updateNote, tempo);
 
 };
 
@@ -118,7 +122,8 @@ function connectAudio(aud) {
     {
         analyser = audioContext.createAnalyser();
     }
-    cptaffichagedenote =0 ;
+    clearInterval(timer);
+    timer = setInterval(updateNote, tempo);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
@@ -137,7 +142,10 @@ function disconnectAudio(aud) {
         mediaStreamSource.connect(analyser);
         getStream(streamer);
         didConnect = false;
-        console.log("nombre de note affiche : " + cptaffichagedenote);
+        clearInterval(timer);
+        if(isPlaying){
+            timer = setInterval(updateNote, tempo);
+        }
     }
 }
 
@@ -159,6 +167,7 @@ var detectPitch = function () {
             if(actualNote.duration != "qr")
             {
                 oldNote = actualNote;
+                oldNote.affiche = false;
             }
             actualNote = noteTrouve;
         }
@@ -184,16 +193,6 @@ var detectPitch = function () {
         {
             actualNote = noteTrouve;
         }
-    }
-    var testafficheNote = updateNote(actualNote, oldNote);
-    if(testafficheNote)
-    {
-        derniernoteaffiche = oldNote;
-        cptaffichagedenote++;
-    }
-    else if (derniernoteaffiche.note)
-    {
-        oldNote = derniernoteaffiche;
     }
     frameId = window.requestAnimationFrame(detectPitch);
 };

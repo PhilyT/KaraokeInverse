@@ -5,13 +5,13 @@ var context;
 var stave;
 var dummNotes;
 
-var clearVexCavnasBtn;
+var clearVexCanvasBtn;
 
 $(document).ready(function () {
-    clearVexCavnasBtn = document.getElementById("clear-vex-cavnas");
+    clearVexCanvasBtn = document.getElementById("clear-vex-canvas");
 
-    clearVexCavnasBtn.addEventListener("click", function(){
-        clearVexCavnas();
+    clearVexCanvasBtn.addEventListener("click", function(){
+        clearVexCanvas();
     });
     
     renderScore();
@@ -27,7 +27,7 @@ function newPatition(stave){
     cavnas.appendChild( partition);
 }
 
-function clearVexCavnas() {
+function clearVexCanvas() {
     dummNotes = [];
     div.innerHTML = "";
     renderScore();

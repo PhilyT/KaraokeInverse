@@ -214,16 +214,7 @@ function getStream(stream){
     streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
-
-    source = audioContext.createMediaStreamSource(stream);
-    source.connect(analyser);
-    analyser.connect(distortion);
-    distortion.connect(biquadFilter);
-    biquadFilter.connect(convolver);
-    convolver.connect(gainNode);
-    gainNode.connect(audioContext.destination);
     visualize();
-
     connectStream();
     detectPitch();
 }

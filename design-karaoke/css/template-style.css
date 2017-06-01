@@ -1,6 +1,22 @@
+
 body {
-	background: url("../img/background.jpg") no-repeat fixed center center / 100% auto rgba(0, 0, 0, 0);
+	margin:0;
+  padding:0;
+  background: url(../img/background2.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; 
+  background-size: cover; 
+	
 }
+#menu{
+	margin:0;
+  padding:0;
+  background: url(../img/background2.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; 
+  background-size: cover; 
+  color: #FFB6C1;
+}
+
+
 nav {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 	position: absolute;

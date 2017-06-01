@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>karaoke inversé</title>
-      <link rel="stylesheet" href="css/components.css">
+      <link rel="stylesheet" href="css/styleindex.css">
       <link rel="stylesheet" href="css/icons.css">
       <link rel="stylesheet" href="css/responsee.css">
       <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
@@ -16,7 +16,7 @@
       <script type="text/javascript" src="js/jquery-ui.min.js"></script>  
         
    </head>
-   <body class="size-1140">
+   <body id="index">
       <!-- TOP NAV WITH LOGO -->  
       <header>
          <nav>
@@ -44,79 +44,15 @@
             </div>
          </nav>
       </header>
-      <section>
-         <!-- CAROUSEL -->  	
-         <div id="carousel">
-            <div id="owl-demo" class="owl-carousel owl-theme">
-               <div class="item">
-                  <img src="img/musicien.jpg" alt="">      
-                  <div class="carousel-text">
-                     <div class="line">
-                        <div class="s-12 l-9">
-                           <h2>Karaoké inversé</h2>
-                        </div>
-                        
-                     </div>
-                  </div>
-               </div>
-               <div class="item">
-                  <img src="img/frequence.jpg" alt="">      
-                  
-               </div>
-               <div class="item">
-                  <img src="img/guitare.jpeg" alt="">      
-                  
-               </div>
-            </div>
-         </div>
-         <!-- FIRST BLOCK supprimer --> 	
+	  <div class="container" id ="global">
+	  </div>
+      
          
-         <!-- SECOND BLOCK  supprimer--> 	
-         
-         <!-- GALLERY supprimer --> 	
-         
-         <div id="fourth-block">
-            <div class="line">
-               <div id="owl-demo2" class="owl-carousel owl-theme">
-                  <div class="item">
-                     
-                  </div>
-                  
-                  
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- FOOTER -->   
-      <footer>
-         <div class="line">
-            <div class="s-12 l-6">
-               <p>Copyright 2017, Projet fin d'année Master1 MIAGE 
-               </p>
-            </div>
-           
-         </div>
-      </footer>
-      <script type="text/javascript" src="js/responsee.js"></script> 
-      <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>   
-      <script type="text/javascript">
-         jQuery(document).ready(function($) {  
-           $("#owl-demo").owlCarousel({
-           	slideSpeed : 300,
-           	autoPlay : true,
-           	navigation : false,
-           	pagination : false,
-           	singleItem:true
-           });
-           $("#owl-demo2").owlCarousel({
-           	slideSpeed : 300,
-           	autoPlay : true,
-           	navigation : false,
-           	pagination : true,
-           	singleItem:true
-           });
-         });	
-          
-      </script> 
+      <footer id ="footindex">
+        <div class="container">
+            <p class="text-muted text-center">Copyright 2017, Projet fin d'année Master1 MIAGE</p>
+        </div>
+    </footer>
+      
    </body>
 </html>

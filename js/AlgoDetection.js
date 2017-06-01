@@ -21,9 +21,9 @@ var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
 var actualNote = pause();
-var tempo = 500;
+var tempo;
 var streamer;
-var timer;
+var timer2;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -68,6 +68,8 @@ window.onload = function() {
         }
     );
 
+    tempo = 60000.0/parseInt($(".bpm-input").val());
+
 
     /*
     * Controler le start/pause du flux audio
@@ -77,17 +79,28 @@ window.onload = function() {
             track.enabled = false;
             isPlaying = false;
             $(this).text("Démarrer");
-            clearInterval(timer);
+            if(!didConnect){
+                clearInterval(timer2);
+                metronome_off();
+            }
         } else {
             track.enabled = true;
             isPlaying = true;
             $(this).text("Pause");
-          timer = setInterval(updateNote, tempo);
+          timer2 = setInterval(updateNote, tempo);
+            metronome_on();
         }
     });
 
-    timer = setInterval(updateNote, tempo);
+    $(".bpm-input").on("change",function(){
+        tempo = 60000.0/parseInt($(".bpm-input").val());
+        clearInterval(timer2);
+        timer2 = setInterval(updateNote, tempo);
+    });
 
+    timer2 = setInterval(updateNote, tempo);
+    metronome_on();
+    pendulum_speed();
 };
 
 /*
@@ -126,12 +139,13 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    if(!analyser)
+    if(!analyser || !isPlaying)
     {
         analyser = audioContext.createAnalyser();
     }
-    clearInterval(timer);
-    timer = setInterval(updateNote, tempo);
+    metronome_on();
+    clearInterval(timer2);
+    timer2 = setInterval(updateNote, tempo);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
@@ -147,12 +161,15 @@ function disconnectAudio(aud) {
     {
         aud.disconnect(analyser);
         analyser.disconnect(audioContext.destination);
-        mediaStreamSource.connect(analyser);
-        getStream(streamer);
         didConnect = false;
-        clearInterval(timer);
+        clearInterval(timer2);
         if(isPlaying){
-            timer = setInterval(updateNote, tempo);
+            timer2 = setInterval(updateNote, tempo);
+        }
+        else
+        {
+            getStream(streamer);
+            metronome_off();
         }
     }
 }
@@ -185,22 +202,10 @@ var detectPitch = function () {
             {
                 actualNote = noteTrouve;
             }
-            else
-            {
-                actualNote.cpt++;
-            }
-
         }
 
     } else {
-        if(actualNote.duration == "qr")
-        {
-            actualNote.cpt++;
-        }
-        else
-        {
-            actualNote = noteTrouve;
-        }
+        actualNote = noteTrouve;
     }
     frameId = window.requestAnimationFrame(detectPitch);
 };

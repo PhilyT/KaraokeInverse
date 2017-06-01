@@ -437,3 +437,10 @@ body {
     height: 60px;
     background-color: #f5f5f5;
 }
+
+.mon_metronome{
+    margin-left: 5%;
+    top: 35%;
+    position: absolute
+
+}

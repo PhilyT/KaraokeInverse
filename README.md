@@ -36,7 +36,7 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
   
 ## Fonctionnalités de base
 
-* Lire le flux audio du micro de l’utilisateur ou à partir d’un fichier audio (implémentation de webaudio -> Aichatou, Marouane & Nordine)
+* Lire le flux audio du micro de l’utilisateur ou à partir d’un fichier audio -> Aichatou, Marouane et Nordine
 * Reconnaître une note de musique à partir du flux audio lu :
   * récupéré la fréquence toute les milliseconde à partir d’un algorithme -> Marouane et Nordine
   * Identifier la note par rapport à la fréquence obtenue -> Aichatou et Tom
@@ -46,13 +46,14 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
 * Liste des éléments à afficher sur la partition : 
   * notes de musique pleine -> Estelle
 * Créer une nouvelle partition arrivé à la fin de la dernière -> Tom
-* Rafraichir les partitions -> Nordine
+* Rafraichir les partitions -> Marouane
 * Documenter le code  -> Marouane et Estelle
 
 
 ## Les fonctionnalités ajoutées
 
 * Permettre à l'utilisateur de choisir le rythme joué afin de facilité la détection des notes. -> Tom
+* Visualisation -> Nordine
 
 ## Technologies employées
 

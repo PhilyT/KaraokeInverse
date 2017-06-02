@@ -100,7 +100,7 @@ window.onload = function() {
         metronome_off();
         window.cancelAnimationFrame(frameId);
         tempo = 60000.0/parseInt($(".bpm-input").val());
-        tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
+        tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 60000/parseInt($(".bpm-input").val())/4.0;
         clearInterval(timerGeneral);
         clearTimeout(timer1);
         //clearTimeout(timer2);
@@ -225,7 +225,7 @@ var detectPitch = function () {
  */
 function getStream(stream){
     tempo = 60000.0/parseInt($(".bpm-input").val());
-    tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
+    tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 60000/parseInt($(".bpm-input").val())/4.0;
     runDetectNote1();
     timerGeneral = setInterval(runTimers, tempo);
     metronome_on();

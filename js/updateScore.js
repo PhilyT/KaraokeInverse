@@ -8,14 +8,14 @@ var tempo2;
 var runDetectNote1 = function(){
     detectNote = true;
     tabNote = [];
-    tempo2=71;
+    tempo2=60000/parseInt($(".bpm-input").val())/4.0;
     timer2 = setTimeout(updateNote, tempo2);
 };
 
 var runDetectNote2 = function(){
   	detectNote = true;
   	tabNote = [];
-  	tempo2=142;
+  	tempo2=60000/parseInt($(".bpm-input").val())/2.0;
     timer2 = setTimeout(updateNote, tempo2);
 };
 

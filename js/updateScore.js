@@ -1,27 +1,31 @@
-var tabNote = [];
+var tabNote;
 var detectNote = false;
 var timer1;
 var timer2;
 var tempo1;
 var tempo2;
 
-var runDetectNote = function(){
+var runDetectNote1 = function(){
+    detectNote = true;
+    tabNote = [];
+    tempo2=71;
+    timer2 = setTimeout(updateNote, tempo2);
+};
+
+var runDetectNote2 = function(){
   	detectNote = true;
   	tabNote = [];
+  	tempo2=142;
     timer2 = setTimeout(updateNote, tempo2);
 };
 
 var updateNote = function () {
 	if(tabNote.length > 0)
 	{
-		var noteAffiche = {cpt:0};
-        var tab = [];
-		for(var i=0; i < tabNote.length; i++){
-			tab = appartien(tabNote[i], tab);
-		}
-        for(var i=0; i < tab.length; i++){
-            if(tab[i].cpt>noteAffiche.cpt){
-            	noteAffiche = tab[i];
+		var noteAffiche = {cpt:0, amplitude:0};
+        for(var i=0; i < tabNote.length; i++){
+            if(tabNote[i].amplitude>noteAffiche.amplitude){
+            	noteAffiche = tabNote[i];
 			}
         }
         render(noteAffiche);
@@ -29,17 +33,6 @@ var updateNote = function () {
 	detectNote =false;
 };
 
-function appartien(valeur, tab){
-	var trouve = false;
-	for(var j = 0; j<tab.length;j++){
-		if(tab[j].note == valeur.note)
-		{
-			tab[j].cpt++;
-			trouve = true;
-		}
-	}
-	if(!trouve){
-		tab.push(valeur);
-	}
-	return tab;
-}
+var runTimers = function () {
+	timer1 = setTimeout(runDetectNote2, tempo1);
+};

@@ -22,6 +22,8 @@ var audioSource = null;
 var didConnect = null;
 var streamer;
 var frameId;
+var timerGeneral;
+var tempo;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -76,7 +78,9 @@ window.onload = function() {
             $(this).text("Démarrer");
             if(!didConnect){
                 window.cancelAnimationFrame(frameId);
-                clearInterval(timer1);
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+                clearInterval(timerGeneral);
                 metronome_off();
             }
         } else if(!didConnect){
@@ -84,7 +88,8 @@ window.onload = function() {
             isPlaying = true;
             $(this).text("Pause");
             actualNote = pause();
-            timer1 = setInterval(runDetectNote, tempo1);
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
             metronome_on();
             connectStream();
             detectPitch();
@@ -92,14 +97,19 @@ window.onload = function() {
     });
 
     $(".bpm-input").on("change",function(){
+        metronome_off();
         window.cancelAnimationFrame(frameId);
+        tempo = 60000.0/parseInt($(".bpm-input").val());
         tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
-        tempo2= 142;
-        clearInterval(timer1);
+        clearInterval(timerGeneral);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
         if(isPlaying || didConnect){
-            timer1 = setInterval(runDetectNote, tempo1);
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
             connectStream();
             detectPitch();
+            metronome_on();
         }
     });
 };
@@ -126,7 +136,7 @@ var findFundamentalFreq = function(buffer, sampleRate) {
         }
     }
     if(bestR > 0.0025) {
-        var fundamentalFreq = sampleRate / bestK;
+        var fundamentalFreq = {freq:(sampleRate / bestK), amplitude:bestR};
         return fundamentalFreq;
     } else {
         return -1;
@@ -140,14 +150,15 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = bufferSize;
-    analyser.smoothingTimeConstant = 1;
+    connectStream();
     track.enabled = false;
     window.cancelAnimationFrame(frameId);
     metronome_on();
-    clearInterval(timer1);
-    timer1 = setInterval(runDetectNote, tempo1);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearInterval(timerGeneral);
+    runDetectNote1();
+    timerGeneral = setInterval(runTimers, tempo);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
@@ -165,11 +176,14 @@ function disconnectAudio(aud) {
         aud.disconnect(analyser);
         analyser.disconnect(audioContext.destination);
         didConnect = false;
-        clearInterval(timer1);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearInterval(timerGeneral);
         if(isPlaying){
             connectStream();
             track.enabled = true;
-            timer1 = setInterval(runDetectNote, tempo1);
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
             detectPitch();
         }
         else
@@ -189,15 +203,14 @@ function disconnectAudio(aud) {
 var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
+    var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
     if(detectNote){
-
-        var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
         var noteTrouve =  pause();
         if (fundalmentalFreq !== -1) {
-            noteTrouve = toNote(fundalmentalFreq);
+            noteTrouve = toNote(fundalmentalFreq.freq);
             if(noteTrouve.duration != "qr")
             {
-
+                noteTrouve.amplitude = fundalmentalFreq.amplitude;
                 tabNote.push(noteTrouve);
             }
         }
@@ -212,9 +225,10 @@ var detectPitch = function () {
  * créer un nœud audio à partir du flux et tenter de détecter la note
  */
 function getStream(stream){
+    tempo = 60000.0/parseInt($(".bpm-input").val());
     tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
-    tempo2= 42;
-    timer1 = setInterval(runDetectNote, tempo1);
+    runDetectNote1();
+    timerGeneral = setInterval(runTimers, tempo);
     metronome_on();
     pendulum_speed();
     streamer = stream;

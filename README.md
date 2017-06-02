@@ -9,7 +9,7 @@ git clone https://github.com/PhilyT/KaraokeInverse.git
   
 Le travail de recherche se trouve dans le repertoire doc à  la racine.
 
-## Utilisation du metrenome
+## Utilisation du metronome
 * '+' ou '→' pour augmenter Tempo
 * '-' ou '←' pour diminuer Tempo
 

@@ -20,10 +20,8 @@ var audioOpts = {
 var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
-var actualNote = pause();
-var tempo;
 var streamer;
-var timer2;
+var frameId;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -68,9 +66,6 @@ window.onload = function() {
         }
     );
 
-    tempo = 60000.0/parseInt($(".bpm-input").val());
-
-
     /*
     * Controler le start/pause du flux audio
     */
@@ -80,27 +75,33 @@ window.onload = function() {
             isPlaying = false;
             $(this).text("Démarrer");
             if(!didConnect){
-                clearInterval(timer2);
+                window.cancelAnimationFrame(frameId);
+                clearInterval(timer1);
                 metronome_off();
             }
-        } else {
+        } else if(!didConnect){
             track.enabled = true;
             isPlaying = true;
             $(this).text("Pause");
-          timer2 = setInterval(updateNote, tempo);
+            actualNote = pause();
+            timer1 = setInterval(runDetectNote, tempo1);
             metronome_on();
+            connectStream();
+            detectPitch();
         }
     });
 
     $(".bpm-input").on("change",function(){
-        tempo = 60000.0/parseInt($(".bpm-input").val());
-        clearInterval(timer2);
-        timer2 = setInterval(updateNote, tempo);
+        window.cancelAnimationFrame(frameId);
+        tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
+        tempo2= 142;
+        clearInterval(timer1);
+        if(isPlaying || didConnect){
+            timer1 = setInterval(runDetectNote, tempo1);
+            connectStream();
+            detectPitch();
+        }
     });
-
-    timer2 = setInterval(updateNote, tempo);
-    metronome_on();
-    pendulum_speed();
 };
 
 /*
@@ -139,17 +140,19 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    if(!analyser || !isPlaying)
-    {
-        analyser = audioContext.createAnalyser();
-    }
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = bufferSize;
+    analyser.smoothingTimeConstant = 1;
+    track.enabled = false;
+    window.cancelAnimationFrame(frameId);
     metronome_on();
-    clearInterval(timer2);
-    timer2 = setInterval(updateNote, tempo);
+    clearInterval(timer1);
+    timer1 = setInterval(runDetectNote, tempo1);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
     didConnect = true;
+    return aud;
 }
 
 /**
@@ -162,15 +165,19 @@ function disconnectAudio(aud) {
         aud.disconnect(analyser);
         analyser.disconnect(audioContext.destination);
         didConnect = false;
-        clearInterval(timer2);
+        clearInterval(timer1);
         if(isPlaying){
-            timer2 = setInterval(updateNote, tempo);
+            connectStream();
+            track.enabled = true;
+            timer1 = setInterval(runDetectNote, tempo1);
+            detectPitch();
         }
         else
         {
-            getStream(streamer);
+            window.cancelAnimationFrame(frameId);
             metronome_off();
         }
+        return aud;
     }
 }
 
@@ -182,31 +189,20 @@ function disconnectAudio(aud) {
 var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
-    var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
-    var noteTrouve =  pause();
-    if (fundalmentalFreq !== -1) {
-        noteTrouve = toNote(fundalmentalFreq);
-        if(noteTrouve.note != actualNote.note)
-        {
+    if(detectNote){
 
-            if(actualNote.duration != "qr")
+        var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
+        var noteTrouve =  pause();
+        if (fundalmentalFreq !== -1) {
+            noteTrouve = toNote(fundalmentalFreq);
+            if(noteTrouve.duration != "qr")
             {
-                oldNote = actualNote;
-                oldNote.affiche = false;
-            }
-            actualNote = noteTrouve;
-        }
-        else
-        {
-            if(actualNote.duration == "qr" &&  noteTrouve.duration != "qr")
-            {
-                actualNote = noteTrouve;
+
+                tabNote.push(noteTrouve);
             }
         }
-
-    } else {
-        actualNote = noteTrouve;
     }
+
     frameId = window.requestAnimationFrame(detectPitch);
 };
 
@@ -216,6 +212,11 @@ var detectPitch = function () {
  * créer un nœud audio à partir du flux et tenter de détecter la note
  */
 function getStream(stream){
+    tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
+    tempo2= 42;
+    timer1 = setInterval(runDetectNote, tempo1);
+    metronome_on();
+    pendulum_speed();
     streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
@@ -230,6 +231,7 @@ function getStream(stream){
 function connectStream(){
     analyser = audioContext.createAnalyser();
     analyser.fftSize = bufferSize;
+    analyser.smoothingTimeConstant = 1;
     mediaStreamSource.connect(analyser);
 }
 

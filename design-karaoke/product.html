@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/responsee.css">
-    <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="css/bouton.css">
     <!-- CUSTOM STYLE -->
     <link rel="stylesheet" href="css/template-style.css">
@@ -69,22 +67,6 @@
                     <h2 >Affichage de notes de musique avec WebAudio,  VexFlow, JavaScript et HTML5.</h2>
                     <h3 id="available-inputs">Lecture à partir du flux et d'un fichier audio</h3>
                     <br>
-                    <!-- just used for debugging
-                                    <div class="row">
-                                        <div class="col-md-2 offset-md-2">
-                                            <p>Note : </p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <h2 id="note"></h2>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p>Cent : </p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <h2 id="cents"></h2>
-                                        </div>
-                                    </div>
-                                    -->
                     <div class="row">
                         <div class="col-sm-4">
                             <button id="playSoundButton" onclick="playSound();" class="bouton" data-toggle="tooltip" data-placement="top" title="Jouer le fichier audio sélectionné"><i class="fa fa-play" aria-hidden="true"></i></button>
@@ -105,60 +87,60 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    </section>
-    <section class="mon_metronome">
-        <!--Source : https://github.com/tabs4acoustic/GetSong-Metronome/blob/master/index.html-->
-        <div id="gsbpm_metronome">
-            <div class="metronome_body"></div>
-            <div class="swinging_pendulum">
-                <div></div>
-            </div>
-            <div class="scale">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="bpm-control">
-                <button class="slow-down">-</button>
-                <input type="text" value="100" class="bpm-input" />
-                <button class="speed-up">+</button>
-                <span>BPM</span>
-            </div>
-            <div class="metronome_switcher">
-                <input type="checkbox" id="metronome_switcher" class="switcher hidden"/>
-                <label for="metronome_switcher" class="switcher"></label>
-            </div>
-            <div class="options">
-                <div class="n_beats_change"></div>
-                <div class="per_measure">
-                    <label for="ts-change">Beats per measure</label>
-                    <select class="new_beats">
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
+                <div class="mon_metronome"><!--Source : https://github.com/tabs4acoustic/GetSong-Metronome/blob/master/index.html-->
+                    <div id="gsbpm_metronome">
+                        <div class="metronome_body"></div>
+                        <div class="swinging_pendulum">
+                            <div></div>
+                        </div>
+                        <div class="scale">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="bpm-control">
+                            <button class="slow-down">-</button>
+                            <input type="text" value="100" class="bpm-input" />
+                            <button class="speed-up">+</button>
+                            <span>BPM</span>
+                        </div>
+                        <div class="metronome_switcher">
+                            <input type="checkbox" id="metronome_switcher" class="switcher hidden"/>
+                            <label for="metronome_switcher" class="switcher"></label>
+                        </div>
+                        <div class="options">
+                            <div class="n_beats_change"></div>
+                            <div class="per_measure">
+                                <label for="ts-change">Beats per measure</label>
+                                <select class="new_beats">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4" selected>4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="beats">
+                            <div class="beatcount"></div>
+                            <div class="current_beat"></div>
+                        </div>
+                    </div></div>
+
                 </div>
             </div>
-            <div class="beats">
-                <div class="beatcount"></div>
-                <div class="current_beat"></div>
-            </div>
-        </div>
     </section>
     <section>
         <div class="container">

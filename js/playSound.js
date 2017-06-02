@@ -21,12 +21,15 @@ function playSound()
                             source.buffer = buffer;
                             
                             // start the source playing
-                            connectAudio(source);
-                            source.start();
-                            var millisecondsToWait = buffer.duration*1000;
-                            setTimeout(function() {
-                                disconnectAudio(source);
-                            }, millisecondsToWait);
+                            source = connectAudio(source);
+                            if(source)
+                            {
+                                source.start();
+                                var millisecondsToWait = buffer.duration*1000;
+                                setTimeout(function() {
+                                    source = disconnectAudio(source);
+                                }, (millisecondsToWait+1));
+                            }
 
                         }catch (e){
                             console.error(e);

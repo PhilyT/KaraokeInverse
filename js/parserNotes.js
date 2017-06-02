@@ -2,8 +2,8 @@
 function toNote(freq)
 {
 	var res = new Object();
-	res.duration = "h";
-	res.cpt = 0;
+	res.duration = "q";
+	res.cpt = 1;
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{

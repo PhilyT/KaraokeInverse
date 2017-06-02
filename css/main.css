@@ -440,7 +440,10 @@ body {
 
 .mon_metronome{
     margin-left: 5%;
-    top: 35%;
-    position: absolute
+
+    margin-right: 95%;
+    margin-top: 7%;
+    height: 200px;
+    position: relative;
 
 }

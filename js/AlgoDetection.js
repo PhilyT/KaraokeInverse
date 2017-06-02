@@ -79,7 +79,7 @@ window.onload = function() {
             if(!didConnect){
                 window.cancelAnimationFrame(frameId);
                 clearTimeout(timer1);
-                clearTimeout(timer2);
+                //clearTimeout(timer2);
                 clearInterval(timerGeneral);
                 metronome_off();
             }
@@ -103,7 +103,7 @@ window.onload = function() {
         tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 71;
         clearInterval(timerGeneral);
         clearTimeout(timer1);
-        clearTimeout(timer2);
+        //clearTimeout(timer2);
         if(isPlaying || didConnect){
             runDetectNote1();
             timerGeneral = setInterval(runTimers, tempo);
@@ -150,6 +150,7 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
+    metronome_off();
     connectStream();
     track.enabled = false;
     window.cancelAnimationFrame(frameId);
@@ -173,11 +174,13 @@ function connectAudio(aud) {
 function disconnectAudio(aud) {
     if(didConnect)
     {
+        window.cancelAnimationFrame(frameId);
+        metronome_off();
         aud.disconnect(analyser);
         analyser.disconnect(audioContext.destination);
         didConnect = false;
         clearTimeout(timer1);
-        clearTimeout(timer2);
+        //clearTimeout(timer2);
         clearInterval(timerGeneral);
         if(isPlaying){
             connectStream();
@@ -185,11 +188,7 @@ function disconnectAudio(aud) {
             runDetectNote1();
             timerGeneral = setInterval(runTimers, tempo);
             detectPitch();
-        }
-        else
-        {
-            window.cancelAnimationFrame(frameId);
-            metronome_off();
+            metronome_on();
         }
         return aud;
     }

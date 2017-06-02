@@ -10,8 +10,8 @@ git clone https://github.com/PhilyT/KaraokeInverse.git
 Le travail de recherche se trouve dans le repertoire doc à  la racine.
 
 ## Utilisation du metrenome
-* + or → pour augmenter Tempo
-* - or ← pour diminuer Tempo
+* '+' ou '→' pour augmenter Tempo
+* '-' ou '←' pour diminuer Tempo
 
 ### Contributeurs  
 | Tâches | Contributeurs |  
@@ -38,13 +38,13 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
 
 * Lire le flux audio du micro de l’utilisateur ou à partir d’un fichier audio (implémentation de webaudio -> Aichatou, Marouane & Nordine)
 * Reconnaître une note de musique à partir du flux audio lu :
-* * récupéré la fréquence toute les milliseconde à partir d’un algorithme -> Marouane et Nordine
-* * Identifier la note par rapport à la fréquence obtenue -> Aichatou et Tom
+ * récupéré la fréquence toute les milliseconde à partir d’un algorithme -> Marouane et Nordine
+ * Identifier la note par rapport à la fréquence obtenue -> Aichatou et Tom
 * Afficher les notes sur la partition :
-* * Détecter les notes selon le rythme joué -> Tom
-* * Implémenter VexFlow, afficher une partion -> Estelle
+ * Détecter les notes selon le rythme joué -> Tom
+ * Implémenter VexFlow, afficher une partion -> Estelle
 * Liste des éléments à afficher sur la partition : 
-* * notes de musique pleine -> Estelle
+ * notes de musique pleine -> Estelle
 * Créer une nouvelle partition arrivé à la fin de la dernière -> Tom
 * Rafraichir les partitions -> Nordine
 * Documenter le code  -> Marouane et Estelle
@@ -57,13 +57,13 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
 ## Technologies employées
 
 * WebAudio : https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API
-* * API qui permet la capture de son, de la visualization, du traitement audio sur le web.
+ * API qui permet la capture de son, de la visualization, du traitement audio sur le web.
 * PitchDetect : https://github.com/cwilso/PitchDetect/blob/master/js/pitchdetect.js
-* * PitchDetect est un algorithme qui permet de récuperer la retrouver la fréquence fondamental dans buffer audio en fonction de la valeur de son amplitude. Licence MIT
+ * PitchDetect est un algorithme qui permet de récuperer la retrouver la fréquence fondamental dans buffer audio en fonction de la valeur de son amplitude. Licence MIT
 * GetSong-Metronome : https://github.com/tabs4acoustic/GetSong-Metronome/
-* * GetSong-Metronome permet d'afficher un metronome. Licence MIT
+ * GetSong-Metronome permet d'afficher un metronome. Licence MIT
 * VexFlow : https://github.com/0xfe/vexflow
-* * VexFlow permet d'afficher des partions et des notes de musiques. Licence MIT
+ * VexFlow permet d'afficher des partions et des notes de musiques. Licence MIT
   
 ### Release  
   

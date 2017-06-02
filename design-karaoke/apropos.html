@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Karaoké Inversé</title>
+
+    <!-- CUSTOM STYLE -->
+    <link rel="stylesheet" href="css/template-style.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!-- karaoke-->
+    
+    <meta name="description" content="a propos">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+<body  >
+    <!-- TOP NAV WITH LOGO -->
+    <header>
+        <nav class="navbar  navbar-fixed-top" id ="menu">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Karaoké Inversé</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li class="active"><a href="product.html">Lecture Audio</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+     </header>
+    <div style="background-color: #fff; margin-bottom: 60px; margin-top: 60px;">
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>ABOUT</h2>
+                </div>
+                
+                <div class="col-sm-6">
+                 <p>
+                        Le but de cette aplication est de faire l'inverse de karaoké, ce qui peut signifier que le chanteur n'a pas besoin qu'un orchestre soit présent pour chanter. Dans le karaoké, le texte défile sur l'écran et une personne essaie de le chanter plus ou moins justement. 
+                    </p>
+                    <p>
+                        L'application fait l'inverse, c'est à dire a partir d'un son, à partir d'une note de musique jouée ou un fichier audio, analyse les fréquences et affiche les notes correspondantes sur une partition à l'écran. Le fonctionnement est donc globalement celui d'un accordeur. 
+                    </p>
+                    <p>
+                        L'application utilise des versions instrumentales de chansons au format MP3. Les fichiers servent de base musicale pour les logiciels spécialisés dans ce domaine. Elle  propose aussi la création en ligne de playbacks pour instruments permettant de modifier chaque piste individuellement (guitare, batterie, basse...).
+                    </p>        
+                </div>
+                <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="300" height="300" src="img/note.jpg" alt="note">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>CONCEPTS ET USAGES</h2>
+                </div>
+                
+                <div class="col-sm-6">
+                    <video src="img/musical-note-detection-app.mp4" alt="image one" style="width: 100%;" class="floatTR" controls="controls"> </video>
+                </div>
+                <div class="col-sm-6">
+                    <p>
+                        L'application est réaliser avec les technologies suivants :
+                        <ul>
+                            <li> Capture de l’audio en HTML5 : La montée de l’HTML5 a apporté une transition remarquable en puissance de l’accès au matériel du périphérique. La géolocalisation (GPS), L'API d'orientation et l'API Web Audio (matériel audio), sont des exemples de montée. </li>
+                            <li> Mise en forme de l’interface de l’application : CSS & Bootstrap </li>
+                            <li> VexFlow : est une API de rendu de notation de musique en ligne open source. Il est entièrement écrit en JavaScript, et fonctionne correctement dans le navigateur. VexFlow prend en charge HTML5 Canvas et SVG.</li>  
+                    </p>
+                    <p>
+                        L'application se lance, il faut autoriser l'utilisation de votre micro si vous utilisez le playbacks pour les instruments, et si vous utilisez une versions instrumentales de chansons au format MP3, vous pouvez choisir un fichier en cliquant sur la bouton "Choisissez un fichier", et cliquer sur la bouton play pour lancer la lecture, ou pause pour faire une pause. il y a aussi une bouton effacer qui permet de supprimer les notes apparaître dans la partition.  et si vous voulez changer BPM du rythme, il suffit de cliquer sur les fléche de votre clavier, après vous pouvez aussi choisissez la forme de visualisation.
+                    
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>CONTRIBUTEUR</h2>
+                </div>
+                
+                <div class="col-sm-6">
+                    <p>
+                        <h3>Tom Phily</h3>  Developper en informatique. Après une licence professionnelle en informatique distribué et système d'information en entreprise, il continu sa formation en master MIAGE.
+                    </p>      
+                </div>
+                <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="200" height="200" src="img/1.png" alt="note">
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-6">
+                    <p>
+                        <h3>Bouchti Nordine</h3>  Etudiant en M1 MIAGE à IUP Sophia Antipolis-Nice, passionné par les méthodes d’informatique de gestion, apres avoir une licence 3 MIAGE et un DEUG economie et gestion.
+                    </p>      
+            </div>
+            <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="200" height="200" src="img/2.jpg" alt="note">
+            </div>
+             <div class="col-sm-6">
+                    <p>
+                        <h3>Traoré Aichatou</h3> Étudiante en master 1 MIAGE de l'université de Nice Sophia antipolis.Curieuse et  passionner de la découverte et la nouvelle technologie.
+                    </p>      
+            </div>
+            <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="200" height="200" src="img/3.jpg" alt="note">
+            </div>
+             <div class="col-sm-6">
+                    <p>
+                        <h3>Lamine Marouane</h3>  étudiant en M1 MIAGE à l’université Nice Sophia Antipolis, il a fait sa Licence professionnelle en Génie Logiciel et Administration avancée des systemes et reseaux informatiques à Casablanca au Maroc.
+                    </p>      
+            </div>
+            <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="200" height="200" src="img/5.png" alt="note">
+            </div>
+             <div class="col-sm-6">
+                    <p>
+                        <h3>Estelle Rostan</h3>  en cours de formation MIAGE après avoir effectué un BTS Informatique et gestion, s'oriente vers le développement d’applications web.
+                    </p>      
+            </div>
+            <div class="col-sm-6">
+                   <img class="img-circle center-block" style="margin-bottom: 50px" display="inline-block" width="200" height="200" src="img/4.jpg" alt="note">
+            </div>
+            </div>
+            </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">Copyright 2017, Projet fin d'année Master1 MIAGE</p>
+        </div>
+    </footer>
+
+    
+
+</body>
+</html>

@@ -8,6 +8,9 @@ git clone https://github.com/PhilyT/KaraokeInverse.git
 ### Documents  
   
 Le travail de recherche se trouve dans le repertoire doc à  la racine.
+Web Audio : https://github.com/PhilyT/KaraokeInverse/tree/master/doc/WebAudio
+Son et Solfège : https://github.com/PhilyT/KaraokeInverse/tree/master/doc/Son%20et%20Solf%C3%A8ge
+Affichage Partition : https://github.com/PhilyT/KaraokeInverse/tree/master/doc/Affichage%20Partition
 
 ## Utilisation du metronome
 * '+' ou '→' pour augmenter Tempo

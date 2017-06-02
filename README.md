@@ -7,19 +7,23 @@ git clone https://github.com/PhilyT/KaraokeInverse.git
   
 ### Documents  
   
-Le travail de recherche se trouve dans le repertoire doc à  la racine.  
+Le travail de recherche se trouve dans le repertoire doc à  la racine.
+
+## Utilisation du metrenome
+* + or → pour augmenter Tempo
+* - or ← pour diminuer Tempo
 
 ### Contributeurs  
 | Tâches | Contributeurs |  
 |:---:|:---:|
 | Analyse WebAudio | Aichatou Traore **&** Marouane Lamine |
-| Analyse Son & Solfège | Tom Phily **&** Nourdine Bouchti |
+| Analyse Son & Solfège | Tom Phily **&** Nordine Bouchti |
 | Analyse Framwork Score HTML5 | Estelle Rostan |
-| Paramétrage de WebAudio | Aichatou Traore |
-| Découpage du flux audio | Marouane Lamine **&** Nourdine Bouchti |
+| Paramétrage de WebAudio | Aichatou Traore **&** Marouane Lamine **&** Nordine Bouchti |
+| Découpage du flux audio | Marouane Lamine **&** Nordine Bouchti |
 | Identification d'une Note | Tom Phily **&** Aichatou Traore |
 | Implémentation du framwork VexFlow | Estelle Rostan |
-| Design de la page | Estelle Rostan |  
+| Design de la page | Estelle Rostan **&** Aichatou Traore |
 
 <img src = "./doc/Gantt.png" title = "diagramme de gantt" alt = "Diagramme de Gantt">    
   
@@ -32,34 +36,39 @@ Dans le karaoké, le texte défile sur l'écran et une personne essaie de le cha
   
 ## Fonctionnalités de base
 
-* Lire le flux audio du micro de l’utilisateur ou à partir d’un fichier audio (implémentation de webaudio -> Aichatou et Marouane) 🗸
-* Reconnaître une note de musique à partir du flux audio lu (récupéré la fréquence toute les milliseconde à partir d’un algorithme -> Marouane et Nourdine, identifier la note par rapport à la fréquence obtenue -> Aichatou et Tom) 🗸
-* Afficher la note de musique sur une partition (Afficher les notes selon un rythme définie ou reconnu -> Nourdine et celui ou celle qui à envie de  travailler sur cette partie là, implémenter VexFlow -> Estelle) 
+* Lire le flux audio du micro de l’utilisateur ou à partir d’un fichier audio (implémentation de webaudio -> Aichatou, Marouane & Nordine)
+* Reconnaître une note de musique à partir du flux audio lu :
+* * récupéré la fréquence toute les milliseconde à partir d’un algorithme -> Marouane et Nordine
+* * Identifier la note par rapport à la fréquence obtenue -> Aichatou et Tom
+* Afficher les notes sur la partition :
+* * Détecter les notes selon le rythme joué -> Tom
+* * Implémenter VexFlow, afficher une partion -> Estelle
 * Liste des éléments à afficher sur la partition : 
-* * notes de musique pleine -> Estelle 🗸
-
-## Les fonctionnalités à discuter
-
-* Liste des éléments à afficher sur la partition :
-* demi notes, notes, notes prolongée
-* pauses -> Aichatou
-* mesures
-* clés utilisé
+* * notes de musique pleine -> Estelle
+* Créer une nouvelle partition arrivé à la fin de la dernière -> Tom
+* Rafraichir les partitions -> Nordine
+* Documenter le code  -> Marouane et Estelle
 
 
-## Les issues
+## Les fonctionnalités ajoutées
 
-* Ajouter un menu déroulant pour choisir le rythme / Marouane 
-* Supprimer la notion de mesure pour l'instant, l'intégrer dans les dernières versions s'il reste du temps
-* Tests : quoi tester ? (Instruments) Comment ? (Fichiers : trop facile, micro…)
-* Intégrer la persistance de données (sauvegarder une partition, le rythme préféré,...)
-* Faire le rapport en commun (sur le drive)
+* Permettre à l'utilisateur de choisir le rythme joué afin de facilité la détection des notes. -> Tom
 
+## Technologies employées
+
+* WebAudio : https://developer.mozilla.org/fr/docs/Web/API/Web_Audio_API
+* * API qui permet la capture de son, de la visualization, du traitement audio sur le web.
+* PitchDetect : https://github.com/cwilso/PitchDetect/blob/master/js/pitchdetect.js
+* * PitchDetect est un algorithme qui permet de récuperer la retrouver la fréquence fondamental dans buffer audio en fonction de la valeur de son amplitude. Licence MIT
+* GetSong-Metronome : https://github.com/tabs4acoustic/GetSong-Metronome/
+* * GetSong-Metronome permet d'afficher un metronome. Licence MIT
+* VexFlow : https://github.com/0xfe/vexflow
+* * VexFlow permet d'afficher des partions et des notes de musiques. Licence MIT
   
 ### Release  
   
 >###### Version 1.0  
->Prévue pour fin mai :
+>Réalisée le  02/06/2017
 >* Rendu du projet  
 
 ---

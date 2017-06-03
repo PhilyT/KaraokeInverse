@@ -1,0 +1,27 @@
+html, body {
+	height: 100%;
+	margin: 0; padding: 0;
+}
+#index {
+	display : table;
+	width: 100%;
+	margin:0;
+  padding:0;
+  background: url(../img/Musicien.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; 
+  background-size: cover; 
+  color: #FFB6C1;
+  
+}
+#global{
+  min-height: 100%;
+  position: relative;
+}
+#footindex {
+	background: #998B7D;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  margin-top: 50px;
+}

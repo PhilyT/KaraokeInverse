@@ -12,7 +12,7 @@ var audioOpts = {
     mandatory: {
         "googEchoCancellation": "false",
         "googAutoGainControl": "false",
-        "googNoiseSuppression": "false",
+        "googNoiseSuppression": "true",
         "googHighpassFilter": "false"
     },
     optional: []
@@ -20,9 +20,10 @@ var audioOpts = {
 var thebuffer = null;
 var audioSource = null;
 var didConnect = null;
-var actualNote = pause();
-var oldNote = {cpt:0};
 var streamer;
+var frameId;
+var timerGeneral;
+var tempo;
 
 /*
  * Vérifier la prise en charge de l'API par le navigateur
@@ -42,6 +43,7 @@ audioContext = new AudioContext();
 
 window.onload = function() {
 
+
     /*
     * Préparer le UserMedia en déterminant les périphériques auxquels on veut y accéder,
     * ici on est besoin d'accéder au microphone de l'utilisateur,
@@ -52,11 +54,19 @@ window.onload = function() {
         {audio: audioOpts},
         getStream,
         function(e){
-            alert("Erreur : problème dans la capture du son");
+            var microphoneSettings = $('#microphone-settings');
+            var availableInputs =  $("#available-inputs");
+
+            microphoneSettings.modal("show");
+
+            microphoneSettings.on('hidden.bs.modal', function (e) {
+                availableInputs.css("font-weight","Bold");
+                availableInputs.css("font-size","25px");
+                availableInputs.text("Attention : Lecture à partir d'un fichier audio uniquement.");
+            });
             console.log(e);
         }
     );
-
 
     /*
     * Controler le start/pause du flux audio
@@ -66,19 +76,48 @@ window.onload = function() {
             track.enabled = false;
             isPlaying = false;
             $(this).text("Démarrer");
-        } else {
+            if(!didConnect){
+                window.cancelAnimationFrame(frameId);
+                clearTimeout(timer1);
+                //clearTimeout(timer2);
+                clearInterval(timerGeneral);
+                metronome_off();
+            }
+        } else if(!didConnect){
             track.enabled = true;
             isPlaying = true;
-            $(this).text("Stop");
+            $(this).text("Pause");
+            actualNote = pause();
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
+            metronome_on();
+            connectStream();
+            detectPitch();
         }
-
     });
 
+    $(".bpm-input").on("change",function(){
+        metronome_off();
+        window.cancelAnimationFrame(frameId);
+        tempo = 60000.0/parseInt($(".bpm-input").val());
+        tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 60000/parseInt($(".bpm-input").val())/4.0;
+        clearInterval(timerGeneral);
+        clearTimeout(timer1);
+        //clearTimeout(timer2);
+        if(isPlaying || didConnect){
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
+            connectStream();
+            detectPitch();
+            metronome_on();
+        }
+    });
 };
 
 /*
  * Implémenter l'algorithme qui permet de retrouver la fréquence fondamentale
- *
+ * inspiré de pitchdetect.js
+ * voir: https://webaudiodemos.appspot.com/pitchdetect/js/pitchdetect.js
  */
 var findFundamentalFreq = function(buffer, sampleRate) {
     var n = 1024, bestR = 0, bestK = -1;
@@ -97,7 +136,7 @@ var findFundamentalFreq = function(buffer, sampleRate) {
         }
     }
     if(bestR > 0.0025) {
-        var fundamentalFreq = sampleRate / bestK;
+        var fundamentalFreq = {freq:(sampleRate / bestK), amplitude:bestR};
         return fundamentalFreq;
     } else {
         return -1;
@@ -111,14 +150,21 @@ function connectAudio(aud) {
     if (didConnect) {
         return false;
     }
-    if(!analyser)
-    {
-        analyser = audioContext.createAnalyser();
-    }
+    metronome_off();
+    connectStream();
+    track.enabled = false;
+    window.cancelAnimationFrame(frameId);
+    metronome_on();
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearInterval(timerGeneral);
+    runDetectNote1();
+    timerGeneral = setInterval(runTimers, tempo);
     aud.connect(analyser);
     analyser.connect(audioContext.destination);
     detectPitch();
     didConnect = true;
+    return aud;
 }
 
 /**
@@ -128,11 +174,23 @@ function connectAudio(aud) {
 function disconnectAudio(aud) {
     if(didConnect)
     {
+        window.cancelAnimationFrame(frameId);
+        metronome_off();
         aud.disconnect(analyser);
         analyser.disconnect(audioContext.destination);
-        mediaStreamSource.connect(analyser);
-        getStream(streamer);
         didConnect = false;
+        clearTimeout(timer1);
+        //clearTimeout(timer2);
+        clearInterval(timerGeneral);
+        if(isPlaying){
+            connectStream();
+            track.enabled = true;
+            runDetectNote1();
+            timerGeneral = setInterval(runTimers, tempo);
+            detectPitch();
+            metronome_on();
+        }
+        return aud;
     }
 }
 
@@ -145,33 +203,18 @@ var detectPitch = function () {
     var freqByteData = new Uint8Array(2048);
     analyser.getByteTimeDomainData(freqByteData);
     var fundalmentalFreq = findFundamentalFreq(freqByteData, audioContext.sampleRate);
-    var noteTrouve =  pause();
-    if (fundalmentalFreq !== -1) {
-        noteTrouve = toNote(fundalmentalFreq);
-        if(noteTrouve.note != actualNote.note)
-        {
-            if(actualNote.duration != "qr")
+    if(detectNote){
+        var noteTrouve =  pause();
+        if (fundalmentalFreq !== -1) {
+            noteTrouve = toNote(fundalmentalFreq.freq);
+            if(noteTrouve.duration != "qr")
             {
-                oldNote = actualNote;
+                noteTrouve.amplitude = fundalmentalFreq.amplitude;
+                tabNote.push(noteTrouve);
             }
-            actualNote = noteTrouve;
-        }
-        else
-        {
-            actualNote.cpt++;
-        }
-
-    } else {
-        if(actualNote.duration == "qr")
-        {
-            actualNote.cpt++;
-        }
-        else
-        {
-            actualNote = noteTrouve;
         }
     }
-    updateNote(actualNote, oldNote);
+
     frameId = window.requestAnimationFrame(detectPitch);
 };
 
@@ -181,16 +224,15 @@ var detectPitch = function () {
  * créer un nœud audio à partir du flux et tenter de détecter la note
  */
 function getStream(stream){
+    tempo = 60000.0/parseInt($(".bpm-input").val());
+    tempo1 = 60000.0/parseInt($(".bpm-input").val()) - 60000/parseInt($(".bpm-input").val())/4.0;
+    runDetectNote1();
+    timerGeneral = setInterval(runTimers, tempo);
+    metronome_on();
+    pendulum_speed();
     streamer = stream;
     track = stream.getTracks()[0];
     mediaStreamSource = audioContext.createMediaStreamSource(stream);
-    source = audioContext.createMediaStreamSource(stream);
-    source.connect(analyser);
-    analyser.connect(distortion);
-    distortion.connect(biquadFilter);
-    biquadFilter.connect(convolver);
-    convolver.connect(gainNode);
-    gainNode.connect(audioContext.destination);
     visualize();
     connectStream();
     detectPitch();
@@ -202,6 +244,7 @@ function getStream(stream){
 function connectStream(){
     analyser = audioContext.createAnalyser();
     analyser.fftSize = bufferSize;
+    analyser.smoothingTimeConstant = 1;
     mediaStreamSource.connect(analyser);
 }
 

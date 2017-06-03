@@ -14,18 +14,22 @@ function playSound()
             var reader = new FileReader();
             reader.onload = function(){
                 var text = reader.result;
+
                 audioContext.decodeAudioData(text, function(buffer) {
                         try{
                             // set the buffer in the AudioBufferSourceNode
                             source.buffer = buffer;
                             
                             // start the source playing
-                            connectAudio(source);
-                            source.start();
-                            var millisecondsToWait = buffer.duration*1000;
-                            setTimeout(function() {
-                                disconnectAudio(source);
-                            }, millisecondsToWait);
+                            source = connectAudio(source);
+                            if(source)
+                            {
+                                source.start();
+                                var millisecondsToWait = buffer.duration*1000;
+                                setTimeout(function() {
+                                    source = disconnectAudio(source);
+                                }, (millisecondsToWait+1));
+                            }
 
                         }catch (e){
                             console.error(e);

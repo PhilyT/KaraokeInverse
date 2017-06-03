@@ -3,56 +3,94 @@ var div;
 var renderer;
 var context;
 var stave;
-var stave2;
 var dummNotes;
-
-var clearVexCavnasBtn;
+var cptnotedanspartition = 0;
+var nombredepartition = 1;
+var clearVexCanvasBtn;
+var sizediv = 200;
 
 $(document).ready(function () {
-    clearVexCavnasBtn = document.getElementById("clear-vex-cavnas");
+    clearVexCanvasBtn = document.getElementById("clear-vex-canvas");
 
-    clearVexCavnasBtn.addEventListener("click", function(){
-        clearVexCavnas();
+    clearVexCanvasBtn.addEventListener("click", function(){
+        clearVexCanvas();
     });
     
     renderScore();
     dummNotes = [];
-
+    dummNotes.push([]);
 // Helper function to justify and draw a 4/4 voice
-    VF.Formatter.FormatAndDraw(context, stave, dummNotes);
+    VF.Formatter.FormatAndDraw(context, stave[0], dummNotes[nombredepartition-1]);
 });
 
-function clearVexCavnas() {
+function newPatition(stave){
+    var cavnas = document.getElementById("cavtest");
+    var partition = document.createElement("div");
+    cavnas.appendChild( partition);
+}
+
+function clearVexCanvas() {
     dummNotes = [];
+    dummNotes.push([]);
+    cptnotedanspartition =0;
+    nombredepartition=1;
+    sizediv = 200;
     div.innerHTML = "";
     renderScore();
 }
 
 function renderScore() {
+
     VF = Vex.Flow;
 
-// Create an SVG renderer and attach it to the DIV element named "vex-canvas".
+    // Create an SVG renderer and attach it to the DIV element named "vex-canvas".
     div = document.getElementById("vex-canvas");
+
     renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-// Configure the rendering context.
-    renderer.resize(1000, 500);
+    // Configure the rendering context.
+    renderer.resize(1000, sizediv);
     context = renderer.getContext();
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-// Create a stave of width 400 at position 10, 40 on the canvas.
-    stave = new VF.Stave(10, 40, 1000);
+    // Create a stave of width 400 at position 10, 40 on the canvas.
+    stave = [];
+    for(var i=0;i<nombredepartition;i++){
+        if(i==0)
+        {
+            stave.push(new VF.Stave(10, 40, 1000));
+        }
+        else
+        {
+            stave.push(new VF.Stave(10, (200*i), 1000));
+        }
+        // Connect it to the rendering context and draw!
+        stave[i].setContext(context).draw();
+    }
 
-// Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
+
 }
 
 function render(note) {
+    cptnotedanspartition = (cptnotedanspartition+1)%13;
     div.innerHTML = '';
+
+    if(cptnotedanspartition == 0){
+        cptnotedanspartition++;
+        nombredepartition++;
+        sizediv = sizediv+200;
+        dummNotes.push([]);
+        dummNotes[nombredepartition-1].push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));
+    }else{
+        dummNotes[nombredepartition-1].push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));
+    }
+
     renderScore();
 
-    dummNotes.push(new Vex.Flow.StaveNote({clef: "treble", keys: [note.note], duration: note.duration}));
+    for(var i=0; i<nombredepartition; i++){
+        // Helper function to justify and draw a 4/4 voice
+        VF.Formatter.FormatAndDraw(context, stave[i], dummNotes[i]);
+    }
 
-// Helper function to justify and draw a 4/4 voice
-    VF.Formatter.FormatAndDraw(context, stave, dummNotes);
+
 }

@@ -2,8 +2,8 @@
 function toNote(freq)
 {
 	var res = new Object();
-	res.duration = "h";
-	res.cpt = 0;
+	res.duration = "q";
+	res.cpt = 1;
 	var octave = findOctave(freq);
 	if (typeof octave!== 'undefined')
 	{
@@ -100,9 +100,9 @@ function pause()
 
 function estimation(freqFundamantal, freqBaseNote, octave)
 {
-	var freqNote = freqBaseNote*Math.pow(2, octave+1);
-	//console.log("octave : " + octave + " freq : " +freqNote);
-	return freqFundamantal < (freqNote+ Math.exp(2, octave)) && freqFundamantal > (freqNote- Math.exp(2, octave));
+	var freqNotemin = (freqBaseNote-0.1)*Math.pow(2, octave+1);
+    var freqNotemax = (freqBaseNote+0.1)*Math.pow(2, octave+1);
+	return freqFundamantal >= freqNotemin && freqFundamantal <= freqNotemax;
 }
 
 function calculCent(freqTrouve, freqBase, octave)

@@ -1,12 +1,13 @@
-.bouton button {
+.bouton {
 	display:block;
-	width:85px ;
-	height:85px;
-	background:#cc0000;
+	width:65px ;
+	height:65px;
+	background:#FFB6C1;
 	font:bold 13px Arial;
 	border-radius:50%;
 	border:none;
 	color:#fff;
 	float:left;
-	margin:2px;
+	margin:4px;
+	box-shadow: 2px 2px 5px #888888;
 }

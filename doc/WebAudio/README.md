@@ -47,7 +47,11 @@ Les techniques d'estimation par la fréquence fondamentale peuvent être sépar�
 Pour plus d'informations sur les techniques de détection de la fréquence fondamentale, vous pouvez visiter le lien suivant : [fundamental-frequency-estimation](http://obogason.com/fundamental-frequency-estimation-and-machine-learning/)
 
 ## Utiliser getUserMedia avec l’API Web Audio
-Le navigateur Google Chrome supporte l’entrée de micro en direct de getUserMedia () à l'API Web audio en temps réel. 
+Le navigateur Google Chrome supporte l’entrée de micro en direct de getUserMedia () à l'API Web audio en temps réel.
+
+## Analyse du flux audio
+* AnalyserNode, utilise la transformation de fourier rapide pour déterminer le domaine fréquentiel. La taille de la FFT est une puissance de deux et determine la limite du buffer à analyser.
+* smoothingTimeConstant : Nombre flottant à double précision qui représente la moyenne de la trame en cours avec la dernière trame analysée - elle permet de lisser la transition entre les valeurs.
 ### Demo:
 * [Live Input Visualizer](http://webaudiodemos.appspot.com/input/index.html)
 

@@ -81,6 +81,22 @@ Il a exactement une entrée et une sortie. Le noeud fonctionne même si la sorti
 |La#| 29.1 | 58.0 | 	117 | 	233 | 	466 | 	932 | 	1865 | 	3729 | 	7458 | 	14918 |  |
 |Si| 30.8 | 62.0 | 	123 | 	247 | 	494 | 	988 | 	1975 | 	3951 | 	7902 | 	15804 |  |
 
+## Identification de la note en fonction de la frequence
+La formule ci dessous à pour but de trouver l'intervalle auquelle la fréquence appartient si elle représente une note.
+Cette intervalle dépend d'un variable = 0.1 choisie par défaut afin de filtrer au mieu les fréquences les plus éloignées d'une note.
+Le but est de faire corresondre la note en fonction de la gamme tempérée représenté dans le tableau ci-dessus.
+FreqBase = fréquence de la note à l'octave -1
+Si la fréquence est compris dans l'intervalle :
+[(freqBase-0.1)*2^(octave+1); (freqBase+0.1*2^(octave+1)]
+alors la fréquence correspond à la note présente dans cette intervalle.
+
+## Detection de la note en fonction du rythme
+Une note est jouée selon un rythme, pour simplifier notre algorithme, l'utilisateur choisie le rythme des notes et nous avons restreint l'affichage des notes jouer dans le rythme.
+Comme l'utilisateur ne peu pas jouer à la millième de seconde une note dans le rythme, on affiche la note qui a la plus forte amplitude dans l'internvalle de temps I suivant :
+Soit tempo la durée entre chaque note,
+I = [ tempo - tempo/4 ; tempo + tempo/4 ]
+Ainsi nous avons un intervalle de temps qui est proportionnelle au tempo choisie.
+
 ## Recherche des algorithmes
 Elaboration de l'algorithmes de recherche de notes sur la base du projet PitchDetect avec MIT licence.
 

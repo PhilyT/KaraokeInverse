@@ -1,6 +1,22 @@
+
 body {
-	background: url("../img/background.jpg") no-repeat fixed center center / 100% auto rgba(0, 0, 0, 0);
+	margin:0;
+  padding:0;
+  background: url(../img/background2.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; 
+  background-size: cover; 
+	
 }
+#menu{
+	margin:0;
+  padding:0;
+  background: url(../img/background2.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; 
+  background-size: cover; 
+  color: #FFB6C1;
+}
+
+
 nav {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 	position: absolute;
@@ -77,7 +93,9 @@ nav ul li ul li {
 }
 footer {
 	background: none repeat scroll 0 0 #2fcbe0;
-	padding: 1.5em 0;
+	padding: 2em 0;
+	margin-top : 4px ;
+	
 }
 footer p, footer a:link, footer a:visited, footer a:hover {
 	color: #fff;
@@ -157,16 +175,29 @@ a.button {
 }
 #content {
 	background: none repeat scroll 0 0 #fff;
-	padding: 5rem 0;
+	padding: 6rem 0;
 	text-align: center;
 	border-bottom: 1px solid #f0f0f0;
+	
 }
 #content h2 {
+	font-size: 2rem;
+	font-weight: 400;
+	margin: 1rem 0 0.3rem;
+	text-transform: none;
+}
+#content h3 {
 	font-size: 1.5rem;
 	font-weight: 400;
 	margin: 1rem 0 0.3rem;
 	text-transform: none;
 }
+.container{
+	margin-left : 4px;
+	margin-right: 4px;
+
+}
+
 .content-block {
 	background: none repeat scroll 0 0 rgb(0, 30, 34);
 	padding: 2.5rem;

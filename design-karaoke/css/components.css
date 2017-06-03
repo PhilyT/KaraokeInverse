@@ -200,3 +200,6 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
 .button:hover > i {
   background: rgba(0, 0, 0, 0.06) none repeat scroll 0 0;
 }
+.notesInf h2{
+  color: #607D8B;
+}
